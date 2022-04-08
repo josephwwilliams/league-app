@@ -1,0 +1,29 @@
+.container {
+  width: 60vw;
+  border: 3px solid black;
+  background: rgb(81, 95, 117);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 10px;
+  position: relative; top: 95px;
+  border-radius: 5px;
+
+}
+.item {
+  padding: 3px;
+  background: black;
+  color: white;
+  font-size: 24px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.name {
+  font-size: 15px;
+  text-align: left;
+  padding: 4px;
+}
+

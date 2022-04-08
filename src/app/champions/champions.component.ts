@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChampsService } from '../champs.service';
 
 @Component({
   selector: 'app-champions',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./champions.component.css']
 })
 export class ChampionsComponent implements OnInit {
-
-  constructor() { }
+  champions: string[]=[]
+  constructor(private champService: ChampsService) { }
 
   ngOnInit(): void {
+    this.champions=this.champService.champions.slice()
   }
 
 }

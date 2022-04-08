@@ -1,1 +1,10 @@
-<h1> Champs go here </h1>
+<div class="container">
+  <a class="item" href="#" *ngFor="let champion of champions">
+    <div>
+      <img src="https://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/Jax.png" style="width: 100%">
+      <div class="name" style="background-color: transparent;">
+        {{champion}}
+      </div>
+    </div>
+  </a>
+</div>

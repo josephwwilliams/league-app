@@ -4,6 +4,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ChampsService {
-  champions: string[] = []
+  champions: string[] = ['Jax','jax','jax','jax','jax','jax','jax','jax','jax','jax','jax','jax',]
   constructor() { }
 }
