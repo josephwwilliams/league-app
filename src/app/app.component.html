@@ -1,2 +1,8 @@
-<app-header></app-header>
-<app-champions></app-champions>
+<section class="background">
+  <div>
+    <app-header (locationSelected)="location($event)"></app-header>
+    <app-champion-details *ngIf="locationSelected === 'Champ Selected'"></app-champion-details>
+    <app-champions *ngIf="locationSelected === 'home'" (selectedChampion)="champSelect($event)"></app-champions>
+    <app-favorites *ngIf="locationSelected === 'favorites'"></app-favorites>
+  </div>
+</section>

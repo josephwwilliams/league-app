@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ChampsService {
-  champions: string[] = ['Jax','jax','jax','jax','jax','jax','jax','jax','jax','jax','jax','jax',]
+  champions: string[] = ['Jax','Bax','Aatrox','Jinx','Jayce','jax','Jax','Bax','Aatrox','Jinx','Jayce','jax','Jax','Bax','Aatrox','Jinx','Jayce','jax','Jax','Bax','Aatrox','Jinx','Jayce','jax','Jax','Bax','Aatrox','Jinx','Jayce','jax','Jax','Bax','Aatrox','Jinx','Jayce','jax','Jax','Bax','Aatrox','Jinx','Jayce','jax',]
+  favoriteChampions:string[] = []
   constructor() { }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NavigationService } from '../navigation.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  @Output() locationSelected = new EventEmitter<string>();
+  headerSelect(location:string){
+    this.locationSelected.emit(location)
+  }
+  constructor(private navigation: NavigationService) { }
 
   ngOnInit(): void {
   }
+
 
 }
