@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
     this.locationSelected = 'Champ Selected'
   }
   ngOnInit(): void {
-    this.champions=this.champService.favoriteChampions.sort().slice()
+    this.champions=this.champService.favoriteChampions.sort()
   }
 
 }
