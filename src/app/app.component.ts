@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Champion } from './champion-format.model';
 import { ChampsService } from './champs.service';
-import { NavigationService } from './navigation.service';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +9,11 @@ import { NavigationService } from './navigation.service';
 })
 export class AppComponent implements OnInit {
   title = 'league-app';
-  locationSelected:string = 'home'
-  champions: string[]=[]
+
+  champions: Champion[]=[]
   constructor(private champService: ChampsService){};
 
-  location($event: string){
-    this.locationSelected = $event
-  }
-  champSelect(){
-    this.locationSelected = 'Champ Selected'
-  }
   ngOnInit(): void {
-    this.champions=this.champService.favoriteChampions.sort()
+    this.champions=this.champService.favoriteChampions
   }
-
 }

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Champion } from '../champion-format.model';
 import { ChampsService } from '../champs.service';
+import {HttpClient} from '@angular/common/http'
 
 @Component({
   selector: 'app-champions',
@@ -7,17 +9,13 @@ import { ChampsService } from '../champs.service';
   styleUrls: ['./champions.component.css']
 })
 export class ChampionsComponent implements OnInit {
-@Output() selectedChampion = new EventEmitter<string>();
-  champions: string[]=[]
+  champions:any = {}
 
-  champInfo(champ) {
-    this.selectedChampion.emit(champ)
-  }
-  constructor(private champService: ChampsService) { }
+  constructor(private champService: ChampsService,private http:HttpClient) { }
 
   ngOnInit(): void {
-    this.champions=this.champService.champions.sort().slice()
+    this.champService.getData().subscribe(
+      res=> this.champions = res.data
+    );
   }
-
-
 }

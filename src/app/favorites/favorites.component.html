@@ -1,9 +1,9 @@
-<div class="container">
+<div *ngIf="champions.length !== 0 " class="container">
   <a class="item" href="#" *ngFor="let champion of champions" (click)="champInfo('Champ Selected')">
     <div>
       <img src="https://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/Jax.png" style="width: 100%">
       <div class="name" style="background-color: transparent;">
-        {{champion}}
+        {{champion.name}}
       </div>
     </div>
   </a>

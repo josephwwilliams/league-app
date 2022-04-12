@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Champion } from '../champion-format.model';
 import { ChampsService } from '../champs.service';
 
 @Component({
@@ -6,8 +7,8 @@ import { ChampsService } from '../champs.service';
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.css']
 })
-export class FavoritesComponent implements OnInit {
-  champions:string[] =[]
+export class FavoritesComponent implements OnInit{
+  champions =[]
   constructor(private champService: ChampsService) {}
 
   ngOnInit(): void {

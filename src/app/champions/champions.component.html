@@ -1,9 +1,9 @@
 <div class="container">
-  <a class="item" href="#" *ngFor="let champion of champions" (click)="champInfo('Champ Selected')">
+  <a style="cursor: pointer;" class="item" *ngFor="let champion of champions | keyvalue" routerLink="details" (click)="clickedChampion(champion)">
     <div>
-      <img src="https://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/Jax.png" style="width: 100%">
+      <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full" style="width: 100%">
       <div class="name" style="background-color: transparent;">
-        {{champion}}
+        {{champion.value.name}}
       </div>
     </div>
   </a>

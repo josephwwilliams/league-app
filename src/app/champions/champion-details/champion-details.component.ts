@@ -7,14 +7,20 @@ import { ChampsService } from 'src/app/champs.service';
   styleUrls: ['./champion-details.component.css']
 })
 export class ChampionDetailsComponent implements OnInit {
-  champions: string[]=[]
+  champions = {}
   constructor(private champService: ChampsService) {}
+
 
   addToFavorites(name){
     this.champService.favoriteChampions.push(name)
   }
+
   ngOnInit(): void {
-    this.champions=this.champService.champions.sort().slice()
+  }
+
+  champDetails($event){
+    this.champions = $event
+    console.log($event)
   }
 
 }
