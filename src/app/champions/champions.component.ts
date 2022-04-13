@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Champion } from '../champion-format.model';
+import { Component, OnInit } from '@angular/core';
 import { ChampsService } from '../champs.service';
 import {HttpClient} from '@angular/common/http'
 
@@ -10,6 +9,8 @@ import {HttpClient} from '@angular/common/http'
 })
 export class ChampionsComponent implements OnInit {
   champions:any = {}
+  favoriteChamps=[]
+
 
   constructor(private champService: ChampsService,private http:HttpClient) { }
 
@@ -17,5 +18,10 @@ export class ChampionsComponent implements OnInit {
     this.champService.getData().subscribe(
       res=> this.champions = res.data
     );
+    this.favoriteChamps = this.champService.favoriteChampions.slice()
+  }
+  clickedChampion(champion){
+    this.champService.selectedChampion = champion.value
+    console.log(champion)
   }
 }

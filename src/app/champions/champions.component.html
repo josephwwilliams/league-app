@@ -1,7 +1,7 @@
 <div class="container">
-  <a style="cursor: pointer;" class="item" *ngFor="let champion of champions | keyvalue" routerLink="details" (click)="clickedChampion(champion)">
+  <a style="cursor: pointer;" class="item" *ngFor="let champion of champions | keyvalue" routerLink="details" [ngStyle]="{'background': (champion.value.favorited=== true) ? '#FFC300' : ''}" (click)="clickedChampion(champion)">
     <div>
-      <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full" style="width: 100%">
+      <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full"  style="width: 100%">
       <div class="name" style="background-color: transparent;">
         {{champion.value.name}}
       </div>

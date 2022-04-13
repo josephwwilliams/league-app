@@ -1,7 +1,7 @@
 <div *ngIf="champions.length !== 0 " class="container">
-  <a class="item" href="#" *ngFor="let champion of champions" (click)="champInfo('Champ Selected')">
+  <a class="item" [ngStyle]="{'background': (champion.favorited=== true) ? '#FFC300' : 'white'}" *ngFor="let champion of champions; let i = index" (click)="backToDetails(champion)">
     <div>
-      <img src="https://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/Jax.png" style="width: 100%">
+      <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.image.full" style="width: 100%">
       <div class="name" style="background-color: transparent;">
         {{champion.name}}
       </div>

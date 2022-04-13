@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Champion } from './champion-format.model';
-import { ChampsService } from './champs.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +7,8 @@ import { ChampsService } from './champs.service';
 })
 export class AppComponent implements OnInit {
   title = 'league-app';
-
-  champions: Champion[]=[]
-  constructor(private champService: ChampsService){};
+  constructor(){};
 
   ngOnInit(): void {
-    this.champions=this.champService.favoriteChampions
   }
 }
