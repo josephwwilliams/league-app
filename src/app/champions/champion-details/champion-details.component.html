@@ -1,10 +1,30 @@
-<div class="container">
-  <div class="card col-4" style="width: 18rem;">
+<div class="container main">
+  <div class="card " style="width: 18rem;">
     <img [src]="'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + favChampion.id + '_0.jpg'" class="card-img-top" alt="Splash Art">
     <div class="card-body">
       <h5 class="card-title">{{favChampion.name}} {{favChampion.title}}</h5>
       <p class="card-text">{{favChampion.blurb}}</p>
       <button class="btn btn-primary" (click)="sendToFavorites()">Add To Favorites!</button>
+    </div>
+  </div>
+  <div *ngIf="champDetails !== undefined" class="container data " style="width: 18rem;">
+    <div *ngFor="let champion of champDetails" class="card">
+      <div class="card-body">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[0].image.full" alt="Spell1">
+        {{champion.spells[0].name}}
+      </div>
+      <div class="card-body">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[1].image.full" alt="Spell2">
+        {{champion.spells[1].name}}
+      </div>
+      <div class="card-body">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[2].image.full" alt="Spell3">
+        {{champion.spells[2].name}}
+      </div>
+      <div class="card-body">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[3].image.full" alt="Spell4">
+        {{champion.spells[3].name}}
+      </div>
     </div>
   </div>
 </div>

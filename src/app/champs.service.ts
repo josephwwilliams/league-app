@@ -1,14 +1,15 @@
 import { Injectable, OnInit} from '@angular/core';
-import { Champion } from './champion-format.model';
 import {HttpClient} from '@angular/common/http'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChampsService implements OnInit{
-  champions = {}
+  champions = []
   selectedChampion = {}
   favoriteChampions = []
+  championDetails;
 
   constructor(private http:HttpClient) {}
 
@@ -22,7 +23,6 @@ export class ChampsService implements OnInit{
       this.favoriteChampions.sort(this.compare)
     } else return
     this.removeDuplicates()
-    console.log(this.favoriteChampions)
   }
   removeDuplicates() {
     const uniqueValuesSet = new Set();
@@ -48,9 +48,14 @@ export class ChampsService implements OnInit{
   getData(){
     return this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion.json');
   }
-  // getChampionData(championDetails){
-  //   console.log(championDetails)
-  //   let id = championDetails.id
-  //   return this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/' + championDetails.id +'.json');
-  // }
+
+
+  getChampionData(championDetails){
+    let apiRoot = 'http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/'
+    let search = championDetails
+    let tail = '.json'
+    let apiUrl = `${apiRoot}${search}${tail}`
+    return this.http.get<any>(apiUrl)
+  }
+
 }

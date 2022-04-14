@@ -8,6 +8,7 @@ import { ChampionsComponent } from './champions/champions.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { ChampionDetailsComponent } from './champions/champion-details/champion-details.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
     ChampionsComponent,
     FavoritesComponent,
     ChampionDetailsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

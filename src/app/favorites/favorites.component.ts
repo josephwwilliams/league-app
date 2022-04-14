@@ -1,6 +1,5 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Champion } from '../champion-format.model';
 import { ChampsService } from '../champs.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { ChampsService } from '../champs.service';
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit{
-  champions
+  champions=[]
   constructor(private champService: ChampsService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ChampsService } from '../champs.service';
-import {HttpClient} from '@angular/common/http'
 
 @Component({
   selector: 'app-champions',
@@ -8,11 +7,10 @@ import {HttpClient} from '@angular/common/http'
   styleUrls: ['./champions.component.css']
 })
 export class ChampionsComponent implements OnInit {
-  champions:any = {}
+  champions:any = []
   favoriteChamps=[]
 
-
-  constructor(private champService: ChampsService,private http:HttpClient) { }
+  constructor(private champService: ChampsService) { }
 
   ngOnInit(): void {
     this.champService.getData().subscribe(
@@ -22,6 +20,10 @@ export class ChampionsComponent implements OnInit {
   }
   clickedChampion(champion){
     this.champService.selectedChampion = champion.value
-    console.log(champion)
   }
+
+  // favortiteFilter() {
+  //   this.champions = this.champions.map(obj => this.favoriteChamps.find(o => o.id === obj.value.id) || obj)
+  // }
+
 }

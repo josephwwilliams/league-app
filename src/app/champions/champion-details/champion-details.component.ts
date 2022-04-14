@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ChampsService } from 'src/app/champs.service';
 
@@ -9,24 +8,20 @@ import { ChampsService } from 'src/app/champs.service';
 })
 export class ChampionDetailsComponent implements OnInit {
   favChampion;
-  champDetails;
-  constructor(private champService: ChampsService, private http: HttpClient) {}
-
+  champDetails:any = []
+  constructor(private champService: ChampsService) {}
+  champId
 
   sendToFavorites(){
     this.champService.favoriteClick(this.favChampion)
   }
-  // getData(){
-  //   this.champService.getChampionData(this.favChampion).subscribe(
-  //     res=> this.champDetails = res
-  //   );
-  //   console.log(this.champDetails)
-  // }
-
   ngOnInit(): void {
     this.favChampion = this.champService.selectedChampion
-    // this.champService.getChampionData(this.favChampion).subscribe(
-    //   res=> this.champDetails = res.data
-    // );
+    this.champId = this.favChampion.id
+    this.champService.getChampionData(this.favChampion.id).subscribe(
+      res => this.champDetails.push(res.data[this.champId])
+      // res => console.log(res.data[this.champId])
+    );
   }
+
 }
