@@ -10,6 +10,7 @@ export class ChampionsComponent implements OnInit {
   champions:any = []
   favoriteChamps=[]
   displayArray=[]
+  championSearch:string = '';
 
   constructor(private champService: ChampsService) { }
 

@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
   grid-gap: 10px;
-  position: relative; top: 95px;
+  position: relative; top: 10px;
   border-radius: 5px;
 
 }
@@ -32,7 +32,6 @@
   text-align: left;
   padding: 4px;
 }
-
 .button {
   line-height: 12px;
   width: 18px;
@@ -44,3 +43,12 @@
   top:0;
   right:0;
 }
+.search{
+  padding-top: 100px;
+  max-width: 20%;
+  float: right;
+  margin-left: 60%;
+}
+/* .fake{
+  opacity: 0;
+} */

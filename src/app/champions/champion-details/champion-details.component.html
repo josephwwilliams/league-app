@@ -4,7 +4,7 @@ class="container main"
 800px', 'background-size': '100% 800px' }"
 >
   <div class="card" style="width: 18rem; height: 82.5%;">
-    <img [src]="'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + favChampion.id + '_0.jpg'" class="card-img-top" alt="Splash Art" (mouseenter)="showLore=true" (mouseleave)="showLore=false">
+    <img [src]="'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + favChampion.id + '_0.jpg'" class="card-img-top champion" alt="Splash Art" (mouseenter)="showLore=true" (mouseleave)="showLore=false">
     <div class="card-body" >
       <h5 class="card-title">{{favChampion.name}} {{favChampion.title}}</h5>
       <!-- <p class="card-text">{{favChampion.blurb}}</p> -->

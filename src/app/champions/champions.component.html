@@ -1,5 +1,10 @@
 <div *ngIf="displayArray.length === 0" >
-  <div class="container" (mouseenter)="createArray()" (mouseenter)="log2()">
+  <div class="row fake">
+    <div class=" search">
+      <input type="text" class="form-control" placeholder="Search for champions!" (mouseenter)="createArray()" [(ngModel)]="championSearch">
+    </div>
+  </div>
+  <div class="container" (mouseenter)="createArray()" >
     <a style="cursor: pointer;"
     class="item"
     *ngFor="let champion of champions | keyvalue"
@@ -17,10 +22,15 @@
   </div>
 </div>
 <div *ngIf="displayArray.length !== 0" >
-  <div class="container"  (mouseenter)="log()">
+  <div class="row">
+    <div class="search">
+      <input type="text" class="form-control" placeholder="Search for champions!" [(ngModel)]="championSearch">
+    </div>
+  </div>
+  <div class="container">
     <a style="cursor: pointer;"
     class="item"
-    *ngFor="let champion of displayArray | keyvalue"
+    *ngFor="let champion of displayArray | keyvalue | filter:championSearch"
     routerLink="details"
     [ngStyle]="{'background': (champion.value.favorited=== true) ? '#FFC300' : ''}"
     (click)="clickedChampion(champion)"

@@ -4,4 +4,5 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
