@@ -1,31 +1,122 @@
-<div class="container main">
-  <div class="card " style="width: 18rem;">
-    <img [src]="'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + favChampion.id + '_0.jpg'" class="card-img-top" alt="Splash Art">
-    <div class="card-body">
+<div
+class="container main"
+[ngStyle]="{'background-image': 'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' +  favChampion.id+ '_0.jpg)', 'background-repeat': 'no-repeat', 'height':'
+800px', 'background-size': '100% 800px' }"
+>
+  <div class="card" style="width: 18rem; height: 82.5%;">
+    <img [src]="'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + favChampion.id + '_0.jpg'" class="card-img-top" alt="Splash Art" (mouseenter)="showLore=true" (mouseleave)="showLore=false">
+    <div class="card-body" >
       <h5 class="card-title">{{favChampion.name}} {{favChampion.title}}</h5>
-      <p class="card-text">{{favChampion.blurb}}</p>
-      <button class="btn btn-primary" (click)="sendToFavorites()">Add To Favorites!</button>
+      <!-- <p class="card-text">{{favChampion.blurb}}</p> -->
+      <button class="btn"  (click)="sendToFavorites()">Add To Favorites!</button>
     </div>
   </div>
   <div *ngIf="champDetails !== undefined" class="container data " style="width: 18rem;">
     <div *ngFor="let champion of champDetails" class="card">
-      <div class="card-body">
-        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[0].image.full" alt="Spell1">
+      <div class="spells">Spells</div>
+      <div class="card-body spells">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[0].image.full" alt="Spell1" class="image" (mouseenter)="showSpell1=true" (mouseleave)="showSpell1=false">
         {{champion.spells[0].name}}
       </div>
-      <div class="card-body">
-        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[1].image.full" alt="Spell2">
+      <div class="card-body spells">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[1].image.full" alt="Spell2" class="image" (mouseenter)="showSpell2=true" (mouseleave)="showSpell2=false">
         {{champion.spells[1].name}}
       </div>
-      <div class="card-body">
-        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[2].image.full" alt="Spell3">
+      <div class="card-body spells">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[2].image.full" alt="Spell3" class="image" (mouseenter)="showSpell3=true" (mouseleave)="showSpell3=false">
         {{champion.spells[2].name}}
       </div>
-      <div class="card-body">
-        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[3].image.full" alt="Spell4">
+      <div class="card-body spells">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[3].image.full" alt="Spell4" class="image" (mouseenter)="showSpell4=true" (mouseleave)="showSpell4=false">
         {{champion.spells[3].name}}
       </div>
     </div>
   </div>
+  <div *ngIf="champDetails !== undefined" class="container data " style="width: 18rem;">
+    <div *ngFor="let champion of champDetails" class="card">
+      <div class="passive">Passive</div>
+      <div class="card-body passive">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + champion.passive.image.full" alt="Spell1" class="image" (mouseenter)="showPassive=true" (mouseleave)="showPassive=false">
+        {{champion.passive.name}}
+      </div>
+      <!-- <div class="container passivedes" [innerHTML]="champion.passive.description">
+        {{champion.passive.description}}
+      </div> -->
+    </div>
+  </div>
+  <div *ngIf="champDetails !== undefined" >
+    <div *ngIf="showPassive" class="container sub" style="width: 40rem;">
+      <div *ngFor="let champion of champDetails" class="passivedes">
+        <div class="">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + champion.passive.image.full" alt="Spell1" class="image">
+          {{champion.passive.name}}
+        </div>
+        <div class="" [innerHTML]="champion.passive.description">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="champDetails !== undefined" >
+    <div *ngIf="showSpell1" class="container sub" style="width: 40rem;">
+      <div *ngFor="let champion of champDetails" class="passivedes">
+        <div class="">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[0].image.full" alt="Spell1" class="image">
+          {{champion.spells[0].name}}
+        </div>
+        <div class="" [innerHTML]="champion.spells[0].description">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="champDetails !== undefined" >
+    <div *ngIf="showSpell2" class="container sub" style="width: 40rem;">
+      <div *ngFor="let champion of champDetails" class="passivedes">
+        <div class="">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[1].image.full" alt="Spell1" class="image">
+          {{champion.spells[1].name}}
+        </div>
+        <div class="" [innerHTML]="champion.spells[1].description">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="champDetails !== undefined" >
+    <div *ngIf="showSpell3" class="container sub" style="width: 40rem;">
+      <div *ngFor="let champion of champDetails" class="passivedes">
+        <div class="">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[2].image.full" alt="Spell1" class="image">
+          {{champion.spells[2].name}}
+        </div>
+        <div class="" [innerHTML]="champion.spells[2].description">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="champDetails !== undefined" >
+    <div *ngIf="showSpell4" class="container sub" style="width: 40rem;">
+      <div *ngFor="let champion of champDetails" class="passivedes">
+        <div class="">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[3].image.full" alt="Spell1" class="image">
+          {{champion.spells[3].name}}
+        </div>
+        <div class="" [innerHTML]="champion.spells[3].description">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="champDetails !== undefined" >
+    <div *ngIf="showLore" class="container sub" style="width: 40rem;">
+      <div *ngFor="let champion of champDetails" class="passivedes">
+        <div class="">
+          <!-- <img src="assets/images/league.png" alt="" alt="Spell1" class="league-image"> -->
+          <div style="font-weight: bold; font-size: x-large;color: gold;">Lore:</div>
+          <div>
+            {{champion.lore}}
+          </div>
+        </div>
+        <div class="" [innerHTML]="champion.passive.description">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-

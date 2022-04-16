@@ -11,6 +11,7 @@ export class ChampionDetailsComponent implements OnInit {
   champDetails:any = []
   constructor(private champService: ChampsService) {}
   champId
+  showLore = false
 
   sendToFavorites(){
     this.champService.favoriteClick(this.favChampion)

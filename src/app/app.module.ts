@@ -9,6 +9,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { ChampionDetailsComponent } from './champions/champion-details/champion-details.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeComponent } from './home/home.component';
     FavoritesComponent,
     ChampionDetailsComponent,
     HomeComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

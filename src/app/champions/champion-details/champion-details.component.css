@@ -1,18 +1,65 @@
 .container.main {
-  width: 60vw;
+  width: 120vw;
   border: 3px solid black;
   background: rgb(81, 95, 117);
   padding-top: 10px;
   padding-bottom: 10px;
-  display: grid;
+  /* display: grid; */
   /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
   grid-gap: 10px;
   position: relative; top: 95px;
   border-radius: 5px;
   display: flex;
 }
+.sub{
+  position: absolute;
+  left: 40%;
+  bottom: 5%;
+  align-items: center;
+  background-color: #16232C;
+  padding-top: 10px;
+  color: white;
+  border: 3px solid black;
+}
 .card {
   border: 3px solid black;
-  width: 110%;
+  /* width: 100%; */
+  background-color: #16232C;
+  color: white;
+}
+.league-image{
+  max-height: 60px;
+  max-width: 60px;
+}
+.image {
+  border: 3px solid rgb(70, 70, 70);
+  border-radius: 5px;
+}
+.image:hover{
+  opacity: 0.9;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.passive {
+  padding-bottom: 15px;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+.passivedes{
+  padding-bottom: 15px;
+}
+.spells{
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+.btn{
+  background-color: #E9AB4B;
+  color: white;
+}
+.btn:hover{
+  opacity: 0.9;
+  transform: scale(1.1);
 }
 

@@ -9,6 +9,7 @@ import { ChampsService } from '../champs.service';
 export class ChampionsComponent implements OnInit {
   champions:any = []
   favoriteChamps=[]
+  displayArray=[]
 
   constructor(private champService: ChampsService) { }
 
@@ -20,6 +21,15 @@ export class ChampionsComponent implements OnInit {
   }
   clickedChampion(champion){
     this.champService.selectedChampion = champion.value
+  }
+  createArray(){
+    this.displayArray=this.champions
+  }
+  log(){
+    console.log('im the second array')
+  }
+  log2(){
+    console.log('im the first array')
   }
 
   // favortiteFilter() {

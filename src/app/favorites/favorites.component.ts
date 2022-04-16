@@ -18,5 +18,8 @@ export class FavoritesComponent implements OnInit{
   backToDetails(champion){
     this.router.navigate(['/champions'])
   }
-
+  // clickedChampion(champion){
+  //   this.champService.selectedChampion = champion.value
+  //   this.router.navigate(['/champions/details'])
+  // }
 }

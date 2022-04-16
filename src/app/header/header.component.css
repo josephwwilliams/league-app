@@ -1,1 +1,8 @@
-
+.container-fluid{
+  background-color: #16232C;
+}
+.image{
+  max-height: 60px;
+  max-width: 60px;
+  padding-top: 10px;
+}
