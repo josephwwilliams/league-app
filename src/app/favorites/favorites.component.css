@@ -11,6 +11,20 @@
   border-radius: 5px;
 
 }
+.addfavorites{
+  width: 60vw;
+  border: 3px solid black;
+  background: rgb(81, 95, 117);
+  position: relative; top: 160px;
+  border-radius: 5px;
+  color: white;
+  margin: 0 auto;
+  text-align: center;
+  left: 0;
+  right: 0;
+  font-weight: bold;
+  font-size: x-large;
+}
 .item {
   padding: 3px;
   background: black;

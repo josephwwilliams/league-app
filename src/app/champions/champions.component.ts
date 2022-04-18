@@ -28,10 +28,8 @@ export class ChampionsComponent implements OnInit {
 
   createArray(){
     this.displayArray=this.champions
+    // let resut = Object.values(this.displayArray).filter(o1 => this.champService.favoriteChampions.some(o2 => o1.id === o2.id))
+    // this.displayArray.push(resut)
   }
-
-  // favortiteFilter() {
-  //   this.champions = this.champions.map(obj => this.favoriteChamps.find(o => o.id === obj.value.id) || obj)
-  // }
 
 }
