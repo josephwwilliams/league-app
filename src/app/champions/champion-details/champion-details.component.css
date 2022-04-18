@@ -58,6 +58,9 @@
   font-weight: bold;
   font-size: large;
 }
+.spellname{
+  width: auto;
+}
 .btn{
   background-color: #E9AB4B;
   color: white;

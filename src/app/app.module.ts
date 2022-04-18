@@ -11,8 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
-import { NgStyle } from '@angular/common';
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -36,7 +36,7 @@ class="container main"
     <div *ngFor="let champion of champDetails" class="card">
       <div class="passive">Passive</div>
       <div class="card-body passive">
-        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + champion.passive.image.full" alt="Spell1" class="image" (mouseenter)="showPassive=true" (mouseleave)="showPassive=false">
+        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + champion.passive.image.full" alt="Passive" class="image" (mouseenter)="showPassive=true" (mouseleave)="showPassive=false">
         {{champion.passive.name}}
       </div>
       <!-- <div class="container passivedes" [innerHTML]="champion.passive.description">
@@ -48,7 +48,7 @@ class="container main"
     <div *ngIf="showPassive" class="container sub" style="width: 40rem;">
       <div *ngFor="let champion of champDetails" class="passivedes">
         <div class="">
-          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + champion.passive.image.full" alt="Spell1" class="image">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + champion.passive.image.full" alt="Passive" class="image">
           {{champion.passive.name}}
         </div>
         <div class="" [innerHTML]="champion.passive.description">

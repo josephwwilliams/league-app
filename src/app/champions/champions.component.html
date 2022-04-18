@@ -1,46 +1,48 @@
-<div *ngIf="displayArray.length === 0" >
-  <div class="row fake">
-    <div class=" search">
-      <input type="text" class="form-control" placeholder="Search for champions!" (mouseenter)="createArray()" [(ngModel)]="championSearch">
+<div>
+  <div *ngIf="displayArray.length === 0" >
+    <div class="row fake">
+      <div class=" search">
+        <input type="text" class="form-control" placeholder="Search for champions!" (mouseenter)="createArray()" [(ngModel)]="championSearch">
+      </div>
+    </div>
+    <div class="container" (mouseenter)="createArray()" >
+      <a style="cursor: pointer;"
+      class="item"
+      *ngFor="let champion of champions | keyvalue"
+      routerLink="details"
+      [ngStyle]="{'background': (champion.value.favorited=== true) ? '#FFC300' : ''}"
+      (click)="clickedChampion(champion)"
+      >
+        <div class="view overlay zoom">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full"  style="width: 100%">
+          <div class="name" style="background-color: transparent;">
+            {{champion.value.name}}
+          </div>
+        </div>
+      </a>
     </div>
   </div>
-  <div class="container" (mouseenter)="createArray()" >
-    <a style="cursor: pointer;"
-    class="item"
-    *ngFor="let champion of champions | keyvalue"
-    routerLink="details"
-    [ngStyle]="{'background': (champion.value.favorited=== true) ? '#FFC300' : ''}"
-    (click)="clickedChampion(champion)"
-    >
-      <div class="view overlay zoom">
-        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full"  style="width: 100%">
-        <div class="name" style="background-color: transparent;">
-          {{champion.value.name}}
-        </div>
+  <div *ngIf="displayArray.length !== 0" >
+    <div class="row">
+      <div class="search">
+        <input type="text" class="form-control" placeholder="Search for champions!" [(ngModel)]="championSearch">
       </div>
-    </a>
-  </div>
-</div>
-<div *ngIf="displayArray.length !== 0" >
-  <div class="row">
-    <div class="search">
-      <input type="text" class="form-control" placeholder="Search for champions!" [(ngModel)]="championSearch">
     </div>
-  </div>
-  <div class="container">
-    <a style="cursor: pointer;"
-    class="item"
-    *ngFor="let champion of displayArray | keyvalue | filter:championSearch"
-    routerLink="details"
-    [ngStyle]="{'background': (champion.value.favorited=== true) ? '#FFC300' : ''}"
-    (click)="clickedChampion(champion)"
-    >
-      <div class="view overlay zoom">
-        <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full"  style="width: 100%">
-        <div class="name" style="background-color: transparent;">
-          {{champion.value.name}}
+    <div class="container">
+      <a style="cursor: pointer;"
+      class="item"
+      *ngFor="let champion of displayArray | keyvalue | filter:championSearch"
+      routerLink="details"
+      [ngStyle]="{'background': (champion.value.favorited=== true) ? '#FFC300' : ''}"
+      (click)="clickedChampion(champion)"
+      >
+        <div class="view overlay zoom">
+          <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full"  style="width: 100%">
+          <div class="name" style="background-color: transparent;">
+            {{champion.value.name}}
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </div>
   </div>
 </div>

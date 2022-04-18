@@ -1,20 +1,23 @@
 
-.container.main {
-  width: 60vw;
-  border: 3px solid black;
-  background: rgb(81, 95, 117);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: grid;
+.container {
+  width: 120vw;
+  border: 1px solid rgb(255, 255, 255);
   /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
-  grid-gap: 10px;
-  position: relative; top: 95px;
-  border-radius: 5px;
+  position: relative; top: 200px;
   display: flex;
+  padding-top: 8px;
 }
-.card {
-  border: 3px solid black;
+video{
+  width: 100%    !important;
+  height: auto   !important;
+  position: relative;
 }
-.container.data{
-
+img {
+  width: 50%;
+  position: absolute;
+  z-index: 99;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: -15%
 }

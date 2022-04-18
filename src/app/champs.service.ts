@@ -23,6 +23,7 @@ export class ChampsService implements OnInit{
     } else return
     this.removeDuplicates()
   }
+
   removeDuplicates() {
     const uniqueValuesSet = new Set();
     const filteredArr = this.favoriteChampions.filter((obj) => {
@@ -47,7 +48,6 @@ export class ChampsService implements OnInit{
   getData(){
     return this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion.json');
   }
-
 
   getChampionData(championDetails){
     let apiRoot = 'http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/'

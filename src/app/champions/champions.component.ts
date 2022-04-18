@@ -10,6 +10,7 @@ export class ChampionsComponent implements OnInit {
   champions:any = []
   favoriteChamps=[]
   displayArray=[]
+  // logs = true
   championSearch:string = '';
 
   constructor(private champService: ChampsService) { }
@@ -20,17 +21,13 @@ export class ChampionsComponent implements OnInit {
     );
     this.favoriteChamps = this.champService.favoriteChampions.slice()
   }
+
   clickedChampion(champion){
     this.champService.selectedChampion = champion.value
   }
+
   createArray(){
     this.displayArray=this.champions
-  }
-  log(){
-    console.log('im the second array')
-  }
-  log2(){
-    console.log('im the first array')
   }
 
   // favortiteFilter() {

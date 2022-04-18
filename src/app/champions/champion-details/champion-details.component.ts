@@ -16,6 +16,7 @@ export class ChampionDetailsComponent implements OnInit {
   sendToFavorites(){
     this.champService.favoriteClick(this.favChampion)
   }
+
   ngOnInit(): void {
     this.favChampion = this.champService.selectedChampion
     this.champId = this.favChampion.id

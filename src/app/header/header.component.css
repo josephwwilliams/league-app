@@ -6,3 +6,12 @@
   max-width: 60px;
   padding-top: 10px;
 }
+.nav{
+  align-items: center;
+}
+.button{
+  padding: 15px;
+}
+.active {
+  color: grey;
+}
