@@ -21,3 +21,23 @@ img {
   right: 0;
   top: -15%
 }
+.login{
+  width: 10%;
+  position: absolute;
+  z-index: 99;
+  margin: 0 auto;
+  left: -15%;
+  right: 0;
+  top: 80%;
+  border: 1px solid white;
+}
+.signup{
+  width: 10%;
+  position: absolute;
+  z-index: 99;
+  margin: 0 auto;
+  left: 16%;
+  right: 0;
+  top: 80%;
+  border: 1px solid white;
+}

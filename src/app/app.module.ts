@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { UserStatsComponent } from './user-stats/user-stats.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     ChampionDetailsComponent,
     HomeComponent,
     FilterPipe,
+    UserStatsComponent,
   ],
   imports: [
     BrowserModule,
