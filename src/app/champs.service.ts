@@ -1,5 +1,6 @@
 import { Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class ChampsService implements OnInit{
   selectedChampion = {}
   favoriteChampions = []
   championDetails;
+  apiKeyRoot = 'api_key='
 
   constructor(private http:HttpClient) {}
 
@@ -54,6 +56,39 @@ export class ChampsService implements OnInit{
     let search = championDetails
     let tail = '.json'
     let apiUrl = `${apiRoot}${search}${tail}`
+    return this.http.get<any>(apiUrl)
+  }
+
+  getSummonerByName(input){
+    let apiRoot = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'
+    let name = input.replaceAll(' ', '%20')
+    let apiKey = `?${this.apiKeyRoot}`
+    let apiUrl = `${apiRoot}${name}${apiKey}`
+    return this.http.get<any>(apiUrl)
+  }
+
+  getMatchesByPUUID(input){
+    let apiRoot = 'https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/'
+    let apiKey = `${this.apiKeyRoot}`
+    let apiEnd = '/ids?start=0&count=20'
+    let apiUrl = `${apiRoot}${input}${apiEnd}&${apiKey}`
+    return this.http.get<any>(apiUrl)
+  }
+
+  getChampsByMatch(input){
+    let apiRoot = 'https://americas.api.riotgames.com/lol/match/v5/matches/'
+    let apiKey = `?${this.apiKeyRoot}`
+    let apiUrl = `${apiRoot}${input}${apiKey}`
+    return this.http.get<any>(apiUrl).pipe(
+      map((data)=>{
+        return data
+      }),
+    )
+  }
+  getPlayerStatsWithSummonerID(ID){
+    let apiRoot = 'https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/'
+    let apiKey = `?${this.apiKeyRoot}`
+    let apiUrl = `${apiRoot}${ID}${apiKey}`
     return this.http.get<any>(apiUrl)
   }
 }
