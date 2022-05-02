@@ -1,5 +1,19 @@
-.background {
-  background-image: url(https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/bltc28d43095579c8b5/5d87c24e8d8a3163705e3070/summonersrift.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+mat-sidenav-conatiner{
+  height: 100%
+}
+mat-sidenav, mat-sidenav-content {
+  padding: 12px;
+  padding-top: 5%;
+  height: 100vh;
+}
+mat-sidenav {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+  width: 200px;
+}
+.navigationButton{
+  top: 16px;
+  left: 16px;
+  position: fixed;
+  z-index: 10000;
 }

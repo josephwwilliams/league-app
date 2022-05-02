@@ -1,4 +1,4 @@
-<div
+<!-- <div
 class="container main"
 [ngStyle]="{'background-image': 'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' +  favChampion.id+ '_0.jpg)', 'background-repeat': 'no-repeat', 'height':'
 800px', 'background-size': '100% 800px' }"
@@ -7,7 +7,6 @@ class="container main"
     <img [src]="'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + favChampion.id + '_0.jpg'" class="card-img-top champion" alt="Splash Art" (mouseenter)="showLore=true" (mouseleave)="showLore=false">
     <div class="card-body" >
       <h5 class="card-title">{{favChampion.name}} {{favChampion.title}}</h5>
-      <!-- <p class="card-text">{{favChampion.blurb}}</p> -->
       <button class="btn"  (click)="sendToFavorites()">Add To Favorites!</button>
     </div>
   </div>
@@ -39,9 +38,6 @@ class="container main"
         <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + champion.passive.image.full" alt="Passive" class="image" (mouseenter)="showPassive=true" (mouseleave)="showPassive=false">
         {{champion.passive.name}}
       </div>
-      <!-- <div class="container passivedes" [innerHTML]="champion.passive.description">
-        {{champion.passive.description}}
-      </div> -->
     </div>
   </div>
   <div *ngIf="champDetails !== undefined" >
@@ -108,13 +104,94 @@ class="container main"
     <div *ngIf="showLore" class="container sub" style="width: 40rem;">
       <div *ngFor="let champion of champDetails" class="passivedes">
         <div class="">
-          <!-- <img src="assets/images/league.png" alt="" alt="Spell1" class="league-image"> -->
           <div style="font-weight: bold; font-size: x-large;color: gold;">Lore:</div>
           <div>
             {{champion.lore}}
           </div>
         </div>
         <div class="" [innerHTML]="champion.passive.description">
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+<div *ngFor="let champion of champDetails" class="container-md" [ngStyle]="{'background-image':'url(http://ddragon.leagueoflegends.com/cdn/img/champion/splash/' +  favChampion.id + '_0.jpg)'}">
+  <div class="d-lg-flex justify-content-center">
+    <div class="card" style="max-width: 20rem;">
+      <img class="img-fluid loadingArt" [src]="'http://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + favChampion.id + '_0.jpg'" alt="...">
+      <div class="card-body">
+        <h1 class="card-title">{{favChampion.name}} {{favChampion.title}}</h1>
+        <button color="white" mat-raised-button (click)="sendToFavorites()">Add to Favorites</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="mat-headline">Spells</div>
+      <div class="row">
+        <div class="col-md-5">
+        <img class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[0].image.full" alt="Spell1" (mouseenter)="showSpell1=true" (mouseleave)="showSpell1=false">
+        </div>
+        <div class="col-md-7">
+          <span>
+            <div class="mat-subheading-2">
+              {{champion.spells[0].name}}
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <img class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[1].image.full" alt="Spell2"(mouseenter)="showSpell2=true" (mouseleave)="showSpell2=false">
+        </div>
+        <div class="col-md-7">
+          <span>
+            <div class="mat-subheading-2">
+              {{champion.spells[1].name}}
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <img class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[2].image.full" alt="Spell3" (mouseenter)="showSpell3=true" (mouseleave)="showSpell3=false">
+        </div>
+        <div class="col-md-7">
+          <span>
+            <div class="mat-subheading-2">
+              {{champion.spells[2].name}}
+            </div>
+          </span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <img class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + champion.spells[3].image.full" alt="Spell4"(mouseenter)="showSpell4=true" (mouseleave)="showSpell4=false">
+        </div>
+        <div class="col-md-7">
+          <span>
+            <div class="mat-subheading-2">
+              {{champion.spells[3].name}}
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="mat-headline">Passive</div>
+      <div class="row">
+        <div class="col-md-5">
+          <img class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + champion.passive.image.full" alt="Passive" (mouseenter)="showPassive=true" (mouseleave)="showPassive=false">
+        </div>
+        <div class="col-md-7">
+          <span>
+            <div class="mat-subheading-2">
+              {{champion.passive.name}}
+            </div>
+          </span>
         </div>
       </div>
     </div>

@@ -1,53 +1,65 @@
-.container {
-  width: 60vw;
-  border: 3px solid black;
-  background: rgb(81, 95, 117);
+.container-md{
+  min-width: 60vw;
+  border: 1px solid black;
+  border-radius: 15px;
+  padding: 25px;
+}
+.championImage{
+  width: 100%;
+  border-radius: 100px;
+  border: 1px solid black;
+}
+.championImage:hover {
+  opacity: 0.9;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+.littleChampion{
+  cursor: pointer;
+  border-radius: 100px;
+}
+mat-grid-tile {
+  text-align: center;
+}
+
+/* .container {
+  min-width: 60vw;
+  border: 2px solid black;
+  background: rgb(255, 255, 255);
   padding-top: 10px;
   padding-bottom: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
   grid-gap: 10px;
   position: relative; top: 10px;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 .item {
   padding: 3px;
-  background: black;
-  color: white;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: 1px solid black;
   font-size: 24px;
   margin: 10px;
   text-align: center;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 100px;
 }
 .item:hover {
   opacity: 0.9;
   cursor: pointer;
   transform: scale(1.1);
-  background-color: rgb(51, 50, 50);
+  background-color: rgb(107, 107, 107);
+  border: none;
 }
 .name {
   font-size: 15px;
-  text-align: left;
+  text-align: center;
   padding: 4px;
-}
-.button {
-  line-height: 12px;
-  width: 18px;
-  font-size: 8pt;
-  font-family: tahoma;
-  margin-top: 1px;
-  margin-right: 2px;
-  position:absolute;
-  top:0;
-  right:0;
-}
-.search{
+} */
+/* .search{
   padding-top: 100px;
   max-width: 20%;
-  float: right;
   margin-left: 60%;
-}
-/* .fake{
-  opacity: 0;
 } */
+

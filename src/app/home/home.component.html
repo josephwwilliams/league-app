@@ -1,11 +1,45 @@
 
-<div class="container main">
+<div *ngIf="!signup" class="container main">
   <div>
     <video [muted]="true" autoplay playsinline loop>
       <source src="assets/images/LeagueVideo.webm" type="video/webm">
     </video>
     <img src="assets/images/LeagueOfLegends.png" alt="">
-    <button class="login btn btn-success">Login</button>
-    <button class="signup btn btn-primary">Signup!</button>
+    <button class="login btn btn-success" >Login</button>
+    <button class="signup btn btn-primary" (click)="signup = !signup">Signup!</button>
   </div>
 </div>
+<form *ngIf="signup" (ngSubmit)="signingUp(f)" #f="ngForm" style="padding-top: 100px;background-color: aliceblue;">
+    <div class="col-sm-5 form-group">
+      <label for="username">Summoner Name</label>
+      <input
+      type="text"
+      id="username"
+      class="form-control"
+      name="username"
+      ngModel
+      required="username"
+      >
+    </div>
+    <div class="col-sm-5 form-group">
+      <label for="email">Email</label>
+      <input
+      type="text"
+      id="email"
+      class="form-control"
+      name="email"
+      ngModel
+      >
+    </div>
+    <div class="col-sm-5 form-group">
+      <label for="password">Password</label>
+      <input
+      type="text"
+      id="password"
+      class="form-control"
+      name="password"
+      ngModel
+      >
+    </div>
+    <button (submit)="singup = !singup" class="btn btn-primary" type="submit">Submit</button>
+</form>

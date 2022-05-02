@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ChampsService implements OnInit{
+  name = ''
   champions = []
   selectedChampion = {}
   favoriteChampions = []

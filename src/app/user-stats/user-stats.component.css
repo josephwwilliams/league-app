@@ -9,21 +9,17 @@
   /* grid-gap: 10px; */
   position: relative; top: 100px;
   border-radius: 5px;
-
-}
-.gameStats{
+  margin-left:auto;
+  margin-right:auto;
 }
 .ranked{
   position: absolute;
   margin-left: 10px;
 
 }
-.float-container{
-
-}
 .float-child{
   float: left;
-  padding: 20px;
+  padding: 15px;
 }
 .wrapper {
   display: grid;
@@ -40,3 +36,4 @@
   border: 1px solid black;
   background-image: url('../../assets/images/gray.png');
 }
+

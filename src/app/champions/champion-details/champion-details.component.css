@@ -1,11 +1,9 @@
-.container.main {
+/* .container.main {
   width: 120vw;
   border: 3px solid black;
   background: rgb(81, 95, 117);
   padding-top: 10px;
   padding-bottom: 10px;
-  /* display: grid; */
-  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
   grid-gap: 10px;
   position: relative; top: 120px;
   border-radius: 5px;
@@ -23,7 +21,6 @@
 }
 .card {
   border: 3px solid black;
-  /* width: 100%; */
   background-color: #16232C;
   color: white;
   width: max-content;
@@ -69,5 +66,51 @@
 .btn:hover{
   opacity: 0.9;
   transform: scale(1.1);
-}
+} */
 
+
+
+
+
+
+
+
+
+
+.container-md{
+  justify-content: space-around;
+  min-width: 60vw;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 15px;
+  padding: 25px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.card{
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+  border: 1px solid rgb(255, 255, 255);
+  background-color:rgba(0, 0, 0, 0.8);
+  color: white;
+  min-width: 200px
+}
+.row{
+  padding: 20px;
+  /* padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px; */
+}
+.loadingArt{
+  width: 20rem;
+  height: auto;
+  border-radius: 5px;
+}
+.abilities{
+  display:block;
+  margin: 0 auto;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+}

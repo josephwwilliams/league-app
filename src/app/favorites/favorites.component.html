@@ -1,11 +1,37 @@
-<div *ngIf="champions.length !== 0 " class="container">
-  <a class="item" [ngStyle]="{'background': (champion.favorited=== true) ? '#E9AB4B' : 'white'}" *ngFor="let champion of champions; let i = index" routerLink="details" (click)="backToDetails(champion)" (click)="clickedChampion(champion)">
-    <div>
-      <img class="image" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.image.full" style="width: 100%">
-      <div class="name" style="background-color: transparent;" >
-        {{champion.name}}
+<div *ngIf="champions.length !== 0; else addFavorites" >
+  <div class="container-md">
+    <mat-grid-list cols="6" gutterSize="20px">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group" style="float: right;">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Look for favorites!" [(ngModel)]="championSearch">
+              <div class="input-group-append">
+                <button class="material-icons btn btn-outline-secondary" type="button">search</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </a>
+      <mat-grid-tile
+      *ngFor="let champion of champions "
+      routerLink="../champions/details/{{champion.id}}"
+      >
+        <div class="littleChampion" (click)="clickedChampion(champion)">
+          <img class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.image.full" >
+          <div class="mat-title">
+            {{champion.name}}
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
 </div>
-<div class="addfavorites" *ngIf="champions.length === 0">Make sure to add some favorites!</div>
+<ng-template #addFavorites>
+  <div class="container-md">
+    <div class="mat-display-3">
+      Currently you have zero favorites <span class="material-icons frown">sentiment_dissatisfied</span>
+    </div>
+    <div class="mat-display-3">Go add some!</div>
+  </div>
+</ng-template>

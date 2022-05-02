@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   { path: 'stats', component:UserStatsComponent },
   { path: 'champions', component: ChampionsComponent},
   { path: 'favorites', component: FavoritesComponent },
-  { path: 'champions/details', component: ChampionDetailsComponent},
+  { path: 'champions/details/:id', component: ChampionDetailsComponent},
 ]
 
 @NgModule({

@@ -1,7 +1,18 @@
-<section class="background">
-  <div>
-    <app-header></app-header>
-    <router-outlet></router-outlet>
-  </div>
+<section>
+  <mat-sidenav-container>
+    <mat-sidenav [(opened)] = "opened">
+      <div class="div"><div style="cursor: pointer;" routerLink="/home" class="mat-display-1" (click)="opened = !opened">Home</div></div>
+      <div class="div"><div style="cursor: pointer;" routerLink="/champions" class="mat-display-1" (click)="opened = !opened">Champs</div></div>
+      <div class="div"><div style="cursor: pointer;" routerLink="/favorites" class="mat-display-1" (click)="opened = !opened">Favorites</div></div>
+      <div class="div"><div style="cursor: pointer;" routerLink="/stats" class="mat-display-1" (click)="opened = !opened">Stats</div></div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <button class="navigationButton" mat-fab color="white" (click)="opened = !opened">
+        <span class="material-icons">
+        home
+        </span>
+      </button>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </section>
-

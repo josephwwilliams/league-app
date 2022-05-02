@@ -13,6 +13,7 @@ export class FavoritesComponent implements OnInit{
 
   ngOnInit(): void {
     this.champions=this.champService.favoriteChampions
+    console.log(this.champions)
   }
 
   backToDetails(champion){
@@ -22,4 +23,7 @@ export class FavoritesComponent implements OnInit{
   //   this.champService.selectedChampion = champion.value
   //   this.router.navigate(['/champions/details'])
   // }
+  clickedChampion(i){
+
+  }
 }

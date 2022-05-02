@@ -1,64 +1,26 @@
-.container {
-  width: 60vw;
-  border: 3px solid black;
-  background: rgb(81, 95, 117);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-  grid-gap: 10px;
-  position: relative; top: 120px;
-  border-radius: 5px;
-
+.container-md{
+  min-width: 60vw;
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 25px;
 }
-.addfavorites{
-  width: 60vw;
-  border: 3px solid black;
-  background: rgb(81, 95, 117);
-  position: relative; top: 160px;
-  border-radius: 5px;
-  color: white;
-  margin: 0 auto;
-  text-align: center;
-  left: 0;
-  right: 0;
-  font-weight: bold;
-  font-size: x-large;
+.championImage{
+  width: 100%;
+  border-radius: 100px;
+  border: 1px solid black;
 }
-.item {
-  padding: 3px;
-  background: black;
-  color: white;
-  font-weight: bold;
-  font-size: 24px;
-  margin: 10px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 5px;
-}
-.item:hover {
+.championImage:hover {
   opacity: 0.9;
   cursor: pointer;
   transform: scale(1.1);
-  background-color: rgb(51, 50, 50);
 }
-.name {
-  font-size: 15px;
-  text-align: left;
-  padding: 4px;
+.littleChampion{
+  cursor: pointer;
+  border-radius: 100px;
 }
-.button {
-  line-height: 12px;
-  width: 18px;
-  font-size: 8pt;
-  font-family: tahoma;
-  margin-top: 1px;
-  margin-right: 2px;
-  position:absolute;
-  top:0;
-  right:0;
+.frown {
+  transform: scale(2);
 }
-.image{
-  border-radius: 5px;
+mat-grid-tile {
+  text-align: center;
 }
-
