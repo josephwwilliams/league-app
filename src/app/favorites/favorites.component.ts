@@ -8,22 +8,19 @@ import { ChampsService } from '../champs.service';
   styleUrls: ['./favorites.component.css']
 })
 export class FavoritesComponent implements OnInit{
+  championSearch:string = '';
   champions=[]
   constructor(private champService: ChampsService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.champions=this.champService.favoriteChampions
-    console.log(this.champions)
   }
 
-  backToDetails(champion){
-    this.router.navigate(['/champions'])
+  clickedChampion(favoriteChampion){
+    this.champService.selectedChampion = favoriteChampion
   }
-  // clickedChampion(champion){
-  //   this.champService.selectedChampion = champion.value
-  //   this.router.navigate(['/champions/details'])
-  // }
-  clickedChampion(i){
+  removeFromFavorites(i){
+    this.champions.splice(i, 1)
 
   }
 }

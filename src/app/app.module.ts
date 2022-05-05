@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { UserStatsComponent } from './user-stats/user-stats.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { ChampionDialogComponent } from './champions/champion-details/champion-dialog/champion-dialog.component';
+import { CooldownPipe } from './pipes/cooldown.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,10 @@ import { MaterialModule } from './material/material.module';
     HomeComponent,
     FilterPipe,
     UserStatsComponent,
+    ChampionDialogComponent,
+    CooldownPipe,
   ],
+  entryComponents: [ChampionDialogComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

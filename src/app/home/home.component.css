@@ -1,8 +1,7 @@
-
-.container {
+/* .container {
   width: 120vw;
   border: 1px solid rgb(0, 0, 0);
-  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   position: relative;
   display: flex;
   padding-top: 8px;
@@ -40,4 +39,4 @@ img {
   right: 0;
   top: 80%;
   border: 1px solid white;
-}
+} */

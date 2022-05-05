@@ -1,0 +1,22 @@
+.abilities{
+  display:block;
+  margin: 0 auto;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.mat-dialog-title{
+  text-align: center;
+}
+.championName{
+  color: rgb(241, 218, 82);
+}
+.passiveName, .spellName{
+  color: white;
+}
+section{
+  width: fit-content;
+  max-width: 40vw;
+  max-height: 200vw
+}
+

@@ -17,7 +17,9 @@ export class ChampionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.champService.getData().subscribe(
-      res=> this.champions = res.data
+      res=> {
+        this.champions = res.data;
+      }
     );
     this.favoriteChamps = this.champService.favoriteChampions.slice()
   }

@@ -1,0 +1,56 @@
+<section class="mat-dialog">
+  <div class="row" *ngIf="(data.info.image.group !== 'passive' && data.info.image.group !== 'champion')">
+    <div class="div col-md-5">
+      <div class="row">
+        <div class="col-xl-6" >
+          <h1 mat-dialog-title class="spellName">
+            {{data.info.name}}
+          </h1>
+        </div>
+        <div class="col-xl-6" >
+          <img class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/' + data.info.image.full">
+        </div>
+      </div>
+    </div>
+    <div class="div col-md-7" *ngIf="data.info.cooldown !== undefined">
+      <h1 class="mat-subheading-1" style="color: white;">
+        Cooldown: {{data.info.cooldown | cooldown}} seconds
+      </h1>
+      <h1 class="mat-subheading-1" style="color: white;" >
+        Cost: {{data.info.cost | cooldown}} per level
+      </h1>
+    </div>
+    <hr style="color: white;">
+  </div>
+  <div class="row" *ngIf="(data.info.image.group === 'passive' || data.info.image.group === 'champion')">
+    <div class="row">
+      <div class="col-md-3" *ngIf="data.info.lore === undefined">
+        <!-- <h1 *ngIf="data.info.lore === undefined" mat-dialog-title style="color: white;">{{data.info.name}}</h1> -->
+        <div *ngIf="data.info.image.group === 'passive'">
+          <img *ngIf="data.info.image.full === 'SamiraP.Samira.png'" class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/SamiraP.png'" alt="Passive">
+          <img *ngIf="data.info.image.full === 'YonePassive.Yone.png'" class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/YonePassive.png'" alt="Passive">
+          <img *ngIf="data.info.image.full === 'Lillia_Icon_Passive.Lillia.png'" class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/Lillia_Icon_Passive.png'" alt="Passive">
+          <img *ngIf="(data.info.image.full !== 'SamiraP.Samira.png' && data.info.image.full !== 'YonePassive.Yone.png' && data.info.image.full !== 'Lillia_Icon_Passive.Lillia.png')" class="img-fluid w-90 abilities" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/passive/' + data.info.image.full">
+        </div>
+      </div>
+      <div class="col-md-12" *ngIf="data.info.lore !== undefined">
+        <h1 *ngIf="data.info.title !== undefined" mat-dialog-title class="championName">
+          {{data.info.name}} {{data.info.title}}
+        </h1>
+      </div>
+      <div class="col-md-5">
+        <h1 *ngIf="data.info.lore === undefined" mat-dialog-title class="passiveName">
+          {{data.info.name}}
+        </h1>
+      </div>
+    </div>
+    <hr style="color: white;">
+  </div>
+    <div mat-dialog-content [innerHTML]="data.info.description" *ngIf="data.info.description !== undefined" style="color: white;"></div>
+    <div mat-dialog-content [innerHTML]="data.info.lore" *ngIf="data.info.description === undefined" style="color: white;"></div>
+    <div mat-dialog-actions>
+      <button color="white" mat-mini-fab mat-dialog-close>
+        <span class="material-icons">undo</span>
+      </button>
+    </div>
+</section>

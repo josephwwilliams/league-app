@@ -1,34 +1,38 @@
-<div *ngIf="champions.length !== 0; else addFavorites" >
-  <div class="container-md">
-    <mat-grid-list cols="6" gutterSize="20px">
-      <div class="row">
-        <div class="col-12">
-          <div class="form-group" style="float: right;">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Look for favorites!" [(ngModel)]="championSearch">
-              <div class="input-group-append">
-                <button class="material-icons btn btn-outline-secondary" type="button">search</button>
-              </div>
-            </div>
+<section *ngIf="champions.length !== 0; else addFavorites">
+  <div class="row" >
+    <div class="col-12">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search in favorites!" [(ngModel)]="championSearch">
+          <div class="input-group-append">
+            <button class="material-icons btn btn-outline-secondary" type="button">search</button>
           </div>
         </div>
       </div>
-      <mat-grid-tile
-      *ngFor="let champion of champions "
-      routerLink="../champions/details/{{champion.id}}"
-      >
-        <div class="littleChampion" (click)="clickedChampion(champion)">
-          <img class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.image.full" >
-          <div class="mat-title">
-            {{champion.name}}
-          </div>
-        </div>
-      </mat-grid-tile>
-    </mat-grid-list>
+    </div>
   </div>
-</div>
+</section>
+<section *ngIf="champions.length !== 0">
+  <div class="champ-container">
+    <article class="champ"
+    *ngFor="let champion of champions; let i = index"
+    >
+    <div class="img-wrp">
+      <img class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.image.full" (click)="clickedChampion(champion)" routerLink="../champions/details/{{champion.id}}">
+      <button mat-mini-fab color="warn" class="remove" (click)="removeFromFavorites(i)">
+        <span class="material-icons removeIcon">
+          remove
+        </span>
+      </button>
+    </div>
+      <div class="mat-title">
+        {{champion.name}}
+      </div>
+    </article>
+  </div>
+</section>
 <ng-template #addFavorites>
-  <div class="container-md">
+  <div class="champ-container">
     <div class="mat-display-3">
       Currently you have zero favorites <span class="material-icons frown">sentiment_dissatisfied</span>
     </div>

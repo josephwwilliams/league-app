@@ -1,65 +1,47 @@
-.container-md{
-  min-width: 60vw;
+.champ-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 90vw;
+  max-width: 1080px;
+  margin: 0 auto;
+  box-shadow: -6px 23px 44px 0px rgba(0,0,0,0.1);
+  padding: 1.5em 2.5em;
+  border-radius: 8px;
   border: 1px solid black;
-  border-radius: 15px;
-  padding: 25px;
 }
 .championImage{
   width: 100%;
   border-radius: 100px;
   border: 1px solid black;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
 .championImage:hover {
   opacity: 0.9;
   cursor: pointer;
   transform: scale(1.1);
+  transition: all 300ms ease;
 }
-.littleChampion{
-  cursor: pointer;
-  border-radius: 100px;
+.champ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5em .25em;
 }
-mat-grid-tile {
-  text-align: center;
+.row{
+  text-align:center;
+  margin:0 auto;
+  max-width: fit-content;
+  padding-bottom: 5px;
 }
-
-/* .container {
-  min-width: 60vw;
-  border: 2px solid black;
-  background: rgb(255, 255, 255);
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-  grid-gap: 10px;
-  position: relative; top: 10px;
-  border-radius: 15px;
+@media (max-width: 768px) {
+  .champ {
+    width: 75px;
+  }
+  .mat-title{
+    display: none;
+  }
 }
-.item {
-  padding: 3px;
-  background: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  border: 1px solid black;
-  font-size: 24px;
-  margin: 10px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 100px;
-}
-.item:hover {
-  opacity: 0.9;
-  cursor: pointer;
-  transform: scale(1.1);
-  background-color: rgb(107, 107, 107);
-  border: none;
-}
-.name {
-  font-size: 15px;
-  text-align: center;
-  padding: 4px;
+/* section{
+  padding-left: calc(100vw - 100%);
 } */
-/* .search{
-  padding-top: 100px;
-  max-width: 20%;
-  margin-left: 60%;
-} */
-

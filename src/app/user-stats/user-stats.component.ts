@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ChampsService } from '../champs.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { ChampsService } from '../champs.service';
   styleUrls: ['./user-stats.component.css']
 })
 export class UserStatsComponent implements OnInit {
-  constructor(private champService: ChampsService) {}
+  constructor(private champService: ChampsService, private router: Router) {}
   public details;
   name = ''
   matches = []
@@ -42,7 +43,7 @@ export class UserStatsComponent implements OnInit {
   };
   getChampions(){
     this.players = []
-    for(let i = 0; i <= this.matches.length; i++){
+    for(let i = 0; i < 10; i++){
       this.champService.getChampsByMatch(this.matches[i]).subscribe((res) => {
         this.gameID.push(res.info.gameStartTimestamp)
         this.gameID.sort()
@@ -59,6 +60,22 @@ export class UserStatsComponent implements OnInit {
     )
   };
   log(){
-  };
+    console.log(this.details)
+    console.log(this.playerStats)
+    console.log(this.details.puuid)
+    console.log(this.matches)
+    console.log(this.players)
+    console.log(this.gameID)
 
+  };
+  playerClick(playerName){
+    this.name = playerName;
+    this.submit()
+  }
+  championClick(champion){
+    this.champService.selectedChampion = {
+      id: champion
+    }
+    this.router.navigate([`champions/details/${champion}`])
+  }
 }
