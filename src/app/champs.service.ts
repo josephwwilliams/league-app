@@ -10,7 +10,7 @@ export class ChampsService implements OnInit{
   selectedChampion = {}
   favoriteChampions = []
   championDetails;
-  apiKeyRoot = 'api_key=RGAPI-ec0193ad-80f5-4e38-85e0-249f123b9f6e'
+  apiKeyRoot = 'api_key='
 
   constructor(private http:HttpClient) {}
 
