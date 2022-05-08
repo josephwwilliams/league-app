@@ -10,6 +10,7 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'home', component: HomeComponent },
   { path: 'stats', component:UserStatsComponent },
+  { path: 'stats', component:UserStatsComponent },
   { path: 'champions', component: ChampionsComponent},
   { path: 'favorites', component: FavoritesComponent },
   { path: 'champions/details/:id', component: ChampionDetailsComponent},

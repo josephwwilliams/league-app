@@ -7,13 +7,14 @@
   margin: 0 auto;
   box-shadow: -6px 23px 44px 0px rgba(0,0,0,0.1);
   padding: 1.5em 2.5em;
-  border-radius: 8px;
-  border: 1px solid black;
+  border-radius: 30px;
+  /* border: 1px solid black; */
+  background-color: white;
 }
 .championImage{
   width: 100%;
   border-radius: 100px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
 .championImage:hover {
@@ -60,6 +61,12 @@
   .mat-title{
     display: none;
   }
+  .input{
+    padding-top: 60px;
+  }
+}
+.btn{
+  background-color: white !important;
 }
 /* section{
   padding-left: calc(100vw - 100%);

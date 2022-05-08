@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ChampsService } from '../champs.service';
+import { PlayerStatsComponent } from './player-stats/player-stats.component';
 
 @Component({
   selector: 'app-user-stats',
@@ -8,7 +10,8 @@ import { ChampsService } from '../champs.service';
   styleUrls: ['./user-stats.component.css']
 })
 export class UserStatsComponent implements OnInit {
-  constructor(private champService: ChampsService, private router: Router) {}
+  constructor(private champService: ChampsService, private router: Router, public dialog: MatDialog) {}
+  showSpinner = false
   public details;
   name = ''
   matches = []
@@ -22,18 +25,22 @@ export class UserStatsComponent implements OnInit {
     if(this.name !== '')this.submit()
   };
   submit(){
-    this.details = undefined
-    this.matches = []
-    this.players = []
-    this.summoner = []
-    this.gameID = []
-    this.playerStats = undefined
-    this.champService.getSummonerByName(this.name).subscribe(
-      res=>{ this.details = res});
-    setTimeout(() => { this.getMatches();}, 1000);
-    setTimeout(() => { this.getChampions();}, 1500);
-    setTimeout(() => { this.getStats();}, 2000);
-    this.name = ''
+    if(this.showSpinner === false) {
+      this.errors = undefined
+      this.showSpinner = true
+      this.details = undefined
+      this.matches = []
+      this.players = []
+      this.summoner = []
+      this.gameID = []
+      this.playerStats = undefined
+      this.champService.getSummonerByName('na1', this.name).subscribe(
+        res=>{ this.details = res});
+      setTimeout(() => { this.getMatches();}, 1000);
+      setTimeout(() => { this.getChampions();}, 1500);
+      setTimeout(() => { this.getStats();}, 2000);
+      this.champService.name = this.name
+    } else alert('Please Wait')
   }
   getMatches(){
     this.matches= []
@@ -41,34 +48,37 @@ export class UserStatsComponent implements OnInit {
       res => this.matches = res
     )
   };
+
   getChampions(){
     this.players = []
     for(let i = 0; i < 10; i++){
       this.champService.getChampsByMatch(this.matches[i]).subscribe((res) => {
         this.gameID.push(res.info.gameStartTimestamp)
         this.gameID.sort()
-
         this.players.push(res.info.participants)
-        this.players.sort((a,b)=>this.gameID.indexOf(a)-this.gameID.indexOf(b))
+        console.log(this.gameID)
+        }, (err) => {
+          this.errors = err;
+          this.showSpinner = false
         }
       )
     }
   };
   getStats(){
     this.champService.getPlayerStatsWithSummonerID(this.details.id).subscribe(
-      res => this.playerStats = res[0]
+      res => {
+        this.playerStats = res[0];
+        console.log(this.playerStats)
+        this.showSpinner = false;
+      }
     )
   };
-  log(){
-    console.log(this.details)
-    console.log(this.playerStats)
-    console.log(this.details.puuid)
-    console.log(this.matches)
-    console.log(this.players)
-    console.log(this.gameID)
-
+  log(player){
+    console.log(player.totalDamageDealtToChampions)
+    this.dialog.open(PlayerStatsComponent)
   };
   playerClick(playerName){
+    this.champService.name = playerName
     this.name = playerName;
     this.submit()
   }
@@ -77,5 +87,9 @@ export class UserStatsComponent implements OnInit {
       id: champion
     }
     this.router.navigate([`champions/details/${champion}`])
+  }
+  clearName(){
+    this.champService.name = ''
+    this.name = ''
   }
 }

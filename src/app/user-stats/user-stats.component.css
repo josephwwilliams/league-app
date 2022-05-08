@@ -39,7 +39,6 @@
  */
 
 
-
  .champ-container {
   display: flex;
   justify-content: space-around;
@@ -49,8 +48,9 @@
   margin: 0 auto;
   box-shadow: -6px 23px 44px 0px rgba(0,0,0,0.1);
   padding: 1.5em 2.5em;
-  border-radius: 8px;
-  border: 1px solid black;
+  border-radius: 30px;
+  /* border: 1px solid black; */
+  background-color: white;
 }
 .championImage{
   width: 100%;
@@ -70,6 +70,16 @@
   align-items: center;
   padding: .5em .25em;
 }
+.rankedEmblem{
+  max-height: 200px;
+}
+.playerIcon{
+  max-height: 100px;
+  border-radius: 15px;
+  border: 1px solid black;
+  min-height: 75px;
+  min-width: 75px
+}
 .input{
   text-align:center;
   margin:0 auto;
@@ -79,18 +89,27 @@
 .frown{
   font-size: larger;
 }
-@media (max-width: 768px) {
-  .champ {
-    width: 75px;
-  }
-  .mat-title{
-    display: none;
-  }
-}
-/* section{
-  padding-left: calc(100vw - 100%);
-} */
-mat-accordion{
-  min-width: max-content;
+.btn{
+  background-color: white !important;
 }
 
+@media (max-width: 768px) {
+  article.champ {
+    width: 100% !important;
+  }
+  article .mobileRow {
+    flex-direction: row !important;
+  }
+  article .mobileRow > * {
+    width: auto !important;
+  }
+  article .championImage {
+    width: 25px !important;
+  }
+  article .teamPosition {
+    display: none !important;
+  }
+  .input {
+    padding-top: 60px;
+  }
+}

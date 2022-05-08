@@ -16,7 +16,7 @@ export class ChampionsComponent implements OnInit {
   constructor(private champService: ChampsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.champService.getData().subscribe(
+    this.champService.getAllChampions().subscribe(
       res=> {
         this.champions = res.data;
       }

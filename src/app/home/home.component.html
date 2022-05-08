@@ -42,3 +42,19 @@
     </div>
     <button (submit)="singup = !singup" class="btn btn-primary" type="submit">Submit</button>
 </form> -->
+<div class="container">
+  <!-- <button (click)="printUsers()"> get players</button> -->
+  <button (click)="log()"> get players</button>
+  <div *ngFor="let name of names | slice: 0:10" (click)="playerClick(name.summonerName)" >
+    <div>{{name.summonerName}}</div>
+    <img class="playerIcon" [src]="'http://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/' + name.profileIconId + '.png'" alt="">
+    <!-- <div>{{name.profileIconId}}</div> -->
+    <div style="color: blue;"> {{ name.leaguePoints }}</div>
+    <div style="color: red;"> Win Rate : {{((name.wins/ (name.wins + name.losses)) * 100).toFixed(2)}}%</div>
+    <div [innerHTML]=""></div>
+    <div *ngIf="(name === names[0])" style="color: gold;"> I am number one </div>
+    <div *ngIf="(name === names[1])" style="color: silver;"> I am number two </div>
+    <div *ngIf="(name === names[2])" style="color: brown;"> I am number three </div>
+  </div>
+</div>
+

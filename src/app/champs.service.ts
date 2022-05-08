@@ -1,6 +1,5 @@
 import { Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http'
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +10,11 @@ export class ChampsService implements OnInit{
   selectedChampion = {}
   favoriteChampions = []
   championDetails;
-  apiKeyRoot = 'api_key='
+  apiKeyRoot = 'api_key=RGAPI-ec0193ad-80f5-4e38-85e0-249f123b9f6e'
 
   constructor(private http:HttpClient) {}
 
   ngOnInit(): void {
-
   }
 
   favoriteClick(favChampion){
@@ -25,7 +23,7 @@ export class ChampsService implements OnInit{
       this.favoriteChampions.sort(this.compare)
     } else return
     this.removeDuplicates()
-  }
+  };
 
   removeDuplicates() {
     const uniqueValuesSet = new Set();
@@ -36,7 +34,7 @@ export class ChampsService implements OnInit{
       return !isPresentInSet;
     });
     this.favoriteChampions = filteredArr
-  }
+  };
 
   compare( champ1, champ2 ) {
     if ( champ1.name < champ2.name ){
@@ -46,11 +44,11 @@ export class ChampsService implements OnInit{
       return 1;
     }
     return 0;
-  }
+  };
 
-  getData(){
+  getAllChampions(){
     return this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion.json');
-  }
+  };
 
   getChampionData(championDetails){
     let apiRoot = 'http://ddragon.leagueoflegends.com/cdn/12.6.1/data/en_US/champion/'
@@ -58,10 +56,10 @@ export class ChampsService implements OnInit{
     let tail = '.json'
     let apiUrl = `${apiRoot}${search}${tail}`
     return this.http.get<any>(apiUrl)
-  }
+  };
 
-  getSummonerByName(input){
-    let apiRoot = 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/'
+  getSummonerByName(region, input){
+    let apiRoot = 'https://' + region + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/'
     let name = input.replaceAll(' ', '%20')
     let apiKey = `?${this.apiKeyRoot}`
     let apiUrl = `${apiRoot}${name}${apiKey}`
@@ -74,22 +72,50 @@ export class ChampsService implements OnInit{
     let apiEnd = '/ids?start=0&count=20'
     let apiUrl = `${apiRoot}${input}${apiEnd}&${apiKey}`
     return this.http.get<any>(apiUrl)
-  }
+  };
 
   getChampsByMatch(input){
     let apiRoot = 'https://americas.api.riotgames.com/lol/match/v5/matches/'
     let apiKey = `?${this.apiKeyRoot}`
     let apiUrl = `${apiRoot}${input}${apiKey}`
-    return this.http.get<any>(apiUrl).pipe(
-      map((data)=>{
-        return data
-      }),
-    )
-  }
+    return this.http.get<any>(apiUrl)
+  };
+
   getPlayerStatsWithSummonerID(ID){
     let apiRoot = 'https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/'
     let apiKey = `?${this.apiKeyRoot}`
     let apiUrl = `${apiRoot}${ID}${apiKey}`
     return this.http.get<any>(apiUrl)
-  }
+  };
+
+  // async getSummonerByName(region, input){
+  //   let apiRoot = 'https://' + region + '.api.riotgames.com/lol/summoner/v4/summoners/by-name/'
+  //   let name = input.replaceAll(' ', '%20')
+  //   let apiKey = `?${this.apiKeyRoot}`
+  //   let apiUrl = `${apiRoot}${name}${apiKey}`
+  //   const summoner = await this.http.get<any>(apiUrl).toPromise();
+  //   const matches = await this.getMatchesByPUUID(summoner.puuid).toPromise()
+  //   const champsInMatch = await this.getChampsByMatch(matches[0]).toPromise()
+  //   // const champsInMatch = await matches.forEach((match) => this.getChampsByMatch(match).toPromise())
+  //   const playerStats = await this.getPlayerStatsWithSummonerID(summoner.id).toPromise();
+
+  //   let playerObject = {
+  //     summoner,
+  //     matches,
+  //     champsInMatch,
+  //     playerStats,
+  //   };
+
+  //   const objectCreation = () => {
+  //     playerObject.summoner = summoner,
+  //     playerObject.matches = matches,
+  //     playerObject.champsInMatch = champsInMatch,
+  //     playerObject.playerStats = playerStats[0]
+  //   };
+
+  //   objectCreation();
+
+  //   return playerObject;
+
+  // };
 }

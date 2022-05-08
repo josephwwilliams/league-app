@@ -40,3 +40,12 @@ img {
   top: 80%;
   border: 1px solid white;
 } */
+
+.playerIcon{
+  max-height: 100px;
+  border-radius: 15px;
+  border: 1px solid black;
+  min-height: 75px;
+  min-width: 75px
+}
+

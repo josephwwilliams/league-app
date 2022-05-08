@@ -1,5 +1,5 @@
 <section>
-  <div class="row" >
+  <div class="row input" >
     <div class="col-12">
       <div class="form-group">
         <div class="input-group">
@@ -16,7 +16,7 @@
   <div class="champ-container">
     <article class="champ" *ngFor="let champion of champions | keyvalue | filter:championSearch" >
       <img class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full" (click)="clickedChampion(champion)" >
-      <div class="mat-title">
+      <div class="mat-title" >
         {{champion.value.name}}
       </div>
     </article>

@@ -113,43 +113,58 @@
     </div>
   </div>
 </section>
-<section *ngIf="playerStats !== undefined">
+<section *ngIf="(playerStats !== undefined && errors === undefined)">
+<!-- <section *ngIf="(matches.length >6 || playerStats !== undefined && errors === undefined)"> -->
   <div class="champ-container">
     <!-- <div class="row" style="border: 1px solid goldenrod;"> -->
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4 text-center">
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-md-4">
+            <img class="img-fluid playerIcon" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/'+details.profileIconId+'.png'" alt="">
+          </div>
+          <div class="col-lg-8">
+            <div class="mat-subheading-2">
+              Lvl : {{details.summonerLevel}}
+              <hr>
+            </div>
+            <div class="mat-subheading-2">
+              {{playerStats.summonerName}}
+            </div>
+          </div>
+        </div>
         <ng-container [ngSwitch]="true" >
-          <!-- <div class="row">
-            <div class="col-md-6">
-              <img class="img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/'+details.profileIconId+'.png'" alt="">
-            </div>
-            <div class="col-md-6">
-              <div style="text-align: center;font-size: xx-large;">{{playerStats.summonerName}}</div>
-            </div>
-          </div> -->
-          Lvl : {{details.summonerLevel}}
-          <div class="text-col" style="font-size: x-large;">{{playerStats.summonerName}}</div>
           <div *ngSwitchCase="playerStats.length === 0">Unranked</div>
-          <div *ngSwitchCase="playerStats.tier === 'IRON'"><img class="img-fluid" src="/assets/images/ranks/Iron.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'BRONZE'"><img class="img-fluid" src="/assets/images/ranks/Bronze.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'SILVER'"><img class="img-fluid" src="/assets/images/ranks/Silver.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'GOLD'"><img class="img-fluid" src="/assets/images/ranks/Gold.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'PLATINUM'"><img class="img-fluid" src="/assets/images/ranks/Platinum.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'DIAMOND'"><img class="img-fluid" src="/assets/images/ranks/Diamond.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'MASTER'"><img class="img-fluid" src="/assets/images/ranks/Master.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'GRANDMASTER'"><img class="img-fluid" src="/assets/images/ranks/Grandmaster.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'CHALLENGER'"><img class="img-fluid" src="/assets/images/ranks/Challenger.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'IRON'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Iron.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'BRONZE'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Bronze.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'SILVER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Silver.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'GOLD'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Gold.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'PLATINUM'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Platinum.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'DIAMOND'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Diamond.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'MASTER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Master.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'GRANDMASTER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Grandmaster.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'CHALLENGER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Challenger.png" alt=""></div>
           <div *ngSwitchDefault>Unranked</div>
-          {{playerStats.tier}}  {{playerStats.rank}}
+          <!-- {{playerStats.tier}}  {{playerStats.rank}}
           <div style="color: rgb(252, 130, 30);">Win Rate : {{((playerStats.wins/ (playerStats.wins + playerStats.losses)) * 100).toFixed(2)}}%</div>
           <div style="color: rgb(90, 90, 247);">
             Wins : {{playerStats.wins}}
           </div>
           <div style="color: rgb(253, 91, 91);">
             Losses : {{playerStats.losses}}
+          </div> -->
+          <div style="font-size: larger;">
+            {{playerStats.tier}}  {{playerStats.rank}}
+            <div>{{playerStats.leaguePoints | number}} LP</div>
+            <div style="color: rgb(252, 130, 30);">Win Rate : {{((playerStats.wins/ (playerStats.wins + playerStats.losses)) * 100).toFixed(2)}}%</div>
+            <div style="color: rgb(90, 90, 247);">
+              Wins : {{playerStats.wins}}
+            </div>
+            <div style="color: rgb(253, 91, 91);">
+              Losses : {{playerStats.losses}}
+            </div>
           </div>
         </ng-container>
-        <button (click)="log()" >log</button>
       </div>
       <div class="col-md-8">
         <mat-accordion >
@@ -160,7 +175,7 @@
               <mat-expansion-panel-header >
                 <div class="row">
                   <div *ngFor="let players of singleGame">
-                    <div class="row" *ngIf="players.summonerName === details.name">
+                    <div class="row mobileRow" *ngIf="players.summonerName === details.name">
                       <div class="col-md-1">
                         <img *ngIf="players.championName === 'FiddleSticks'" class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/Fiddlesticks.png'">
                         <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/' + players.championName + '.png'">
@@ -176,7 +191,10 @@
                       <div class="col-md-5" style="text-align: left;">
                         KDA: {{players.kills}} / {{players.deaths}} / {{players.assists}}
                       </div>
-                      <div class="col-md-4" style="text-align: left;">
+                      <div class="col-md-4 teamPosition" style="text-align: center;" *ngIf="players.teamPosition === 'UTILITY'">
+                        SUPPORT
+                      </div>
+                      <div class="col-md-4 teamPosition" style="text-align: center;" *ngIf="players.teamPosition !== 'UTILITY'">
                         {{players.teamPosition}}
                       </div>
                     </div>
@@ -188,12 +206,18 @@
                   <div class="row">
                     <div *ngFor="let players of singleGame.slice(0,5)">
                       <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-4" style="padding: 10px;">
                         <img *ngIf="players.championName === 'FiddleSticks'" class="championImage img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/Fiddlesticks.png'" (click)="championClick(players.championName)">
                         <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/' + players.championName + '.png'" (click)="championClick(players.championName)">
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="padding: 10px;">
                         <a style="cursor: pointer;" (click)="playerClick(players.summonerName)">{{players.summonerName}}</a>
+                        <hr size="10" *ngIf="players.win" style="color: rgb(0, 0, 255);">
+                        <hr size="10" *ngIf="!players.win" style="color:rgb(255, 0, 0);">
+                        <div>{{players.kills}} / {{players.deaths}} / {{players.assists}}</div>
+                      </div>
+                      <div class="col-md-1" style="padding: 10px;">
+                        <span class="material-icons" style="cursor: pointer;" (click)="log(players)" >info</span>
                       </div>
                       </div>
                     </div>
@@ -203,12 +227,18 @@
                   <div class="row">
                     <div *ngFor="let players of singleGame.slice(5,10)">
                       <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-4" style="padding: 10px;">
                         <img *ngIf="players.championName === 'FiddleSticks'" class="championImage img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/Fiddlesticks.png'" (click)="championClick(players.championName)">
                         <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/' + players.championName + '.png'" (click)="championClick(players.championName)">
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-6" style="padding: 10px;">
                         <a style="cursor: pointer;" (click)="playerClick(players.summonerName)">{{players.summonerName}}</a>
+                        <hr size="10" *ngIf="players.win" style="color: rgb(0, 0, 255);">
+                        <hr size="10" *ngIf="!players.win" style="color:rgb(255, 0, 0);">
+                        <div>{{players.kills}} / {{players.deaths}} / {{players.assists}}</div>
+                      </div>
+                      <div class="col-md-1" style="padding: 10px;">
+                        <span class="material-icons" style="cursor: pointer;" (click)="log(players)" >info</span>
                       </div>
                       </div>
                     </div>
@@ -223,11 +253,23 @@
     </div>
   </div>
 </section>
-<section *ngIf="playerStats === undefined">
+<section *ngIf="(playerStats === undefined && showSpinner === false && errors === undefined)">
   <div class="champ-container">
     <div class="mat-display-3">
       No name added <span class="material-icons frown">sentiment_dissatisfied</span>
     </div>
     <div class="mat-display-3">Go ahead and search for a player!</div>
+  </div>
+</section>
+<section *ngIf="(showSpinner === true && errors === undefined)">
+  <div class="champ-container">
+    <mat-spinner color="warn" ></mat-spinner>
+  </div>
+</section>
+<section *ngIf="errors !== undefined">
+  <div class="champ-container">
+    <div class="mat-display-3" style="color: crimson;">
+    An error has occurred! Please try again
+    </div>
   </div>
 </section>
