@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   }
 
   log(){
-    return this.http.get<any>('https://'+ this.region +'.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=RGAPI-040a38de-c043-45b2-87fe-6f58b60b4d90')
+    return this.http.get<any>('https://'+ this.region +'.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?' + this.champService.apiKeyRoot)
   }
 
   printUsers(){
