@@ -8,9 +8,9 @@
 </div>
 <div style="float: right;width: 255px;height: 485px;color: rgb(255, 255, 255);background: rgb(81, 95, 117);border: 1px solid rgb(0, 0, 0);font-size: x-large;align-content: center;" class="container ranked" *ngIf="playerStats !== undefined">
   <ng-container [ngSwitch]="true" >
-    <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/'+details.profileIconId+'.png'" alt="" style="max-width: 100px;max-height: 100px;border: solid 1px white;">
+    <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/'+details.profileIconId+'.png'" alt="" style="max-width: 100px;max-height: 100px;border: solid 1px white;">
     <div style="text-align: center;font-size: xx-large;">{{playerStats.summonerName}}</div>
-    <img  class="img-col" [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/'+details.profileIconId+'.png'" alt="" style="max-width: 70px;max-height: 70px;border: solid 1px white;align-self: center;">
+    <img  class="img-col" [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/'+details.profileIconId+'.png'" alt="" style="max-width: 70px;max-height: 70px;border: solid 1px white;align-self: center;">
     Lvl : {{details.summonerLevel}}
     <div class="text-col" style="font-size: x-large;">{{playerStats.summonerName}}</div>
     <div *ngSwitchCase="playerStats.length === 0">Unranked</div>
@@ -40,7 +40,7 @@
       <div *ngFor="let person of player; let i = index" >
         <div class="gameStats float-container" *ngIf="person.puuid === details.puuid && person.teamPosition !== ''" style="border: 1px solid black;width: 100%;height: 180px;" [ngStyle]="{'background-color': (person.puuid === details.puuid && person.win) ? 'lightblue' : 'pink'}">
           <div class="float-child">
-              <img [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + person.championName + '.png'" alt="" style="max-width: 120px;max-height: 120px;border-radius: 10px;">
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + person.championName + '.png'" alt="" style="max-width: 120px;max-height: 120px;border-radius: 10px;">
           </div>
           <div class="float-child">
             <div *ngIf="person.teamPosition !== 'UTILITY'; else gameMode">Role : {{person.teamPosition}}</div>
@@ -54,24 +54,24 @@
               </div>
             </ng-template>
             <div class="summs">
-              <div *ngIf="person.summoner1Id === 21"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBarrier.png" alt="" ></div>
-              <div *ngIf="person.summoner1Id === 1"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBoost.png" alt="" ></div>
-              <div *ngIf="person.summoner1Id === 14"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerDot.png" alt="" ></div>
-              <div *ngIf="person.summoner1Id === 3"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerExhaust.png" alt="" ></div>
-              <div *ngIf="person.summoner1Id === 4"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerFlash.png" alt="" ></div>
-              <div *ngIf="person.summoner1Id === 6"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerHaste.png" alt="" ></div>
-              <div *ngIf="person.summoner1Id === 7"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerHeal.png" alt="" ></div>
-              <div *ngIf="person.summoner1Id === 11"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerSmite.png" alt="" ></div>
-              <div *ngIf="person.summoner1Id === 12"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerTeleport.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 21"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBarrier.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 1"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBoost.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 14"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerDot.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 3"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerExhaust.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 4"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="http://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerFlash.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 6"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerHaste.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 7"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerHeal.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 11"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerSmite.png" alt="" ></div>
-              <div *ngIf="person.summoner2Id === 12"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerTeleport.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 21"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBarrier.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 1"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBoost.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 14"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerDot.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 3"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerExhaust.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 4"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerFlash.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 6"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerHaste.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 7"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerHeal.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 11"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerSmite.png" alt="" ></div>
+              <div *ngIf="person.summoner1Id === 12"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerTeleport.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 21"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBarrier.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 1"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBoost.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 14"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerDot.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 3"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerExhaust.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 4"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="https://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerFlash.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 6"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerHaste.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 7"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerHeal.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 11"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerSmite.png" alt="" ></div>
+              <div *ngIf="person.summoner2Id === 12"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerTeleport.png" alt="" ></div>
             </div>
           </div>
           <div class="items">
@@ -84,13 +84,13 @@
           </div>
           <div class="items">
             <div class="wrapper float-child" style="float: right; ">
-              <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item0 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
-              <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item1 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
-              <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item2 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
-              <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item6 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
-              <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item3 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
-              <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item4 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
-              <img [src]="'http://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item5 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item0 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item1 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item2 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item6 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item3 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item4 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item5 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@
       <div class="col-md-4 text-center">
         <div class="row" style="margin-bottom: 20px;">
           <div class="col-md-4">
-            <img class="img-fluid playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/'+details.profileIconId+'.png'" alt="">
+            <img class="img-fluid playerIcon" style="background-image: url(httpss://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/'+details.profileIconId+'.png'" alt="">
           </div>
           <div class="col-lg-8">
             <div class="mat-subheading-2">
@@ -189,8 +189,8 @@
                   <div *ngFor="let players of singleGame">
                     <div class="row mobileRow" *ngIf="players.summonerName === details.name">
                       <div class="col-md-1">
-                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'">
-                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'">
+                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'">
+                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'">
                       </div>
                       <div class="col-md-2" >
                         <div *ngIf="players.win" style="color: rgb(90, 90, 247);">
@@ -222,8 +222,8 @@
                     <div *ngFor="let players of singleGame.slice(0,5)">
                       <div class="row">
                       <div class="col-md-4" style="padding: 10px;">
-                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'" (click)="championClick(players.championName)">
-                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'" (click)="championClick(players.championName)">
+                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage img-fluid" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'" (click)="championClick(players.championName)">
+                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage img-fluid" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'" (click)="championClick(players.championName)">
                       </div>
                       <div class="col-md-6" style="padding: 10px;">
                         <a style="cursor: pointer;" (click)="playerClick(players.summonerName)">{{players.summonerName}}</a>
@@ -243,8 +243,8 @@
                     <div *ngFor="let players of singleGame.slice(5,10)">
                       <div class="row">
                       <div class="col-md-4" style="padding: 10px;">
-                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'" (click)="championClick(players.championName)">
-                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage img-fluid" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'" (click)="championClick(players.championName)">
+                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage img-fluid" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'" (click)="championClick(players.championName)">
+                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage img-fluid" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'" (click)="championClick(players.championName)">
                       </div>
                       <div class="col-md-6" style="padding: 10px;">
                         <a style="cursor: pointer;" (click)="playerClick(players.summonerName)">{{players.summonerName}}</a>
