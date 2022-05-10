@@ -15,7 +15,7 @@ export class ChampsService implements OnInit{
   region = 'NA1';
   massRegion = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = "RGAPI-8313f874-6a31-4c5e-856f-717b6912d37b"
+  apiKeyRoot = "api_key=RGAPI-8313f874-6a31-4c5e-856f-717b6912d37b"
 
   regions = [
     {value: 'NA1', viewValue: 'NA'},
