@@ -14,7 +14,7 @@ export class ChampsService implements OnInit{
   dataDragonVersion:string;
   region = 'NA1';
   massRegion = 'AMERICAS';
-  apiKeyRoot = keys.apiKeyRoot
+  apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
 
   regions = [
     {value: 'NA1', viewValue: 'NA'},
