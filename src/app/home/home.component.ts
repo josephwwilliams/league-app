@@ -24,14 +24,15 @@ export class HomeComponent implements OnInit {
 
   constructor(private champService: ChampsService, private router: Router) { }
   ngOnInit(): void {
-    this.champService.getDDVersion().subscribe(
-      (res) => {
-        this.dataDragonVersion = res[0];
-        this.champService.dataDragonVersion = res[0];
-        console.log(this.dataDragonVersion)
-        console.log(this.champService.dataDragonVersion)
-      }
-    );
+    // this.champService.getDDVersion().subscribe(
+    //   (res) => {
+    //     this.dataDragonVersion = res[0];
+    //     this.champService.dataDragonVersion = res[0];
+    //     console.log(this.dataDragonVersion)
+    //     console.log(this.champService.dataDragonVersion)
+    //   }
+    // );
+    this.dataDragonVersion = this.champService.dataDragonVersion
     this.regions = this.champService.regions
     this.selectedValue = this.champService.region;
     this.printUsers(this.selectedValue);

@@ -11,7 +11,7 @@ export class ChampsService implements OnInit{
   selectedChampion = {};
   favoriteChampions = [];
   championDetails;
-  dataDragonVersion:string;
+  dataDragonVersion:string = "12.8.1"
   region = 'NA1';
   massRegion = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
@@ -34,8 +34,8 @@ export class ChampsService implements OnInit{
   constructor(private http:HttpClient) {}
 
   ngOnInit(): void {
-    this.getDDVersion()
-    console.log(this.dataDragonVersion)
+    // this.getDDVersion()
+    // console.log(this.dataDragonVersion)
   };
 
   favoriteClick(favChampion){
