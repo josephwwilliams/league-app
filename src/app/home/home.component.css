@@ -16,21 +16,7 @@
   padding: 1.5em 2.5em;
   border-radius: 30px;
   background-color: white;
-  max-height: 500px;
-}
-.card{
-  margin-bottom: auto;
-  margin-right: auto;
-  margin-left: auto;
-  align-items: center;
-  padding: 10px;
-  border-radius: 15px;
-  color: rgb(0, 0, 0);
-  min-width: 200px;
-  max-width: 20rem;
-  /* background-color: #FAACA8;
-  background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
-  box-shadow: -6px 23px 44px 0px rgba(0,0,0,0.1);
+  min-height: 500px;
 }
 .championImage{
   width: 100%;
@@ -58,15 +44,6 @@
 }
 .subheadingName{
   width: fit-content;
-}
-/* .card{
-  max-height: 750px;
-  overflow: scroll;
-  overflow-x: hidden;
-} */
-.playerRow{
-  padding: 20px;
-  max-width: 100px
 }
 @media (max-width: 768px) {
   .champ {

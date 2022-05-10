@@ -15,7 +15,7 @@ export class ChampsService implements OnInit{
   region = 'NA1';
   massRegion = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = "api_key=RGAPI-8313f874-6a31-4c5e-856f-717b6912d37b"
+  apiKeyRoot = "api_key=RGAPI-3cf506ac-142e-4f2a-ab3d-a93078b92019"
 
   regions = [
     {value: 'NA1', viewValue: 'NA'},
@@ -138,6 +138,14 @@ export class ChampsService implements OnInit{
       this.region = `${region}`;
       this.massRegion = 'EUROPE';
     };
+  };
+
+  addChampionsToFireBase(){
+    return this.http.put('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json', this.favoriteChampions);
+  };
+
+  fetchChampionsFromFireBase(){
+    return this.http.get('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json');
   };
 
   returnItems(){

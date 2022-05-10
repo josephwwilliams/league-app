@@ -70,7 +70,7 @@
           <div *ngSwitchDefault>Unranked</div>
           <div style="font-size: larger;">
             {{playerStats.tier}}  {{playerStats.rank}}
-            <div>{{playerStats.leaguePoints | number}} LP</div>
+            <div>{{playerStats.leaguePoints | number }} LP</div>
             <div style="color: rgb(252, 130, 30);">Win Rate : {{((playerStats.wins/ (playerStats.wins + playerStats.losses)) * 100).toFixed(2)}}%</div>
             <div style="color: rgb(90, 90, 247);">
               Wins : {{playerStats.wins}}

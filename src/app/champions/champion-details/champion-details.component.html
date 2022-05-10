@@ -62,10 +62,10 @@
         <span class="material-icons">navigate_next</span>
       </button>
     </div>
-    <div class="mat-subheading-2 skinName" *ngIf="value === 0">
+    <div class="mat-subheading-2 skinName" *ngIf="dialSpecs.value === 0">
       {{champion.name}}
     </div>
-    <div class="mat-subheading-2 skinName" *ngIf="value !== 0">
+    <div class="mat-subheading-2 skinName" *ngIf="dialSpecs.value !== 0">
       {{champion.skins[dialSpecs.value].name}}
     </div>
   </div>

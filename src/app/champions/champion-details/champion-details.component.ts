@@ -30,6 +30,7 @@ export class ChampionDetailsComponent implements OnInit {
 
   sendToFavorites(){
     this.champService.favoriteClick(this.selectedChampion);
+    this.champService.addChampionsToFireBase().subscribe()
   };
 
   ngOnInit(): void {
