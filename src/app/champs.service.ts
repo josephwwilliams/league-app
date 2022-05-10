@@ -72,11 +72,11 @@ export class ChampsService implements OnInit{
   };
 
   getAllChampions(DDversion){
-    return this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/' + DDversion + '/data/en_US/champion.json');
+    return this.http.get<any>('https://ddragon.leagueoflegends.com/cdn/' + DDversion + '/data/en_US/champion.json');
   };
 
   getChampionData(championDetails, DDversion){
-    let apiRoot = 'http://ddragon.leagueoflegends.com/cdn/' + DDversion + '/data/en_US/champion/';
+    let apiRoot = 'https://ddragon.leagueoflegends.com/cdn/' + DDversion + '/data/en_US/champion/';
     let search = championDetails;
     let tail = '.json';
     let apiUrl = `${apiRoot}${search}${tail}`;
@@ -141,7 +141,7 @@ export class ChampsService implements OnInit{
   };
 
   returnItems(){
-    return this.http.get<any>('http://ddragon.leagueoflegends.com/cdn/12.8.1/data/en_US/item.json')
+    return this.http.get<any>('https://ddragon.leagueoflegends.com/cdn/12.8.1/data/en_US/item.json')
   }
 
   returnRunes(){
