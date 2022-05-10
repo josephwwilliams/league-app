@@ -1,10 +1,14 @@
 <section>
   <mat-sidenav-container>
     <mat-sidenav [(opened)] = "opened">
-      <div class="div"><div style="cursor: pointer;" routerLink="/home" class="mat-display-1" (click)="opened = !opened">Home</div></div>
-      <div class="div"><div style="cursor: pointer;" routerLink="/champions" class="mat-display-1" (click)="opened = !opened">Champs</div></div>
-      <div class="div"><div style="cursor: pointer;" routerLink="/favorites" class="mat-display-1" (click)="opened = !opened">Favorites</div></div>
-      <div class="div"><div style="cursor: pointer;" routerLink="/stats" class="mat-display-1" (click)="opened = !opened">Stats</div></div>
+      <div style="cursor: pointer;" routerLink="/home" class="mat-display-1" (click)="opened = !opened">Home</div>
+
+      <div style="cursor: pointer;" routerLink="/champions" class="mat-display-1" (click)="opened = !opened">Champs</div>
+
+      <div style="cursor: pointer;" routerLink="/favorites" class="mat-display-1" (click)="opened = !opened">Favorites</div>
+
+      <div style="cursor: pointer;" routerLink="/stats" class="mat-display-1" (click)="opened = !opened">Stats</div>
+
     </mat-sidenav>
     <mat-sidenav-content>
       <button class="navigationButton" mat-fab color="white" (click)="opened = !opened">

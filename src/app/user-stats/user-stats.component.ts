@@ -12,6 +12,7 @@ import { PlayerStatsComponent } from './player-stats/player-stats.component';
 })
 export class UserStatsComponent implements OnInit {
   constructor(private champService: ChampsService, private router: Router, public dialog: MatDialog) {}
+  dataDragonVersion:string;
   showSpinner = false;
   details;
   name = '';
@@ -19,7 +20,13 @@ export class UserStatsComponent implements OnInit {
   playerStats: any;
   errors: any;
 
+  selectedValue: string;
+  regions: { value: string, viewValue: string}[] = [];
+
   ngOnInit(): void {
+    this.dataDragonVersion = this.champService.dataDragonVersion
+    this.regions = this.champService.regions;
+    this.selectedValue = this.champService.region;
     this.name = this.champService.name
     if(this.name !== '') {
       this.submit();
@@ -29,22 +36,27 @@ export class UserStatsComponent implements OnInit {
   submit(){
     if(this.showSpinner === false) {
       this.clear()
-      this.champService.getSummonerByName('na1', this.name).subscribe(
+      this.champService.getSummonerByName(this.champService.region, this.name).subscribe(
         (res) => {
             this.details = res;
-            this.champService.getMatchesByPUUID(this.details.puuid).subscribe(
+            this.champService.getMatchesByPUUID(this.champService.massRegion ,this.details.puuid).subscribe(
               (res) => {
-                forkJoin(res.map((match: any) => this.champService.getChampsByMatch(match))).subscribe(
+                forkJoin(res.map((match: any) => this.champService.getChampsByMatch(this.champService.massRegion ,match))).subscribe(
                   (res:any) => {
                     res.forEach((data, i) => {
                       this.players.push(data.info.participants);
                       this.players[i]['gameCreation'] = data.info.gameCreation;
                       this.players.sort(((a, b) => (a.gameCreation > b.gameCreation) ? -1 : 1));
                     });
-                    this.champService.getPlayerStatsWithSummonerID(this.details.id).subscribe(
+                    this.champService.getPlayerStatsWithSummonerID(this.champService.region,  this.details.id).subscribe(
                       (res) => {
-                        this.playerStats = res[0];
+                        for(let i = 0; i < res.length; i++){
+                          if(res[i].queueType === "RANKED_SOLO_5x5"){
+                            this.playerStats = res[i];
+                          };
+                        };
                         this.showSpinner = false;
+                        console.log(this.playerStats)
                       },
                       (err) => {
                         this.errors = err;
@@ -70,7 +82,7 @@ export class UserStatsComponent implements OnInit {
     } else alert('Please Wait');
   };
 
-  log(player: { totalDamageDealtToChampions: any; }){
+  checkPlayerStatsInGame(player: { totalDamageDealtToChampions: any; }){
     console.log(player.totalDamageDealtToChampions);
     this.dialog.open(PlayerStatsComponent);
   };
@@ -84,7 +96,7 @@ export class UserStatsComponent implements OnInit {
   championClick(champion: any){
     this.champService.selectedChampion = {
       id: champion
-    }
+    };
     this.router.navigate([`champions/details/${champion}`]);
   };
 
@@ -95,4 +107,8 @@ export class UserStatsComponent implements OnInit {
     this.playerStats = undefined;
     this.players = [];
   };
+
+  changeRegion(region: string){
+    this.champService.regionCheckAndChange(region);
+  }
 }

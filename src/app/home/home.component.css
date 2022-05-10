@@ -1,50 +1,7 @@
-/* .container {
-  width: 120vw;
-  border: 1px solid rgb(0, 0, 0);
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  position: relative;
-  display: flex;
-  padding-top: 8px;
-}
-video{
-  width: 100%    !important;
-  height: auto   !important;
-  position: relative;
-}
-img {
-  width: 50%;
-  position: absolute;
-  z-index: 99;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  top: -15%
-}
-.login{
-  width: 10%;
-  position: absolute;
-  z-index: 99;
-  margin: 0 auto;
-  left: -15%;
-  right: 0;
-  top: 80%;
-  border: 1px solid white;
-}
-.signup{
-  width: 10%;
-  position: absolute;
-  z-index: 99;
-  margin: 0 auto;
-  left: 16%;
-  right: 0;
-  top: 80%;
-  border: 1px solid white;
-} */
-
 .playerIcon{
   max-height: 100px;
   border-radius: 15px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   min-height: 75px;
   min-width: 75px
 }
@@ -58,13 +15,25 @@ img {
   box-shadow: -6px 23px 44px 0px rgba(0,0,0,0.1);
   padding: 1.5em 2.5em;
   border-radius: 30px;
-  /* border: 1px solid black; */
   background-color: white;
+}
+.card{
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: auto;
+  align-items: center;
+  padding: 10px;
+  border-radius: 15px;
+  color: rgb(0, 0, 0);
+  min-width: 200px;
+  max-width: 20rem;
+  /* background-color: #FAACA8;
+  background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%); */
+  box-shadow: -6px 23px 44px 0px rgba(0,0,0,0.1);
 }
 .championImage{
   width: 100%;
   border-radius: 100px;
-  /* border: 2px solid black; */
   max-width: 125px;
   box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }
@@ -80,11 +49,23 @@ img {
   align-items: center;
   padding: .5em .25em;
 }
-.row{
+.region{
   text-align:center;
   margin:0 auto;
   max-width: fit-content;
   padding-bottom: 5px;
+}
+.subheadingName{
+  width: fit-content;
+}
+/* .card{
+  max-height: 750px;
+  overflow: scroll;
+  overflow-x: hidden;
+} */
+.playerRow{
+  padding: 20px;
+  width: 100%;
 }
 @media (max-width: 768px) {
   .champ {

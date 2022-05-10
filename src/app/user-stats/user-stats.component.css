@@ -92,6 +92,9 @@
 .btn{
   background-color: white !important;
 }
+form{
+margin: 10px;
+}
 
 @media (max-width: 768px) {
   article.champ {
@@ -111,5 +114,8 @@
   }
   .input {
     padding-top: 60px;
+  }
+  mat-form-field{
+    background-color: white !important;
   }
 }

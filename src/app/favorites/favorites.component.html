@@ -5,7 +5,8 @@
         <div class="input-group">
           <input type="text" class="form-control" placeholder="Search in favorites!" [(ngModel)]="championSearch">
           <div class="input-group-append">
-            <button class="material-icons btn btn-outline-secondary" type="button">search</button>
+            <button class="material-icons btn btn-outline-secondary" type="button" (click)="log()" >search</button>
+            <button class="material-icons btn btn-outline-secondary" type="button" (click)="fetchChampions()" >search</button>
           </div>
         </div>
       </div>
@@ -18,7 +19,7 @@
     *ngFor="let champion of champions; let i = index"
     >
     <div class="img-wrp">
-      <img class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.image.full" (click)="clickedChampion(champion)" routerLink="../champions/details/{{champion.id}}">
+      <img class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/'+champion.image.full" (click)="clickedChampion(champion)" routerLink="../champions/details/{{champion.id}}">
       <button mat-mini-fab color="warn" class="remove" (click)="removeFromFavorites(i)">
         <span class="material-icons removeIcon">
           remove

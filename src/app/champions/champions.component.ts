@@ -8,31 +8,26 @@ import { ChampsService } from '../champs.service';
   styleUrls: ['./champions.component.css']
 })
 export class ChampionsComponent implements OnInit {
-  champions:any = []
-  favoriteChamps=[]
-  displayArray=[]
+  champions:any = [];
+  favoriteChamps=[];
+  displayArray=[];
   championSearch:string = '';
+  dataDragonVersion: string;
 
   constructor(private champService: ChampsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.champService.getAllChampions().subscribe(
+    this.dataDragonVersion = this.champService.dataDragonVersion
+    this.champService.getAllChampions(this.dataDragonVersion).subscribe(
       res=> {
         this.champions = res.data;
       }
     );
-    this.favoriteChamps = this.champService.favoriteChampions.slice()
-  }
+    this.favoriteChamps = this.champService.favoriteChampions.slice();
+  };
 
   clickedChampion(champion){
-    this.champService.selectedChampion = champion.value
-    this.router.navigate([`details/${champion.value.id}`], {relativeTo: this.route})
-  }
-
-  createArray(){
-    // this.displayArray=this.champions
-    // let resut = Object.values(this.displayArray).filter(o1 => this.champService.favoriteChampions.some(o2 => o1.id === o2.id))
-    // this.displayArray.push(resut)
-  }
-
+    this.champService.selectedChampion = champion.value;
+    this.router.navigate([`details/${champion.value.id}`], {relativeTo: this.route});
+  };
 }

@@ -1,9 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
-import { mergeMap } from 'rxjs-compat/operator/mergeMap';
 import { ChampsService } from '../champs.service';
 
 @Component({
@@ -12,43 +9,71 @@ import { ChampsService } from '../champs.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  signup = false
-  value = 100
-  results = 10
-  names
-  region = 'na1'
-  constructor(private champService: ChampsService, private http: HttpClient, private router: Router) { }
-  ngOnInit(): void {
+  signup = false;
+  value = 100;
+  results = 10;
+  newNames = [];
+  names: any[];
+  dataDragonVersion: string;
 
-    this.log()
-    this.printUsers()
+  data: object[] = [];
+  data2;
+
+  selectedValue: string;
+  regions: { value: string, viewValue: string}[] = [];
+
+  constructor(private champService: ChampsService, private router: Router) { }
+  ngOnInit(): void {
+    this.champService.getDDVersion().subscribe(
+      (res) => {
+        this.dataDragonVersion = res[0];
+        this.champService.dataDragonVersion = res[0];
+        console.log(this.dataDragonVersion)
+        console.log(this.champService.dataDragonVersion)
+      }
+    );
+    this.regions = this.champService.regions
+    this.selectedValue = this.champService.region;
+    this.printUsers(this.selectedValue);
+  }
+
+  log(){
+    this.champService.returnItems().subscribe(
+      (res:any) => {
+        this.data = res.data
+        console.log(this.data)
+      }
+    )
+    this.champService.returnRunes().subscribe(
+      (res) => {
+        this.data2 = res;
+        console.log(this.data2)
+      }
+    )
   }
 
   signingUp(form: NgForm){
     const value = form.value;
-    console.log(value)
-    this.champService.name = value.username
-  }
+    this.champService.name = value.username;
+  };
 
-  log(){
-    return this.http.get<any>('https://'+ this.region +'.api.riotgames.com/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5?' + this.champService.apiKeyRoot)
-  }
-
-  printUsers(){
-    this.log().subscribe((data)=>{
-      this.names = (data.entries.sort((a, b) => (a.leaguePoints > b.leaguePoints) ? -1 : 1))
+  printUsers(region: string){
+    this.champService.regionCheckAndChange(region);
+    this.champService.getTopTenPlayersInRegion(this.selectedValue).subscribe((data)=>{
+      this.names = (data.entries.sort((a, b) => (a.leaguePoints > b.leaguePoints) ? -1 : 1));
+      let newNames = [];
       for(let i = 0; i < this.results; i++){
-        this.champService.getSummonerByName(this.region, this.names[i].summonerName).subscribe((data)=>{
-          this.names[i]['profileIconId'] = data.profileIconId;
+        this.champService.getSummonerWithSummonerID(this.selectedValue, this.names[i].summonerId).subscribe((data)=>{
+          newNames.push(data);
         })
       }
-
-    })
-  }
+      this.newNames = newNames;
+    });
+  };
 
   playerClick(playerName){
-    this.champService.name = playerName
-    this.router.navigate([`stats`])
-  }
+    this.champService.name = playerName;
+    this.router.navigate([`stats`]);
+  };
 
 }

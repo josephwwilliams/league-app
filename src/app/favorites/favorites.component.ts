@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit,} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ChampsService } from '../champs.service';
 
 @Component({
@@ -10,10 +10,13 @@ import { ChampsService } from '../champs.service';
 export class FavoritesComponent implements OnInit{
   championSearch:string = '';
   champions=[]
-  constructor(private champService: ChampsService, private route: ActivatedRoute, private router: Router) {}
+  dataDragonVersion:string;
+  constructor(private champService: ChampsService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.champions=this.champService.favoriteChampions
+    this.fetchChampions()
+    this.dataDragonVersion = this.champService.dataDragonVersion;
+    this.champions=this.champService.favoriteChampions;
   }
 
   clickedChampion(favoriteChampion){
@@ -22,5 +25,22 @@ export class FavoritesComponent implements OnInit{
   removeFromFavorites(i){
     this.champions.splice(i, 1)
 
+  }
+
+  log(){
+    console.log(this.champions)
+    this.http.put('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json', this.champions).subscribe(
+      res => {
+        console.log(res)
+      }
+    )
+  }
+  fetchChampions(){
+    this.http.get('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json').subscribe(
+      (res:any) => {
+        console.log(res)
+        this.champService.favoriteChampions = this.champService.favoriteChampions.concat(res)
+      }
+    )
   }
 }

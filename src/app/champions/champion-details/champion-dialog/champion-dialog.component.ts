@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChampsService } from 'src/app/champs.service';
 
 @Component({
   selector: 'app-champion-dialog',
@@ -7,10 +8,11 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./champion-dialog.component.css']
 })
 export class ChampionDialogComponent implements OnInit {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  dataDragonVersion:string;
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private champService: ChampsService) { }
 
   ngOnInit(): void {
+    this.dataDragonVersion = this.champService.dataDragonVersion
   }
 
   replaceAll(string){

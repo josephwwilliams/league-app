@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'league-app';
-  opened = false
+  opened = false;
   constructor(){};
-
   ngOnInit(): void {
   }
 }

@@ -4,9 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'cooldown'
 })
 export class CooldownPipe implements PipeTransform {
-
   transform(cooldown: any){
     return cooldown.join(' / ');
-  }
-
+  };
 }

@@ -15,7 +15,7 @@
 <section>
   <div class="champ-container">
     <article class="champ" *ngFor="let champion of champions | keyvalue | filter:championSearch" >
-      <img class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/12.6.1/img/champion/'+champion.value.image.full" (click)="clickedChampion(champion)" >
+      <img class="championImage" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/'+champion.value.image.full" (click)="clickedChampion(champion)" >
       <div class="mat-title" >
         {{champion.value.name}}
       </div>

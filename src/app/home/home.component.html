@@ -42,19 +42,63 @@
     </div>
     <button (submit)="singup = !singup" class="btn btn-primary" type="submit">Submit</button>
 </form> -->
+<section>
+  <div class="row region">
+    <div class="col-md-12">
+      <form>
+        <mat-form-field appearance="fill">
+          <mat-label>Region</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="printUsers(selectedValue)" >
+            <mat-option *ngFor="let region of regions" [value]="region.value">
+              {{region.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</section>
 <div class="container">
   <!-- <button (click)="printUsers()"> get players</button> -->
-  <button (click)="log()"> get players</button>
-  <div *ngFor="let name of names | slice: 0:10" (click)="playerClick(name.summonerName)" >
-    <div>{{name.summonerName}}</div>
-    <img class="playerIcon" [src]="'http://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/' + name.profileIconId + '.png'" alt="">
-    <!-- <div>{{name.profileIconId}}</div> -->
-    <div style="color: blue;"> {{ name.leaguePoints }}</div>
-    <div style="color: red;"> Win Rate : {{((name.wins/ (name.wins + name.losses)) * 100).toFixed(2)}}%</div>
-    <div [innerHTML]=""></div>
-    <div *ngIf="(name === names[0])" style="color: gold;"> I am number one </div>
-    <div *ngIf="(name === names[1])" style="color: silver;"> I am number two </div>
-    <div *ngIf="(name === names[2])" style="color: brown;"> I am number three </div>
+  <div class="card">
+    <div class="mat-headline">
+      {{selectedValue}} Leaderboards
+    </div>
+    <div class="row playerRow" *ngFor="let name of newNames; let i = index" style="margin: 10px;align-items: center;">
+      <div class="row" style="text-align: center;padding: 10px;">
+        <mat-card-title>Rank: {{i + 1}}</mat-card-title>
+      </div>
+      <div class="col-md-5">
+        <img class="playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);" [src]="'http://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/' + name.profileIconId + '.png'" alt="" (click)="playerClick(name.name)">
+      </div>
+      <div class="col-md-7 subheadingName">
+        <div matCardTitle>{{name.name}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="mat-headline">
+      Runes
+      <div *ngFor="let rune of data2; let i = index">
+        <div>{{rune.key}}</div>
+        <img src="https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="mat-headline" (click)="log()">
+      Items
+      <!-- <div *ngFor="let item of data | keyvalue">
+        <div *ngIf="item.value.inStore !== false" [innerHTML]="item.value.name"></div>
+        <img *ngIf="item.value.inStore !== false" class="img-fluid w-90 " style="max-height: 50px;" [src]="'http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/' + item.key + '.png'" alt="">
+        <div *ngIf="item.value.inStore !== false" > {{item.value.gold.total}} </div>
+      </div> -->
+    </div>
+  </div>
+  <div class="card">
+    <div class="mat-headline">
+      Champions
+    </div>
   </div>
 </div>
 
