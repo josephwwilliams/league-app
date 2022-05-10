@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   names: any[];
   dataDragonVersion: string;
 
-  data: object[] = [];
+  data = [];
   data2;
 
   selectedValue: string;
@@ -42,16 +42,17 @@ export class HomeComponent implements OnInit {
     this.champService.returnItems().subscribe(
       (res:any) => {
         this.data = res.data
-        console.log(this.data)
+        // console.log(this.data)
       }
     )
     this.champService.returnRunes().subscribe(
       (res) => {
         this.data2 = res;
-        console.log(this.data2)
+        // console.log(this.data2)
       }
     )
   }
+
 
   signingUp(form: NgForm){
     const value = form.value;

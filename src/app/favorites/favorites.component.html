@@ -1,4 +1,4 @@
-<section *ngIf="champions.length !== 0; else addFavorites">
+<section *ngIf="(champions.length !== 0) ; else addFavorites">
   <div class="row input" >
     <div class="col-12">
       <div class="form-group">
@@ -12,7 +12,7 @@
     </div>
   </div>
 </section>
-<section *ngIf="champions.length !== 0">
+<section *ngIf="(champions.length !== 0)">
   <div class="champ-container">
     <article class="champ"
     *ngFor="let champion of champions; let i = index"

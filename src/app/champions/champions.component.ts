@@ -9,8 +9,6 @@ import { ChampsService } from '../champs.service';
 })
 export class ChampionsComponent implements OnInit {
   champions:any = [];
-  favoriteChamps=[];
-  displayArray=[];
   championSearch:string = '';
   dataDragonVersion: string;
 
@@ -23,7 +21,6 @@ export class ChampionsComponent implements OnInit {
         this.champions = res.data;
       }
     );
-    this.favoriteChamps = this.champService.favoriteChampions.slice();
   };
 
   clickedChampion(champion){

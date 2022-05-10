@@ -27,7 +27,7 @@ export class UserStatsComponent implements OnInit {
     this.dataDragonVersion = this.champService.dataDragonVersion
     this.regions = this.champService.regions;
     this.selectedValue = this.champService.region;
-    this.name = this.champService.name
+    this.name = this.champService.name;
     if(this.name !== '') {
       this.submit();
     }
@@ -110,5 +110,5 @@ export class UserStatsComponent implements OnInit {
 
   changeRegion(region: string){
     this.champService.regionCheckAndChange(region);
-  }
+  };
 }

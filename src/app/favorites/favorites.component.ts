@@ -19,6 +19,9 @@ export class FavoritesComponent implements OnInit{
         this.champService.favoriteChampions = res
         this.dataDragonVersion = this.champService.dataDragonVersion;
         this.champions = this.champService.favoriteChampions;
+        if(res === null) {
+          this.champions = [];
+        };
       }
     )
     // this.dataDragonVersion = this.champService.dataDragonVersion;

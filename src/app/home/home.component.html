@@ -132,9 +132,9 @@
       </div>
     </mat-tab>
     <mat-tab label="Items">
-      <h1>Coming Soon!</h1>
-      <div class="mat-headline" (click)="log()">
-        <div *ngFor="let item of data | keyvalue">
+      <h1 (click)="log()">Coming Soon!</h1>
+      <div class="container" (click)="log()">
+        <div *ngFor="let item of data | keyvalue ">
           <div *ngIf="item.value.inStore !== false" [innerHTML]="item.value.name"></div>
           <img *ngIf="item.value.inStore !== false" class="img-fluid w-90 " style="max-height: 50px;" [src]="'http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/' + item.key + '.png'" alt="">
           <div *ngIf="item.value.inStore !== false" > {{item.value.gold.total}} </div>
