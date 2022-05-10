@@ -14,7 +14,11 @@ export class FavoritesComponent implements OnInit{
   constructor(private champService: ChampsService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.fetchChampions()
+    this.fetchChampions().subscribe(
+      (res:any) => {
+        this.champService.favoriteChampions = res
+      }
+    )
     this.dataDragonVersion = this.champService.dataDragonVersion;
     this.champions=this.champService.favoriteChampions;
   }
@@ -28,19 +32,14 @@ export class FavoritesComponent implements OnInit{
   }
 
   log(){
-    console.log(this.champions)
+    // console.log(this.champions)
     this.http.put('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json', this.champions).subscribe(
       res => {
-        console.log(res)
+        // console.log(res)
       }
     )
   }
   fetchChampions(){
-    this.http.get('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json').subscribe(
-      (res:any) => {
-        console.log(res)
-        this.champService.favoriteChampions = this.champService.favoriteChampions.concat(res)
-      }
-    )
+    return this.http.get('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json')
   }
 }

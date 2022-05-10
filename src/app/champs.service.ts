@@ -11,7 +11,7 @@ export class ChampsService implements OnInit{
   selectedChampion = {};
   favoriteChampions = [];
   championDetails;
-  dataDragonVersion:string = "12.8.1"
+  dataDragonVersion:string = "12.8.1";
   region = 'NA1';
   massRegion = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY

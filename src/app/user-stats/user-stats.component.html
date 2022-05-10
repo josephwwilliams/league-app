@@ -1,59 +1,5 @@
-<!-- <div class="container " style="background-color: transparent;border: 0px;right: -20%;">
-  <div class="contain">
-    <input style="width: fit-content;" class="form-control" type="text" [(ngModel)]="name" placeholder=" Search for players!" (keyup.enter)="submit()">
-    <span class="right">
-      <button class="btn btn-primary "  (click)="log()">Search</button>
-    </span>
-  </div>
-</div>
-<div style="float: right;width: 255px;height: 485px;color: rgb(255, 255, 255);background: rgb(81, 95, 117);border: 1px solid rgb(0, 0, 0);font-size: x-large;align-content: center;" class="container ranked" *ngIf="playerStats !== undefined">
-  <ng-container [ngSwitch]="true" >
-    <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/'+details.profileIconId+'.png'" alt="" style="max-width: 100px;max-height: 100px;border: solid 1px white;">
-    <div style="text-align: center;font-size: xx-large;">{{playerStats.summonerName}}</div>
-    <img  class="img-col" [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/profileicon/'+details.profileIconId+'.png'" alt="" style="max-width: 70px;max-height: 70px;border: solid 1px white;align-self: center;">
-    Lvl : {{details.summonerLevel}}
-    <div class="text-col" style="font-size: x-large;">{{playerStats.summonerName}}</div>
-    <div *ngSwitchCase="playerStats.length === 0">Unranked</div>
-    <div *ngSwitchCase="playerStats.tier === 'IRON'"><img src="/assets/images/ranks/Iron.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchCase="playerStats.tier === 'BRONZE'"><img src="/assets/images/ranks/Bronze.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchCase="playerStats.tier === 'SILVER'"><img src="/assets/images/ranks/Silver.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchCase="playerStats.tier === 'GOLD'"><img src="/assets/images/ranks/Gold.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchCase="playerStats.tier === 'PLATINUM'"><img src="/assets/images/ranks/Platinum.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchCase="playerStats.tier === 'DIAMOND'"><img src="/assets/images/ranks/Diamond.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchCase="playerStats.tier === 'MASTER'"><img src="/assets/images/ranks/Master.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchCase="playerStats.tier === 'GRANDMASTER'"><img src="/assets/images/ranks/Grandmaster.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchCase="playerStats.tier === 'CHALLENGER'"><img src="/assets/images/ranks/Challenger.png" alt="" style="max-width: 200px;max-height: 200px;align-items: center;"> </div>
-    <div *ngSwitchDefault>Unranked</div>
-    {{playerStats.tier}}  {{playerStats.rank}}
-    <div style="color: rgb(252, 130, 30);">Win Rate : {{((playerStats.wins/ (playerStats.wins + playerStats.losses)) * 100).toFixed(2)}}%</div>
-    <div style="color: rgb(32, 233, 233);">
-      Wins : {{playerStats.wins}}
-    </div>
-    <div style="color: pink;">
-      Losses : {{playerStats.losses}}
-    </div>
-  </ng-container>
-</div>
-<div class="container" *ngIf="details !== undefined ">
-  <div style="color: rgb(0, 0, 0);" >
-    <div *ngFor="let player of players" >
-      <div *ngFor="let person of player; let i = index" >
-        <div class="gameStats float-container" *ngIf="person.puuid === details.puuid && person.teamPosition !== ''" style="border: 1px solid black;width: 100%;height: 180px;" [ngStyle]="{'background-color': (person.puuid === details.puuid && person.win) ? 'lightblue' : 'pink'}">
-          <div class="float-child">
-              <img [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + person.championName + '.png'" alt="" style="max-width: 120px;max-height: 120px;border-radius: 10px;">
-          </div>
-          <div class="float-child">
-            <div *ngIf="person.teamPosition !== 'UTILITY'; else gameMode">Role : {{person.teamPosition}}</div>
-            <ng-template #gameMode>Role : SUPPORT</ng-template>
-            <div>{{person.kills}} / {{person.deaths}} / {{person.assists}}</div>
-            Dmg Dealt: {{person.physicalDamageDealtToChampions |  number }}
-            <div *ngIf="(((person.kills + person.assists)/person.deaths).toFixed(2)) !== 'Infinity'; else perfect">KDA : {{((person.kills + person.assists)/person.deaths).toFixed(2)}}</div>
-            <ng-template #perfect >
-              <div style="color: rgb(248, 112, 48);font-weight: bold;">
-                KDA : Perfect
-              </div>
-            </ng-template>
-            <div class="summs">
+
+            <!-- <div class="summs">
               <div *ngIf="person.summoner1Id === 21"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBarrier.png" alt="" ></div>
               <div *ngIf="person.summoner1Id === 1"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBoost.png" alt="" ></div>
               <div *ngIf="person.summoner1Id === 14"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerDot.png" alt="" ></div>
@@ -90,50 +36,15 @@
               <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item6 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
               <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item3 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
               <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item4 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
-              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item5 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
+              <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item5 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;"> -->
 
-<section>
-  <div class="row input" >
-    <div class="col-8">
-      <div class="form-group">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for players!" [(ngModel)]="name" (keyup.enter)="submit()">
-          <div class="input-group-append">
-            <button class="material-icons btn btn-outline-secondary" type="button" (click)="submit()" >search</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-    <form>
-      <mat-form-field appearance="fill">
-        <mat-label>Region</mat-label>
-        <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="changeRegion(selectedValue)" >
-          <mat-option *ngFor="let region of regions" [value]="region.value">
-            {{region.viewValue}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </form>
-    </div>
-  </div>
-</section>
 <section *ngIf="(playerStats !== undefined && errors === undefined)">
-<!-- <section *ngIf="(matches.length >6 || playerStats !== undefined && errors === undefined)"> -->
   <div class="champ-container">
-    <!-- <div class="row" style="border: 1px solid goldenrod;"> -->
     <div class="row">
       <div class="col-md-4 text-center">
         <div class="row" style="margin-bottom: 20px;">
           <div class="col-md-4">
-            <img class="img-fluid playerIcon" style="background-image: url(httpss://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/'+details.profileIconId+'.png'" alt="">
+            <img class="img-fluid playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/'+details.profileIconId+'.png'" alt="">
           </div>
           <div class="col-lg-8">
             <div class="mat-subheading-2">
@@ -157,14 +68,6 @@
           <div *ngSwitchCase="playerStats.tier === 'GRANDMASTER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Grandmaster.png" alt=""></div>
           <div *ngSwitchCase="playerStats.tier === 'CHALLENGER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Challenger.png" alt=""></div>
           <div *ngSwitchDefault>Unranked</div>
-          <!-- {{playerStats.tier}}  {{playerStats.rank}}
-          <div style="color: rgb(252, 130, 30);">Win Rate : {{((playerStats.wins/ (playerStats.wins + playerStats.losses)) * 100).toFixed(2)}}%</div>
-          <div style="color: rgb(90, 90, 247);">
-            Wins : {{playerStats.wins}}
-          </div>
-          <div style="color: rgb(253, 91, 91);">
-            Losses : {{playerStats.losses}}
-          </div> -->
           <div style="font-size: larger;">
             {{playerStats.tier}}  {{playerStats.rank}}
             <div>{{playerStats.leaguePoints | number}} LP</div>
@@ -179,8 +82,31 @@
         </ng-container>
       </div>
       <div class="col-md-8">
+        <div class="row" style="width: 100%;">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for players!" [(ngModel)]="name" (keyup.enter)="submit()">
+                <div class="input-group-append">
+                  <button class="material-icons btn btn-outline-secondary" type="button" (click)="submit()" >search</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <form>
+              <mat-form-field appearance="fill">
+                <mat-label>Region</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="changeRegion(selectedValue)" >
+                  <mat-option *ngFor="let region of regions" [value]="region.value">
+                    {{region.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </form>
+          </div>
+        </div>
         <mat-accordion >
-        <!-- <div class="row" style="border: 10px solid goldenrod; align-items: center;"> -->
         <div class="row" >
           <article class="champ" *ngFor="let singleGame of players; let i = index">
             <mat-expansion-panel style="width: 100%;">
@@ -270,10 +196,38 @@
 </section>
 <section *ngIf="(playerStats === undefined && showSpinner === false && errors === undefined)">
   <div class="champ-container">
-    <div class="mat-display-3">
-      No name added <span class="material-icons frown">sentiment_dissatisfied</span>
+    <div class="row" >
+      <div class="col-lg-8">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for players!" [(ngModel)]="name" (keyup.enter)="submit()">
+            <div class="input-group-append">
+              <button class="material-icons btn btn-outline-secondary" type="button" (click)="submit()" >search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <form>
+          <mat-form-field appearance="fill">
+            <mat-label>Region</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="changeRegion(selectedValue)" >
+              <mat-option *ngFor="let region of regions" [value]="region.value">
+                {{region.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
     </div>
-    <div class="mat-display-3">Go ahead and search for a player!</div>
+    <div class="row">
+      <div class="mat-display-3">
+        No name added <span class="material-icons frown">sentiment_dissatisfied</span>
+      </div>
+      <div class="mat-display-3">
+        Go ahead and search for a player!
+      </div>
+    </div>
   </div>
 </section>
 <section *ngIf="(showSpinner === true && errors === undefined)">
@@ -283,6 +237,30 @@
 </section>
 <section *ngIf="errors !== undefined">
   <div class="champ-container">
+    <div class="row" style="width: 100%;">
+      <div class="col-lg-8">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for players!" [(ngModel)]="name" (keyup.enter)="submit()">
+            <div class="input-group-append">
+              <button class="material-icons btn btn-outline-secondary" type="button" (click)="submit()" >search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <form>
+          <mat-form-field appearance="fill">
+            <mat-label>Region</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="changeRegion(selectedValue)" >
+              <mat-option *ngFor="let region of regions" [value]="region.value">
+                {{region.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
     <div class="mat-display-3" style="color: crimson;">
     An error has occurred! Please try again
     </div>

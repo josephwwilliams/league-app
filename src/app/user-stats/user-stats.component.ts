@@ -56,7 +56,7 @@ export class UserStatsComponent implements OnInit {
                           };
                         };
                         this.showSpinner = false;
-                        console.log(this.playerStats)
+                        // console.log(this.playerStats)
                       },
                       (err) => {
                         this.errors = err;
@@ -83,7 +83,7 @@ export class UserStatsComponent implements OnInit {
   };
 
   checkPlayerStatsInGame(player: { totalDamageDealtToChampions: any; }){
-    console.log(player.totalDamageDealtToChampions);
+    // console.log(player.totalDamageDealtToChampions);
     this.dialog.open(PlayerStatsComponent);
   };
 

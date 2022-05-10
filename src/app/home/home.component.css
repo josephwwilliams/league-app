@@ -16,6 +16,7 @@
   padding: 1.5em 2.5em;
   border-radius: 30px;
   background-color: white;
+  max-height: 500px;
 }
 .card{
   margin-bottom: auto;
@@ -65,7 +66,7 @@
 } */
 .playerRow{
   padding: 20px;
-  width: 100%;
+  max-width: 100px
 }
 @media (max-width: 768px) {
   .champ {
@@ -74,10 +75,11 @@
   .mat-title{
     display: none;
   }
-  .input{
-    padding-top: 60px;
+  .container {
+    margin-top: 60px;
   }
 }
+
 .material-icons{
   background-color: white!important;
 }

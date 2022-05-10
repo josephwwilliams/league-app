@@ -42,7 +42,7 @@
     </div>
     <button (submit)="singup = !singup" class="btn btn-primary" type="submit">Submit</button>
 </form> -->
-<section>
+<!-- <section>
   <div class="row region">
     <div class="col-md-12">
       <form>
@@ -57,14 +57,33 @@
       </form>
     </div>
   </div>
-</section>
+</section> -->
 <div class="container">
   <!-- <button (click)="printUsers()"> get players</button> -->
+  <div class="row" style="width: 100%;text-align: center;">
+    <div class="col-lg-8">
+      <h1 class="mat-display-2" >
+        Welcome!
+      </h1>
+    </div>
+      <div class="col-lg-4">
+        <form>
+          <mat-form-field appearance="fill">
+            <mat-label>Region</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="printUsers(selectedValue)" >
+              <mat-option *ngFor="let region of regions" [value]="region.value">
+                {{region.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
   <div class="card">
     <div class="mat-headline">
       {{selectedValue}} Leaderboards
     </div>
-    <div class="row playerRow" *ngFor="let name of newNames; let i = index" style="margin: 10px;align-items: center;">
+    <!-- <div class="row playerRow" *ngFor="let name of newNames; let i = index" style="margin: 10px;align-items: center;">
       <div class="row" style="text-align: center;padding: 10px;">
         <mat-card-title>Rank: {{i + 1}}</mat-card-title>
       </div>
@@ -74,7 +93,27 @@
       <div class="col-md-7 subheadingName">
         <div matCardTitle>{{name.name}}</div>
       </div>
-    </div>
+    </div> -->
+    <mat-accordion >
+      <!-- <div class="row" style="border: 10px solid goldenrod; align-items: center;"> -->
+      <div class="row" >
+          <mat-expansion-panel >
+            <mat-expansion-panel-header >
+            </mat-expansion-panel-header>
+            <div class="row playerRow" *ngFor="let name of newNames; let i = index" style="margin: 10px;align-items: center;">
+              <div class="row" style="text-align: center;padding: 10px;">
+                <!-- <mat-card-title>Rank: {{i + 1}}</mat-card-title> -->
+              </div>
+              <div class="col-md-5">
+                <img class="playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/' + name.profileIconId + '.png'" alt="" (click)="playerClick(name.name)">
+              </div>
+              <div class="col-md-7 subheadingName">
+                <!-- <div matCardTitle>{{name.name}}</div> -->
+              </div>
+            </div>
+          </mat-expansion-panel>
+      </div>
+    </mat-accordion>
   </div>
   <div class="card">
     <div class="mat-headline">
@@ -86,14 +125,14 @@
     </div>
   </div>
   <div class="card">
-    <div class="mat-headline" (click)="log()">
+    <!-- <div class="mat-headline" (click)="log()">
       Items
-      <!-- <div *ngFor="let item of data | keyvalue">
+      <div *ngFor="let item of data | keyvalue">
         <div *ngIf="item.value.inStore !== false" [innerHTML]="item.value.name"></div>
         <img *ngIf="item.value.inStore !== false" class="img-fluid w-90 " style="max-height: 50px;" [src]="'http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/' + item.key + '.png'" alt="">
         <div *ngIf="item.value.inStore !== false" > {{item.value.gold.total}} </div>
-      </div> -->
-    </div>
+      </div>
+    </div> -->
   </div>
   <div class="card">
     <div class="mat-headline">

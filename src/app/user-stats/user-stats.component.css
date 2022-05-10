@@ -112,10 +112,8 @@ margin: 10px;
   article .teamPosition {
     display: none !important;
   }
-  .input {
-    padding-top: 60px;
+  .champ-container {
+    margin-top: 60px;
   }
-  mat-form-field{
-    background-color: white !important;
-  }
+
 }
