@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="showSpinner === false">
   <div *ngFor="let champion of champDetails" class="container-md" [ngStyle]="{'background-image':'url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' +  champion.id + '_' + champion.skins[dialSpecs.value].num + '.jpg)'}">
     <div class="d-lg-flex justify-content-center">
       <div class="card">
@@ -69,4 +69,11 @@
       {{champion.skins[dialSpecs.value].name}}
     </div>
   </div>
+</section>
+<section>
+  <section *ngIf="(showSpinner === true)">
+    <div class="container" style="margin: 0  auto;background-color: white;">
+      <mat-spinner color="warn" ></mat-spinner>
+    </div>
+  </section>
 </section>

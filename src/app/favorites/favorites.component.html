@@ -1,4 +1,4 @@
-<section *ngIf="(champions.length !== 0) ; else addFavorites">
+<section *ngIf="(champions.length !== null && champions.length !== 0)">
   <div class="row input" >
     <div class="col-12">
       <div class="form-group">
@@ -31,11 +31,36 @@
     </article>
   </div>
 </section>
-<ng-template #addFavorites>
+<!-- <ng-template #addFavorites>
   <div class="champ-container">
     <div class="mat-display-3">
       Currently you have zero favorites <span class="material-icons frown">sentiment_dissatisfied</span>
     </div>
     <div class="mat-display-3">Go add some!</div>
   </div>
-</ng-template>
+</ng-template> -->
+<section *ngIf="showSpinner === true">
+  <div class="row input" >
+    <div class="col-12">
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search in favorites!" [(ngModel)]="championSearch">
+          <div class="input-group-append">
+            <button class="material-icons btn btn-outline-secondary" type="button" >search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="champ-container">
+    <mat-spinner color="warn" ></mat-spinner>
+  </div>
+</section>
+<section *ngIf="(champions.length === null || champions.length === 0 && showSpinner !== true)">
+  <div class="champ-container">
+    <div class="mat-display-3">
+      Currently you have zero favorites <span class="material-icons frown">sentiment_dissatisfied</span>
+    </div>
+    <div class="mat-display-3">Go add some!</div>
+  </div>
+<section>

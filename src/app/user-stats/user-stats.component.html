@@ -113,7 +113,7 @@
               <mat-expansion-panel-header >
                 <div class="row">
                   <div *ngFor="let players of singleGame">
-                    <div class="row mobileRow" *ngIf="players.summonerName === details.name">
+                    <div class="row mobileRow" *ngIf="players.puuid === details.puuid">
                       <div class="col-md-1">
                         <img *ngIf="players.championName === 'FiddleSticks'" class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'">
                         <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'">

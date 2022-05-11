@@ -9,6 +9,7 @@ import { ChampsService } from '../champs.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  hasAccount = false
   signup = false;
   value = 100;
   results = 10;
@@ -64,6 +65,8 @@ export class HomeComponent implements OnInit {
     this.champService.getTopTenPlayersInRegion(this.selectedValue).subscribe((data)=>{
       this.names = (data.entries.sort((a, b) => (a.leaguePoints > b.leaguePoints) ? -1 : 1));
       let newNames = [];
+      console.log(this.names)
+      console.log(newNames)
       for(let i = 0; i < this.results; i++){
         this.champService.getSummonerWithSummonerID(this.selectedValue, this.names[i].summonerId).subscribe((data)=>{
           newNames.push(data);
@@ -77,5 +80,4 @@ export class HomeComponent implements OnInit {
     this.champService.name = playerName;
     this.router.navigate([`stats`]);
   };
-
 }

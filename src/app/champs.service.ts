@@ -15,7 +15,7 @@ export class ChampsService implements OnInit{
   region = 'NA1';
   massRegion = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = "api_key=RGAPI-3cf506ac-142e-4f2a-ab3d-a93078b92019"
+  apiKeyRoot = "api_key=RGAPI-5d72d02e-7fc8-459c-b7bb-146cb28527e3"
 
   regions = [
     {value: 'NA1', viewValue: 'NA'},
@@ -39,7 +39,11 @@ export class ChampsService implements OnInit{
   };
 
   favoriteClick(favChampion){
-    if ((this.favoriteChampions.includes(favChampion))=== false){
+    if(this.favoriteChampions === null){
+      this.favoriteChampions = []
+      this.favoriteChampions.push(favChampion);
+      this.favoriteChampions.sort(this.compare);
+    } else if (((this.favoriteChampions.includes(favChampion))=== false)){
       this.favoriteChampions.push(favChampion);
       this.favoriteChampions.sort(this.compare);
     } else return;

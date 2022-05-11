@@ -5,6 +5,12 @@
   min-height: 75px;
   min-width: 75px
 }
+.playerIcon:hover{
+  opacity: 0.9;
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: all 300ms ease;
+}
 .container {
   display: flex;
   justify-content: space-around;
@@ -61,3 +67,23 @@
   background-color: white!important;
 }
 
+.lineContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  flex: 1;
+}
+
+.text {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+p{
+  text-align: center;
+}

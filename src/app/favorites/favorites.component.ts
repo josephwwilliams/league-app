@@ -11,17 +11,21 @@ export class FavoritesComponent implements OnInit{
   championSearch:string = '';
   champions=[]
   dataDragonVersion:string;
+  showSpinner = false
   constructor(private champService: ChampsService, private http: HttpClient) {}
 
   ngOnInit(): void {
+    this.showSpinner = true
     this.champService.fetchChampionsFromFireBase().subscribe(
       (res:any) => {
+        this.showSpinner = true
         this.champService.favoriteChampions = res
         this.dataDragonVersion = this.champService.dataDragonVersion;
         this.champions = this.champService.favoriteChampions;
         if(res === null) {
           this.champions = [];
         };
+        this.showSpinner = false
       }
     )
     // this.dataDragonVersion = this.champService.dataDragonVersion;

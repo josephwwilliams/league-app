@@ -61,7 +61,7 @@
 <div class="container">
   <mat-tab-group color="warn">
     <mat-tab label="Welcome!">
-      <h1>Welcome!</h1>
+      <button mat-raised-button (click)="hasAccount = !hasAccount">Toggle User</button>
       <p>
         <mat-form-field appearance="legacy">
           <mat-label>Test</mat-label>
@@ -95,8 +95,8 @@
         </mat-form-field>
       </p>
     </mat-tab>
-    <mat-tab label="{{selectedValue}} Leaderboards" *ngIf="newNames.length === 10">
-      <form >
+    <mat-tab label="{{selectedValue}} Leaderboards" *ngIf="newNames.length === 10 && hasAccount === true" >
+      <form style="text-align: center;">
         <mat-form-field appearance="fill">
           <mat-label>Region</mat-label>
           <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="printUsers(selectedValue)" >
@@ -106,41 +106,94 @@
           </mat-select>
         </mat-form-field>
       </form>
-      <div class="row playerRow" *ngFor="let name of newNames; let i = index" style="margin: 10px;align-items: center;">
+      <div class="row" *ngFor="let name of newNames; let i = index" style="margin: 10px;align-items: center;">
         <div class="row" style="text-align: center;padding: 10px;">
-          <mat-card-title>Rank: {{i + 1}}</mat-card-title>
-          <hr>
+          <div class="lineContainer">
+            <div class="line"><mat-divider></mat-divider></div>
+            <div class="text mat-typography">Rank {{i + 1}}</div>
+            <div class="line"><mat-divider></mat-divider></div>
+          </div>
+          <!-- <hr> -->
         </div>
-        <div class="col-md-5">
-          <img  class="playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);cursor: pointer;" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/' + name.profileIconId + '.png'" alt="" (click)="playerClick(name.name)">
+        <div class="col-sm-5" style="text-align: center;">
+          <div class="row" style="margin-left: 30%;">
+            <img *ngIf="i === 0" style="max-width: 100px;" src="/assets/images/crown.png" alt="">
+            <img *ngIf="i === 1" style="max-width: 100px;" src="/assets/images/silverCrown.png" alt="">
+          </div>
+          <img *ngIf="(i === 0 || i ===1)" class="playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);cursor: pointer;" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/' + name.profileIconId + '.png'" alt="" (click)="playerClick(name.name)">
+          <img *ngIf="(i !== 0 && i !==1)" class="playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);cursor: pointer;margin-top: 10px;" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/' + name.profileIconId + '.png'" alt="" (click)="playerClick(name.name)">
         </div>
-        <div class="col-md-7 subheadingName" style="cursor: pointer;">
-          <div matCardTitle>{{name.name}}</div>
+        <div class="col-sm-7"  >
+          <h1 style="text-align: center;cursor: pointer;" (click)="playerClick(name.name)">{{name.name}}</h1>
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="{{selectedValue}} Leaderboards" *ngIf="newNames.length !== 10">
-      <div class="container" style="width: auto;">
+    <mat-tab label="{{selectedValue}} Leaderboards " *ngIf="newNames.length !== 10 && hasAccount === true" >
+      <div class="container" style="width: auto;box-shadow: none;">
         <mat-spinner color="warn" ></mat-spinner>
       </div>
     </mat-tab>
-    <mat-tab label="Runes">
+
+<!-- =============================================================If user doesn't have an account============================================================= -->
+
+    <mat-tab *ngIf="!hasAccount" [disabled]="!hasAccount">
+      <ng-template mat-tab-label>
+        <i matTooltip="Login to see!">
+          Top Ten Players
+        </i>
+        <span class="material-icons">
+          lock
+        </span>
+      </ng-template>
+    </mat-tab>
+
+<!-- ====================================================================================================================================================== -->
+
+    <mat-tab label="Runes" *ngIf="hasAccount">
       <h1>Coming Soon!</h1>
       <div *ngFor="let rune of data2; let i = index">
         <div>{{rune.key}}</div>
         <img src="https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png" alt="">
       </div>
     </mat-tab>
-    <mat-tab label="Items">
-      <h1 (click)="log()">Coming Soon!</h1>
-      <div class="container" (click)="log()">
+
+<!-- =============================================================If user doesn't have an account============================================================= -->
+
+    <mat-tab *ngIf="!hasAccount" [disabled]="!hasAccount">
+      <ng-template mat-tab-label>
+        <i matTooltip="Login to see!">
+          Runes
+        </i>
+        <span class="material-icons">
+          lock
+          </span>
+      </ng-template>
+    </mat-tab>
+
+<!-- ====================================================================================================================================================== -->
+    <mat-tab label="Items" *ngIf="hasAccount">
+      <h1 >Coming Soon!</h1>
+      <button mat-raised-button (click)="log()">Click for sneak peak</button>
         <div *ngFor="let item of data | keyvalue ">
           <div *ngIf="item.value.inStore !== false" [innerHTML]="item.value.name"></div>
-          <img *ngIf="item.value.inStore !== false" class="img-fluid w-90 " style="max-height: 50px;" [src]="'http://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/' + item.key + '.png'" alt="">
+          <img *ngIf="item.value.inStore !== false" class="img-fluid w-90 " style="max-height: 50px;" [src]="'https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/' + item.key + '.png'" alt="">
           <div *ngIf="item.value.inStore !== false" > {{item.value.gold.total}} </div>
         </div>
-      </div>
     </mat-tab>
+
+<!-- =============================================================If user doesn't have an account============================================================= -->
+
+    <mat-tab *ngIf="!hasAccount" [disabled]="!hasAccount">
+        <ng-template mat-tab-label >
+            <i matTooltip="Login to see!"> Items</i>
+            <span class="material-icons">
+              lock
+            </span>
+        </ng-template>
+    </mat-tab>
+
+<!-- ====================================================================================================================================================== -->
+
     <mat-tab label="Champions">
       <h1 style="cursor: pointer;" routerLink="../champions">
         Click to jump to champions
@@ -148,4 +201,5 @@
     </mat-tab>
   </mat-tab-group>
 </div>
+
 

@@ -56,26 +56,29 @@ export class UserStatsComponent implements OnInit {
                           };
                         };
                         this.showSpinner = false;
-                        // console.log(this.playerStats)
                       },
                       (err) => {
                         this.errors = err;
                         this.showSpinner = false;
+                        console.log(err)
                       }
                     );
                   }, (err) => {
                     this.errors = err;
                     this.showSpinner = false;
+                    console.log(err)
                   }
                 );
               }, (err) => {
                 this.errors = err;
                 this.showSpinner = false;
+                console.log(err)
               }
             );
           }, (err) => {
             this.errors = err;
             this.showSpinner = false;
+            console.log(err)
           }
       );
       this.champService.name = this.name;

@@ -12,6 +12,7 @@ export class ChampionDetailsComponent implements OnInit {
   selectedChampion;
   champDetails:any = [];
   dataDragonVersion:string;
+  showSpinner = false;
   constructor(private champService: ChampsService, private dialog: MatDialog) {}
 
   dialSpecs = {
@@ -34,6 +35,7 @@ export class ChampionDetailsComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.showSpinner = true
     this.dataDragonVersion = this.champService.dataDragonVersion
     this.selectedChampion = this.champService.selectedChampion
     this.champService.getChampionData(this.selectedChampion.id, this.dataDragonVersion).subscribe(
@@ -41,6 +43,7 @@ export class ChampionDetailsComponent implements OnInit {
         this.dialSpecs.value = 0
         this.champDetails.push(res.data[this.selectedChampion.id]);
         this.dialSpecs.max =  this.champDetails[0].skins.length - 1;
+        this.showSpinner = false
       }
     );
   };
