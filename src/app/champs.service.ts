@@ -169,6 +169,6 @@ export class ChampsService implements OnInit{
   }
 
   returnRunes(){
-    return this.http.get<any>('https://ddragon.leagueoflegends.com/cdn/12.8.1/data/en_US/runesReforged.json')
+    return this.http.get<any>('https://ddragon.leagueoflegends.com/cdn/12.8.1/data/en_US/runesReforged.json');
   }
 }
