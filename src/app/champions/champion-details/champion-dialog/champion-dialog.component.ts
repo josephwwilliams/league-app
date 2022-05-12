@@ -12,10 +12,10 @@ export class ChampionDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private champService: ChampsService) { }
 
   ngOnInit(): void {
-    this.dataDragonVersion = this.champService.dataDragonVersion
-  }
+    this.dataDragonVersion = this.champService.dataDragonVersion;
+  };
 
   replaceAll(string){
-    return string.replaceAll(',', '/')
-  }
+    return string.replaceAll(',', '/');
+  };
 }

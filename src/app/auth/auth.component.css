@@ -1,0 +1,8 @@
+mat-form-field {
+  width: 175px !important;
+}
+.spinner-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+}

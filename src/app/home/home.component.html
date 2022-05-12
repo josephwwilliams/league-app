@@ -1,102 +1,10 @@
-<!-- <div *ngIf="!signup" class="container main">
-  <div>
-    <video [muted]="true" autoplay playsinline loop>
-      <source src="assets/images/LeagueVideo.webm" type="video/webm">
-    </video>
-    <img src="assets/images/LeagueOfLegends.png" alt="">
-    <button class="login btn btn-success" >Login</button>
-    <button class="signup btn btn-primary" (click)="signup = !signup">Signup!</button>
-  </div>
-</div>
-<form *ngIf="signup" (ngSubmit)="signingUp(f)" #f="ngForm" style="padding-top: 100px;background-color: aliceblue;">
-    <div class="col-sm-5 form-group">
-      <label for="username">Summoner Name</label>
-      <input
-      type="text"
-      id="username"
-      class="form-control"
-      name="username"
-      ngModel
-      required="username"
-      >
-    </div>
-    <div class="col-sm-5 form-group">
-      <label for="email">Email</label>
-      <input
-      type="text"
-      id="email"
-      class="form-control"
-      name="email"
-      ngModel
-      >
-    </div>
-    <div class="col-sm-5 form-group">
-      <label for="password">Password</label>
-      <input
-      type="text"
-      id="password"
-      class="form-control"
-      name="password"
-      ngModel
-      >
-    </div>
-    <button (submit)="singup = !singup" class="btn btn-primary" type="submit">Submit</button>
-</form> -->
-<!-- <section>
-  <div class="row region">
-    <div class="col-md-12">
-      <form>
-        <mat-form-field appearance="fill">
-          <mat-label>Region</mat-label>
-          <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="printUsers(selectedValue)" >
-            <mat-option *ngFor="let region of regions" [value]="region.value">
-              {{region.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </form>
-    </div>
-  </div>
-</section> -->
 <div class="container">
   <mat-tab-group color="warn">
     <mat-tab label="Welcome!">
-      <button mat-raised-button (click)="hasAccount = !hasAccount">Toggle User</button>
-      <p>
-        <mat-form-field appearance="legacy">
-          <mat-label>Test</mat-label>
-          <input matInput placeholder="Placeholder">
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Test</mat-hint>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="standard">
-          <mat-label>Test</mat-label>
-          <input matInput placeholder="Placeholder">
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Test</mat-hint>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Test</mat-label>
-          <input matInput placeholder="Placeholder">
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Test</mat-hint>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Test</mat-label>
-          <input matInput placeholder="Placeholder">
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Test</mat-hint>
-        </mat-form-field>
-      </p>
+      <app-auth></app-auth>
     </mat-tab>
-    <mat-tab label="{{selectedValue}} Leaderboards" *ngIf="newNames.length === 10 && hasAccount === true" >
-      <form style="text-align: center;">
+    <mat-tab label="{{selectedValue}} Leaderboards" *ngIf="newNames.length === 10 && loggedIn === true" >
+      <form style="text-align: center;margin-top: 10px;">
         <mat-form-field appearance="fill">
           <mat-label>Region</mat-label>
           <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="printUsers(selectedValue)" >
@@ -128,7 +36,7 @@
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="{{selectedValue}} Leaderboards " *ngIf="newNames.length !== 10 && hasAccount === true" >
+    <mat-tab label="{{selectedValue}} Leaderboards " *ngIf="newNames.length !== 10 && loggedIn === true" >
       <div class="container" style="width: auto;box-shadow: none;">
         <mat-spinner color="warn" ></mat-spinner>
       </div>
@@ -136,7 +44,7 @@
 
 <!-- =============================================================If user doesn't have an account============================================================= -->
 
-    <mat-tab *ngIf="!hasAccount" [disabled]="!hasAccount">
+    <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
       <ng-template mat-tab-label>
         <i matTooltip="Login to see!">
           Top Ten Players
@@ -149,7 +57,7 @@
 
 <!-- ====================================================================================================================================================== -->
 
-    <mat-tab label="Runes" *ngIf="hasAccount">
+    <mat-tab label="Runes" *ngIf="loggedIn">
       <h1>Coming Soon!</h1>
       <div *ngFor="let rune of data2; let i = index">
         <div>{{rune.key}}</div>
@@ -159,7 +67,7 @@
 
 <!-- =============================================================If user doesn't have an account============================================================= -->
 
-    <mat-tab *ngIf="!hasAccount" [disabled]="!hasAccount">
+    <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
       <ng-template mat-tab-label>
         <i matTooltip="Login to see!">
           Runes
@@ -171,7 +79,7 @@
     </mat-tab>
 
 <!-- ====================================================================================================================================================== -->
-    <mat-tab label="Items" *ngIf="hasAccount">
+    <mat-tab label="Items" *ngIf="loggedIn">
       <h1 >Coming Soon!</h1>
       <button mat-raised-button (click)="log()">Click for sneak peak</button>
         <div *ngFor="let item of data | keyvalue ">
@@ -183,7 +91,7 @@
 
 <!-- =============================================================If user doesn't have an account============================================================= -->
 
-    <mat-tab *ngIf="!hasAccount" [disabled]="!hasAccount">
+    <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
         <ng-template mat-tab-label >
             <i matTooltip="Login to see!"> Items</i>
             <span class="material-icons">
@@ -194,11 +102,37 @@
 
 <!-- ====================================================================================================================================================== -->
 
-    <mat-tab label="Champions">
-      <h1 style="cursor: pointer;" routerLink="../champions">
-        Click to jump to champions
-      </h1>
+    <mat-tab label="Favorties" *ngIf="loggedIn">
+      <div class="container" style="width: fit-content;box-shadow: none;">
+        <div class="row" *ngFor="let champion of favoriteChampions">
+          <div class="col-md-4" style="margin: 10px;">
+            <img class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/'+champion.image.full" (click)="clickedChampion(champion)" routerLink="../champions/details/{{champion.id}}">
+          </div>
+          <!-- <div class="col-md-8" style="text-align: center;">
+            <div class="mat-title">
+            {{champion.name}}
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <!-- <div style="margin-top: 20px;box-shadow:none;margin: 0 auto;">
+      <app-favorites></app-favorites>
+      </div> -->
     </mat-tab>
+
+<!-- =============================================================If user doesn't have an account============================================================= -->
+
+    <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
+      <ng-template mat-tab-label >
+          <i matTooltip="Login to see!"> Favorites</i>
+          <span class="material-icons">
+            lock
+          </span>
+      </ng-template>
+    </mat-tab>
+
+<!-- ====================================================================================================================================================== -->
+
   </mat-tab-group>
 </div>
 

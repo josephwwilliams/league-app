@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
     const displayArray = [];
     for(let champ of value){
       if (champ.value.name.toLocaleLowerCase().includes(championSearch.toLocaleLowerCase())){
-        displayArray.push(champ)
+        displayArray.push(champ);
       };
     };
     return displayArray;

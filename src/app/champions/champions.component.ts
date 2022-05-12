@@ -15,7 +15,7 @@ export class ChampionsComponent implements OnInit {
   constructor(private champService: ChampsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.dataDragonVersion = this.champService.dataDragonVersion
+    this.dataDragonVersion = this.champService.dataDragonVersion;
     this.champService.getAllChampions(this.dataDragonVersion).subscribe(
       res=> {
         this.champions = res.data;

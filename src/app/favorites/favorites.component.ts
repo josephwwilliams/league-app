@@ -9,23 +9,25 @@ import { ChampsService } from '../champs.service';
 })
 export class FavoritesComponent implements OnInit{
   championSearch:string = '';
-  champions=[]
+  champions=[];
   dataDragonVersion:string;
-  showSpinner = false
+  showSpinner = false;
   constructor(private champService: ChampsService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.showSpinner = true
+    this.showSpinner = true;
     this.champService.fetchChampionsFromFireBase().subscribe(
       (res:any) => {
-        this.showSpinner = true
+        this.showSpinner = true;
+        if(res === null) {
+          this.champions = [];
+          this.showSpinner = false;
+          return;
+        };
         this.champService.favoriteChampions = res
         this.dataDragonVersion = this.champService.dataDragonVersion;
         this.champions = this.champService.favoriteChampions;
-        if(res === null) {
-          this.champions = [];
-        };
-        this.showSpinner = false
+        this.showSpinner = false;
       }
     )
     // this.dataDragonVersion = this.champService.dataDragonVersion;
@@ -33,19 +35,10 @@ export class FavoritesComponent implements OnInit{
   }
 
   clickedChampion(favoriteChampion){
-    this.champService.selectedChampion = favoriteChampion
-  }
+    this.champService.selectedChampion = favoriteChampion;
+  };
   removeFromFavorites(i){
-    this.champions.splice(i, 1)
-    this.champService.addChampionsToFireBase().subscribe()
-  }
-
-  // log(){
-  //   // console.log(this.champions)
-  //   this.http.put('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json', this.champions).subscribe(
-  //     res => {
-  //       // console.log(res)
-  //     }
-  //   )
-  // }
+    this.champions.splice(i, 1);
+    this.champService.addChampionsToFireBase().subscribe();
+  };
 }

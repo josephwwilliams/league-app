@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { ChampsService } from '../champs.service';
 
 @Component({
@@ -8,9 +10,11 @@ import { ChampsService } from '../champs.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  hasAccount = false
-  signup = false;
+export class HomeComponent implements OnInit, OnDestroy {
+  private userSub: Subscription
+
+  favoriteChampions = []
+  loggedIn = false
   value = 100;
   results = 10;
   newNames = [];
@@ -23,18 +27,27 @@ export class HomeComponent implements OnInit {
   selectedValue: string;
   regions: { value: string, viewValue: string}[] = [];
 
-  constructor(private champService: ChampsService, private router: Router) { }
+  constructor(private champService: ChampsService, private router: Router, private authService: AuthService) { }
   ngOnInit(): void {
     // this.champService.getDDVersion().subscribe(
     //   (res) => {
     //     this.dataDragonVersion = res[0];
     //     this.champService.dataDragonVersion = res[0];
-    //     console.log(this.dataDragonVersion)
-    //     console.log(this.champService.dataDragonVersion)
     //   }
     // );
-    this.dataDragonVersion = this.champService.dataDragonVersion
-    this.regions = this.champService.regions
+    this.userSub = this.authService.user.subscribe(user => {
+      this.loggedIn = !!user;
+      if(this.loggedIn){
+        this.champService.fetchChampionsFromFireBase().subscribe(
+          (res:any) => {
+            this.champService.favoriteChampions = res;
+            this.favoriteChampions = res;
+          }
+        );
+      }
+    })
+    this.dataDragonVersion = this.champService.dataDragonVersion;
+    this.regions = this.champService.regions;
     this.selectedValue = this.champService.region;
     this.printUsers(this.selectedValue);
   }
@@ -42,17 +55,15 @@ export class HomeComponent implements OnInit {
   log(){
     this.champService.returnItems().subscribe(
       (res:any) => {
-        this.data = res.data
-        // console.log(this.data)
+        this.data = res.data;
       }
     )
     this.champService.returnRunes().subscribe(
       (res) => {
         this.data2 = res;
-        // console.log(this.data2)
       }
-    )
-  }
+    );
+  };
 
 
   signingUp(form: NgForm){
@@ -65,13 +76,11 @@ export class HomeComponent implements OnInit {
     this.champService.getTopTenPlayersInRegion(this.selectedValue).subscribe((data)=>{
       this.names = (data.entries.sort((a, b) => (a.leaguePoints > b.leaguePoints) ? -1 : 1));
       let newNames = [];
-      console.log(this.names)
-      console.log(newNames)
       for(let i = 0; i < this.results; i++){
         this.champService.getSummonerWithSummonerID(this.selectedValue, this.names[i].summonerId).subscribe((data)=>{
           newNames.push(data);
         })
-      }
+      };
       this.newNames = newNames;
     });
   };
@@ -79,5 +88,13 @@ export class HomeComponent implements OnInit {
   playerClick(playerName){
     this.champService.name = playerName;
     this.router.navigate([`stats`]);
+  };
+
+  clickedChampion(favoriteChampion){
+    this.champService.selectedChampion = favoriteChampion;
+  };
+
+  ngOnDestroy(): void {
+    // this.userSub.unsubscribe()
   };
 }

@@ -24,7 +24,7 @@ export class UserStatsComponent implements OnInit {
   regions: { value: string, viewValue: string}[] = [];
 
   ngOnInit(): void {
-    this.dataDragonVersion = this.champService.dataDragonVersion
+    this.dataDragonVersion = this.champService.dataDragonVersion;
     this.regions = this.champService.regions;
     this.selectedValue = this.champService.region;
     this.name = this.champService.name;
@@ -60,25 +60,21 @@ export class UserStatsComponent implements OnInit {
                       (err) => {
                         this.errors = err;
                         this.showSpinner = false;
-                        console.log(err)
                       }
                     );
                   }, (err) => {
                     this.errors = err;
                     this.showSpinner = false;
-                    console.log(err)
                   }
                 );
               }, (err) => {
                 this.errors = err;
                 this.showSpinner = false;
-                console.log(err)
               }
             );
           }, (err) => {
             this.errors = err;
             this.showSpinner = false;
-            console.log(err)
           }
       );
       this.champService.name = this.name;

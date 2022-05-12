@@ -30,20 +30,20 @@ export class ChampionDetailsComponent implements OnInit {
   };
 
   sendToFavorites(){
-    this.champService.favoriteClick(this.selectedChampion);
-    this.champService.addChampionsToFireBase().subscribe()
+    this.champService.favoriteClick(this.champDetails[0]);
+    this.champService.addChampionsToFireBase().subscribe();
   };
 
   ngOnInit(): void {
-    this.showSpinner = true
-    this.dataDragonVersion = this.champService.dataDragonVersion
-    this.selectedChampion = this.champService.selectedChampion
+    this.showSpinner = true;
+    this.dataDragonVersion = this.champService.dataDragonVersion;
+    this.selectedChampion = this.champService.selectedChampion;
     this.champService.getChampionData(this.selectedChampion.id, this.dataDragonVersion).subscribe(
       res => {
-        this.dialSpecs.value = 0
+        this.dialSpecs.value = 0;
         this.champDetails.push(res.data[this.selectedChampion.id]);
         this.dialSpecs.max =  this.champDetails[0].skins.length - 1;
-        this.showSpinner = false
+        this.showSpinner = false;
       }
     );
   };

@@ -25,7 +25,6 @@
   <div class="row" *ngIf="(data.info.image.group === 'passive' || data.info.image.group === 'champion')">
     <div class="row">
       <div class="col-md-3" *ngIf="data.info.lore === undefined">
-        <!-- <h1 *ngIf="data.info.lore === undefined" mat-dialog-title style="color: white;">{{data.info.name}}</h1> -->
         <div *ngIf="data.info.image.group === 'passive'">
           <img *ngIf="data.info.image.full === 'SamiraP.Samira.png'" class="img-fluid w-90 abilities" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/passive/SamiraP.png'" alt="Passive">
           <img *ngIf="data.info.image.full === 'YonePassive.Yone.png'" class="img-fluid w-90 abilities" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/passive/YonePassive.png'" alt="Passive">

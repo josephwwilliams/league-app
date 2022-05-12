@@ -1,21 +1,26 @@
 import { Injectable, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import { AuthService } from './auth/auth.service';
+import { exhaustMap, take } from 'rxjs/operators/';
 // import { keys } from '../environments/keys'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChampsService implements OnInit{
+  loggedIn = false
+
+
   name = '';
   champions = [];
   selectedChampion = {};
   favoriteChampions = [];
   championDetails;
-  dataDragonVersion:string = "12.8.1";
+  dataDragonVersion:string = "12.9.1";
   region = 'NA1';
   massRegion = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = "api_key=RGAPI-5d72d02e-7fc8-459c-b7bb-146cb28527e3"
+  apiKeyRoot = "api_key=RGAPI-09ba9c1e-ea96-411f-b17e-1c78d2a0d14a"
 
   regions = [
     {value: 'NA1', viewValue: 'NA'},
@@ -31,7 +36,7 @@ export class ChampsService implements OnInit{
     {value: 'TR1', viewValue: 'TR'},
   ];
 
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient, private authService: AuthService) {}
 
   ngOnInit(): void {
     // this.getDDVersion()
@@ -39,7 +44,7 @@ export class ChampsService implements OnInit{
   };
 
   favoriteClick(favChampion){
-    if(this.favoriteChampions === null){
+    if(this.favoriteChampions === null || this.favoriteChampions.length === 0){
       this.favoriteChampions = []
       this.favoriteChampions.push(favChampion);
       this.favoriteChampions.sort(this.compare);
@@ -132,6 +137,7 @@ export class ChampsService implements OnInit{
   };
 
   regionCheckAndChange(region){
+    this.name = ''
     if(region === 'BR1' || region === 'LA1' || region === 'LA2' || region === 'NA1' || region === 'OC1'){
       this.region = `${region}`;
       this.massRegion = 'AMERICAS';
@@ -145,11 +151,17 @@ export class ChampsService implements OnInit{
   };
 
   addChampionsToFireBase(){
-    return this.http.put('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json', this.favoriteChampions);
+    return this.authService.user.pipe(take(1), exhaustMap(user => {
+      let userEmail = user.email.replace('@','').replace('.','')
+      return this.http.put('https://league-stat-checker-default-rtdb.firebaseio.com/' + userEmail + 'favorites.json?auth=' + user.token, this.favoriteChampions);
+    }))
   };
 
   fetchChampionsFromFireBase(){
-    return this.http.get('https://league-stat-checker-default-rtdb.firebaseio.com/favorites.json');
+    return this.authService.user.pipe(take(1), exhaustMap(user => {
+      let userEmail = user.email.replace('@','').replace('.','')
+      return this.http.get('https://league-stat-checker-default-rtdb.firebaseio.com/' + userEmail + 'favorites.json?auth=' + user.token);
+    }))
   };
 
   returnItems(){

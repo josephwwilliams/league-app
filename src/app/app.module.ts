@@ -16,6 +16,7 @@ import { MaterialModule } from './material/material.module';
 import { ChampionDialogComponent } from './champions/champion-details/champion-dialog/champion-dialog.component';
 import { CooldownPipe } from './pipes/cooldown.pipe';
 import { PlayerStatsComponent } from './user-stats/player-stats/player-stats.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PlayerStatsComponent } from './user-stats/player-stats/player-stats.com
     ChampionDialogComponent,
     CooldownPipe,
     PlayerStatsComponent,
+    AuthComponent,
   ],
   entryComponents: [ChampionDialogComponent, PlayerStatsComponent],
   imports: [
