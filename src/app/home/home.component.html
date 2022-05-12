@@ -3,110 +3,190 @@
     <mat-tab label="Welcome!">
       <app-auth></app-auth>
     </mat-tab>
-    <mat-tab label="{{selectedValue}} Leaderboards" *ngIf="newNames.length === 10 && loggedIn === true" >
-      <form style="text-align: center;margin-top: 10px;">
+    <mat-tab
+      label="{{ selectedValue }} Leaderboards"
+      *ngIf="newNames.length === 10 && loggedIn === true"
+    >
+      <form style="text-align: center; margin-top: 10px">
         <mat-form-field appearance="fill">
           <mat-label>Region</mat-label>
-          <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="printUsers(selectedValue)" >
+          <mat-select
+            [(ngModel)]="selectedValue"
+            name="region"
+            (selectionChange)="printUsers(selectedValue)"
+          >
             <mat-option *ngFor="let region of regions" [value]="region.value">
-              {{region.viewValue}}
+              {{ region.viewValue }}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </form>
-      <div class="row" *ngFor="let name of newNames; let i = index" style="margin: 10px;align-items: center;">
-        <div class="row" style="text-align: center;padding: 10px;">
+      <div
+        class="row"
+        *ngFor="let name of newNames; let i = index"
+        style="margin: 10px; align-items: center"
+      >
+        <div class="row" style="text-align: center; padding: 10px">
           <div class="lineContainer">
             <div class="line"><mat-divider></mat-divider></div>
-            <div class="text mat-typography">Rank {{i + 1}}</div>
+            <div class="text mat-typography">Rank {{ i + 1 }}</div>
             <div class="line"><mat-divider></mat-divider></div>
           </div>
           <!-- <hr> -->
         </div>
-        <div class="col-sm-5" style="text-align: center;">
-          <div class="row" style="margin-left: 30%;">
-            <img *ngIf="i === 0" style="max-width: 100px;" src="/assets/images/crown.png" alt="">
-            <img *ngIf="i === 1" style="max-width: 100px;" src="/assets/images/silverCrown.png" alt="">
+        <div class="col-sm-5" style="text-align: center">
+          <div class="row" style="margin-left: 30%">
+            <img
+              *ngIf="i === 0"
+              style="max-width: 100px"
+              src="/assets/images/crown.png"
+              alt=""
+            />
+            <img
+              *ngIf="i === 1"
+              style="max-width: 100px"
+              src="/assets/images/silverCrown.png"
+              alt=""
+            />
           </div>
-          <img *ngIf="(i === 0 || i ===1)" class="playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);cursor: pointer;" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/' + name.profileIconId + '.png'" alt="" (click)="playerClick(name.name)">
-          <img *ngIf="(i !== 0 && i !==1)" class="playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);cursor: pointer;margin-top: 10px;" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/' + name.profileIconId + '.png'" alt="" (click)="playerClick(name.name)">
+          <img
+            *ngIf="i === 0 || i === 1"
+            class="playerIcon"
+            style="
+              background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);
+              cursor: pointer;
+            "
+            [src]="
+              'https://ddragon.leagueoflegends.com/cdn/' +
+              dataDragonVersion +
+              '/img/profileicon/' +
+              name.profileIconId +
+              '.png'
+            "
+            alt=""
+            (click)="playerClick(name.name)"
+          />
+          <img
+            *ngIf="i !== 0 && i !== 1"
+            class="playerIcon"
+            style="
+              background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);
+              cursor: pointer;
+              margin-top: 10px;
+            "
+            [src]="
+              'https://ddragon.leagueoflegends.com/cdn/' +
+              dataDragonVersion +
+              '/img/profileicon/' +
+              name.profileIconId +
+              '.png'
+            "
+            alt=""
+            (click)="playerClick(name.name)"
+          />
         </div>
-        <div class="col-sm-7"  >
-          <h1 style="text-align: center;cursor: pointer;" (click)="playerClick(name.name)">{{name.name}}</h1>
+        <div class="col-sm-7">
+          <h1
+            style="text-align: center; cursor: pointer"
+            (click)="playerClick(name.name)"
+          >
+            {{ name.name }}
+          </h1>
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="{{selectedValue}} Leaderboards " *ngIf="newNames.length !== 10 && loggedIn === true" >
-      <div class="container" style="width: auto;box-shadow: none;">
-        <mat-spinner color="warn" ></mat-spinner>
+    <mat-tab
+      label="{{ selectedValue }} Leaderboards "
+      *ngIf="newNames.length !== 10 && loggedIn === true"
+    >
+      <div class="container" style="width: auto; box-shadow: none">
+        <mat-spinner color="warn"></mat-spinner>
       </div>
     </mat-tab>
 
-<!-- =============================================================If user doesn't have an account============================================================= -->
+    <!-- =============================================================If user doesn't have an account============================================================= -->
 
     <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
       <ng-template mat-tab-label>
-        <i matTooltip="Login to see!">
-          Top Ten Players
-        </i>
-        <span class="material-icons">
-          lock
-        </span>
+        <i matTooltip="Login to see!"> Top Ten Players </i>
+        <span class="material-icons"> lock </span>
       </ng-template>
     </mat-tab>
 
-<!-- ====================================================================================================================================================== -->
+    <!-- ====================================================================================================================================================== -->
 
     <mat-tab label="Runes" *ngIf="loggedIn">
       <h1>Coming Soon!</h1>
       <div *ngFor="let rune of data2; let i = index">
-        <div>{{rune.key}}</div>
-        <img src="https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png" alt="">
+        <div>{{ rune.key }}</div>
+        <img
+          src="https://ddragon.canisback.com/img/perk-images/Styles/7200_Domination.png"
+          alt=""
+        />
       </div>
     </mat-tab>
 
-<!-- =============================================================If user doesn't have an account============================================================= -->
+    <!-- =============================================================If user doesn't have an account============================================================= -->
 
     <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
       <ng-template mat-tab-label>
-        <i matTooltip="Login to see!">
-          Runes
-        </i>
-        <span class="material-icons">
-          lock
-          </span>
+        <i matTooltip="Login to see!"> Runes </i>
+        <span class="material-icons"> lock </span>
       </ng-template>
     </mat-tab>
 
-<!-- ====================================================================================================================================================== -->
+    <!-- ====================================================================================================================================================== -->
     <mat-tab label="Items" *ngIf="loggedIn">
-      <h1 >Coming Soon!</h1>
+      <h1>Coming Soon!</h1>
       <button mat-raised-button (click)="log()">Click for sneak peak</button>
-        <div *ngFor="let item of data | keyvalue ">
-          <div *ngIf="item.value.inStore !== false" [innerHTML]="item.value.name"></div>
-          <img *ngIf="item.value.inStore !== false" class="img-fluid w-90 " style="max-height: 50px;" [src]="'https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/' + item.key + '.png'" alt="">
-          <div *ngIf="item.value.inStore !== false" > {{item.value.gold.total}} </div>
+      <div *ngFor="let item of data | keyvalue">
+        <div
+          *ngIf="item.value.inStore !== false"
+          [innerHTML]="item.value.name"
+        ></div>
+        <img
+          *ngIf="item.value.inStore !== false"
+          class="img-fluid w-90"
+          style="max-height: 50px"
+          [src]="
+            'https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/' +
+            item.key +
+            '.png'
+          "
+          alt=""
+        />
+        <div *ngIf="item.value.inStore !== false">
+          {{ item.value.gold.total }}
         </div>
+      </div>
     </mat-tab>
 
-<!-- =============================================================If user doesn't have an account============================================================= -->
+    <!-- =============================================================If user doesn't have an account============================================================= -->
 
     <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
-        <ng-template mat-tab-label >
-            <i matTooltip="Login to see!"> Items</i>
-            <span class="material-icons">
-              lock
-            </span>
-        </ng-template>
+      <ng-template mat-tab-label>
+        <i matTooltip="Login to see!"> Items</i>
+        <span class="material-icons"> lock </span>
+      </ng-template>
     </mat-tab>
 
-<!-- ====================================================================================================================================================== -->
+    <!-- ====================================================================================================================================================== -->
 
     <mat-tab label="Favorties" *ngIf="loggedIn">
-      <div class="container" style="width: fit-content;box-shadow: none;">
+      <div class="container" style="width: fit-content; box-shadow: none">
         <div class="row" *ngFor="let champion of favoriteChampions">
-          <div class="col-md-4" style="margin: 10px;">
-            <img class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/'+champion.image.full" (click)="clickedChampion(champion)" routerLink="../champions/details/{{champion.id}}">
+          <div class="col-md-4" style="margin: 10px">
+            <img
+              class="championImage"
+              [src]="
+                'https://ddragon.leagueoflegends.com/cdn/' +
+                dataDragonVersion +
+                '/img/champion/' +
+                champion.image.full
+              "
+              (click)="clickedChampion(champion)"
+              routerLink="../champions/details/{{ champion.id }}"
+            />
           </div>
           <!-- <div class="col-md-8" style="text-align: center;">
             <div class="mat-title">
@@ -120,20 +200,15 @@
       </div> -->
     </mat-tab>
 
-<!-- =============================================================If user doesn't have an account============================================================= -->
+    <!-- =============================================================If user doesn't have an account============================================================= -->
 
     <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
-      <ng-template mat-tab-label >
-          <i matTooltip="Login to see!"> Favorites</i>
-          <span class="material-icons">
-            lock
-          </span>
+      <ng-template mat-tab-label>
+        <i matTooltip="Login to see!"> Favorites</i>
+        <span class="material-icons"> lock </span>
       </ng-template>
     </mat-tab>
 
-<!-- ====================================================================================================================================================== -->
-
+    <!-- ====================================================================================================================================================== -->
   </mat-tab-group>
 </div>
-
-

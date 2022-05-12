@@ -4,68 +4,73 @@ import { Observable, Subscription } from 'rxjs';
 import { ChampsService } from '../champs.service';
 import { AuthResponseData, AuthService } from './auth.service';
 
-
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit, OnDestroy {
-  private userSub: Subscription
+  private userSub: Subscription;
   oldUser = false;
 
-  loggedIn = false
+  loggedIn = false;
   isLoading = false;
   isLoginMode = true;
-  error:string = null;
+  error: string = null;
 
   selectedValue: string;
-  regions: { value: string, viewValue: string}[] = [];
-  constructor(private champService: ChampsService, private authService: AuthService) { }
+  regions: { value: string; viewValue: string }[] = [];
+  constructor(
+    private champService: ChampsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.selectedValue = this.champService.region;
-    this.regions = this.champService.regions
+    this.regions = this.champService.regions;
 
-    this.userSub = this.authService.user.subscribe(user => {
+    this.userSub = this.authService.user.subscribe((user) => {
       this.loggedIn = !!user;
-    })
+    });
   }
 
-  onSubmit(form: NgForm){
-    if(!form.valid){
+  onSubmit(form: NgForm) {
+    if (!form.valid) {
       return;
     }
     const email = form.value.email;
     const password = form.value.password;
 
-    let authObs: Observable<AuthResponseData>
+    let authObs: Observable<AuthResponseData>;
 
-    this.isLoading = true
+    this.isLoading = true;
 
-    if(this.isLoginMode){
-      authObs = this.authService.login(email, password)
+    if (this.isLoginMode) {
+      authObs = this.authService.login(email, password);
     } else {
-      authObs = this.authService.signUp(email, password)
+      authObs = this.authService.signUp(email, password);
     }
 
-    authObs.subscribe(res => {
-      this.isLoading = false;
-    }, errorMessage => {
-      this.error = errorMessage
-      this.isLoading = false;
-    });
+    authObs.subscribe(
+      (res) => {
+        this.isLoading = false;
+      },
+      (errorMessage) => {
+        this.error = errorMessage;
+        this.isLoading = false;
+      }
+    );
 
     form.reset();
   }
 
-  newOrOld(){
-    if( this.isLoginMode){
-      this.oldUser = true
-    } else this.oldUser = false
+  newOrOld() {
+    if (this.isLoginMode) {
+      this.oldUser = true;
+    } else this.oldUser = false;
   }
 
   ngOnDestroy(): void {
-      this.userSub.unsubscribe()
+    this.userSub.unsubscribe();
   }
 }

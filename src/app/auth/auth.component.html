@@ -1,19 +1,27 @@
 <!-- <button mat-raised-button (click)="loggedIn = !loggedIn">Toggle User</button> -->
-  <!-- <button mat-raised-button (click)="loggedIn = !loggedIn">Toggle User</button> -->
-<section style="text-align: center;overflow: hidden;margin-top: 40px;" *ngIf="loggedIn">
+<!-- <button mat-raised-button (click)="loggedIn = !loggedIn">Toggle User</button> -->
+<section
+  style="text-align: center; overflow: hidden; margin-top: 40px"
+  *ngIf="loggedIn"
+>
   <div *ngIf="oldUser" class="mat-title">Welcome Back!</div>
   <div *ngIf="!oldUser" class="mat-title">Welcome to League Stat Checker!</div>
 </section>
 <section *ngIf="!loggedIn" style="margin-top: 60px">
   <div class="spinner-container">
-    <mat-spinner color="warn" *ngIf="isLoading" ></mat-spinner>
+    <mat-spinner color="warn" *ngIf="isLoading"></mat-spinner>
   </div>
   <div class="spinner-container" *ngIf="error">
     <div class="alert alert-danger">
-      {{error}}
+      {{ error }}
     </div>
   </div>
-  <form style="text-align: center;overflow: hidden;" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+  <form
+    style="text-align: center; overflow: hidden"
+    #authForm="ngForm"
+    (ngSubmit)="onSubmit(authForm)"
+    *ngIf="!isLoading"
+  >
     <!-- <p *ngIf="!isLoginMode">
       <mat-form-field appearance="standard" style="width: 175px;">
         <mat-label>Username</mat-label>
@@ -32,16 +40,35 @@
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="BillyBob123@email.com" type="email" id="email" ngModel name="email" required email>
+        <input
+          matInput
+          placeholder="BillyBob123@email.com"
+          type="email"
+          id="email"
+          ngModel
+          name="email"
+          required
+          email
+        />
         <mat-icon matSuffix>email</mat-icon>
       </mat-form-field>
     </p>
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password1234" type="password" id="password" ngModel name="password" required password minlength="6">
+        <input
+          matInput
+          placeholder="Password1234"
+          type="password"
+          id="password"
+          ngModel
+          name="password"
+          required
+          password
+          minlength="6"
+        />
         <mat-icon matSuffix>lock</mat-icon>
-        <mat-hint *ngIf="!isLoginMode" >Must be at least 6 characters</mat-hint>
+        <mat-hint *ngIf="!isLoginMode">Must be at least 6 characters</mat-hint>
       </mat-form-field>
     </p>
     <!-- <p *ngIf="!isLoginMode">
@@ -54,10 +81,27 @@
         </mat-select>
       </mat-form-field>
     </p> -->
-    <div class="row" style="align-items: center;">
+    <div class="row" style="align-items: center">
       <div class="col-md-12">
-        <button style="margin: 10px;" mat-raised-button color="primary" type="submit" [disabled]="!authForm.valid" (click)="newOrOld()">{{isLoginMode? 'Login': 'Sign Up'}}</button>
-        <button style="margin: 10px;" mat-raised-button color="warn" type="button" (click)="isLoginMode = !isLoginMode" >Switch to {{isLoginMode? 'Sign Up':'Login'}}</button>
+        <button
+          style="margin: 10px"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!authForm.valid"
+          (click)="newOrOld()"
+        >
+          {{ isLoginMode ? "Login" : "Sign Up" }}
+        </button>
+        <button
+          style="margin: 10px"
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="isLoginMode = !isLoginMode"
+        >
+          Switch to {{ isLoginMode ? "Sign Up" : "Login" }}
+        </button>
       </div>
     </div>
   </form>

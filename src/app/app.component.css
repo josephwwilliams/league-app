@@ -1,7 +1,8 @@
-mat-sidenav-conatiner{
-  height: 100%
+mat-sidenav-conatiner {
+  height: 100%;
 }
-mat-sidenav, mat-sidenav-content {
+mat-sidenav,
+mat-sidenav-content {
   padding: 12px;
   padding-top: 2.5%;
   height: 100vh;
@@ -11,13 +12,13 @@ mat-sidenav {
   background-color: rgb(255, 255, 255);
   width: 250px;
 }
-.navigationButton{
+.navigationButton {
   top: 16px;
   left: 16px;
   position: fixed;
   z-index: 10000;
 }
-button{
-  border:none;
+button {
+  border: none;
   background-color: #ffffff;
 }

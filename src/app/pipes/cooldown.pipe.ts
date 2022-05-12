@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'cooldown'
+  name: 'cooldown',
 })
 export class CooldownPipe implements PipeTransform {
-  transform(cooldown: any){
+  transform(cooldown: any) {
     return cooldown.join(' / ');
-  };
+  }
 }

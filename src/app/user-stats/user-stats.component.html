@@ -1,5 +1,4 @@
-
-            <!-- <div class="summs">
+<!-- <div class="summs">
               <div *ngIf="person.summoner1Id === 21"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBarrier.png" alt="" ></div>
               <div *ngIf="person.summoner1Id === 1"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerBoost.png" alt="" ></div>
               <div *ngIf="person.summoner1Id === 14"><img style="border: 1px solid black;border-radius: 2px;height: 40px;width: 40px;" src="httpss://ddragon.leagueoflegends.com/cdn/12.7.1/img/spell/SummonerDot.png" alt="" ></div>
@@ -38,57 +37,144 @@
               <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item4 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;">
               <img [src]="'https://ddragon.leagueoflegends.com/cdn/12.7.1/img/item/'+ person.item5 +'.png'" alt="" onerror="this.src='gray.png';" style="max-width: 40px;max-height: 40px;border: 1px solid black;"> -->
 
-<section *ngIf="(playerStats !== undefined && errors === undefined)">
+<section *ngIf="playerStats !== undefined && errors === undefined">
   <div class="champ-container">
     <div class="row">
       <div class="col-md-4 text-center">
-        <div class="row" style="margin-bottom: 20px;">
+        <div class="row" style="margin-bottom: 20px">
           <div class="col-md-4">
-            <img class="img-fluid playerIcon" style="background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/profileicon/'+details.profileIconId+'.png'" alt="">
+            <img
+              class="img-fluid playerIcon"
+              style="
+                background-image: url(https://ddragon.leagueoflegends.com/cdn/12.8.1/img/profileicon/29.png);
+              "
+              [src]="
+                'https://ddragon.leagueoflegends.com/cdn/' +
+                dataDragonVersion +
+                '/img/profileicon/' +
+                details.profileIconId +
+                '.png'
+              "
+              alt=""
+            />
           </div>
           <div class="col-lg-8">
             <div class="mat-subheading-2">
-              Lvl : {{details.summonerLevel}}
-              <hr>
+              Lvl : {{ details.summonerLevel }}
+              <hr />
             </div>
             <div class="mat-subheading-2">
-              {{playerStats.summonerName}}
+              {{ playerStats.summonerName }}
             </div>
           </div>
         </div>
-        <ng-container [ngSwitch]="true" >
+        <ng-container [ngSwitch]="true">
           <div *ngSwitchCase="playerStats.length === 0">Unranked</div>
-          <div *ngSwitchCase="playerStats.tier === 'IRON'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Iron.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'BRONZE'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Bronze.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'SILVER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Silver.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'GOLD'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Gold.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'PLATINUM'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Platinum.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'DIAMOND'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Diamond.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'MASTER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Master.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'GRANDMASTER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Grandmaster.png" alt=""></div>
-          <div *ngSwitchCase="playerStats.tier === 'CHALLENGER'"><img class="img-fluid rankedEmblem" src="/assets/images/ranks/Challenger.png" alt=""></div>
+          <div *ngSwitchCase="playerStats.tier === 'IRON'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Iron.png"
+              alt=""
+            />
+          </div>
+          <div *ngSwitchCase="playerStats.tier === 'BRONZE'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Bronze.png"
+              alt=""
+            />
+          </div>
+          <div *ngSwitchCase="playerStats.tier === 'SILVER'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Silver.png"
+              alt=""
+            />
+          </div>
+          <div *ngSwitchCase="playerStats.tier === 'GOLD'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Gold.png"
+              alt=""
+            />
+          </div>
+          <div *ngSwitchCase="playerStats.tier === 'PLATINUM'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Platinum.png"
+              alt=""
+            />
+          </div>
+          <div *ngSwitchCase="playerStats.tier === 'DIAMOND'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Diamond.png"
+              alt=""
+            />
+          </div>
+          <div *ngSwitchCase="playerStats.tier === 'MASTER'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Master.png"
+              alt=""
+            />
+          </div>
+          <div *ngSwitchCase="playerStats.tier === 'GRANDMASTER'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Grandmaster.png"
+              alt=""
+            />
+          </div>
+          <div *ngSwitchCase="playerStats.tier === 'CHALLENGER'">
+            <img
+              class="img-fluid rankedEmblem"
+              src="/assets/images/ranks/Challenger.png"
+              alt=""
+            />
+          </div>
           <div *ngSwitchDefault>Unranked</div>
-          <div style="font-size: larger;">
-            {{playerStats.tier}}  {{playerStats.rank}}
-            <div>{{playerStats.leaguePoints | number }} LP</div>
-            <div style="color: rgb(252, 130, 30);">Win Rate : {{((playerStats.wins/ (playerStats.wins + playerStats.losses)) * 100).toFixed(2)}}%</div>
-            <div style="color: rgb(90, 90, 247);">
-              Wins : {{playerStats.wins}}
+          <div style="font-size: larger">
+            {{ playerStats.tier }} {{ playerStats.rank }}
+            <div>{{ playerStats.leaguePoints | number }} LP</div>
+            <div style="color: rgb(252, 130, 30)">
+              Win Rate :
+              {{
+                (
+                  (playerStats.wins / (playerStats.wins + playerStats.losses)) *
+                  100
+                ).toFixed(2)
+              }}%
             </div>
-            <div style="color: rgb(253, 91, 91);">
-              Losses : {{playerStats.losses}}
+            <div style="color: rgb(90, 90, 247)">
+              Wins : {{ playerStats.wins }}
+            </div>
+            <div style="color: rgb(253, 91, 91)">
+              Losses : {{ playerStats.losses }}
             </div>
           </div>
         </ng-container>
       </div>
       <div class="col-md-8">
-        <div class="row" style="width: 100%;">
+        <div class="row" style="width: 100%">
           <div class="col-lg-8">
             <div class="form-group">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search for players!" [(ngModel)]="name" (keyup.enter)="submit()">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search for players!"
+                  [(ngModel)]="name"
+                  (keyup.enter)="submit()"
+                />
                 <div class="input-group-append">
-                  <button class="material-icons btn btn-outline-secondary" type="button" (click)="submit()" >search</button>
+                  <button
+                    class="material-icons btn btn-outline-secondary"
+                    type="button"
+                    (click)="submit()"
+                  >
+                    search
+                  </button>
                 </div>
               </div>
             </div>
@@ -97,112 +183,258 @@
             <form>
               <mat-form-field appearance="fill">
                 <mat-label>Region</mat-label>
-                <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="changeRegion(selectedValue)" >
-                  <mat-option *ngFor="let region of regions" [value]="region.value">
-                    {{region.viewValue}}
+                <mat-select
+                  [(ngModel)]="selectedValue"
+                  name="region"
+                  (selectionChange)="changeRegion(selectedValue)"
+                >
+                  <mat-option
+                    *ngFor="let region of regions"
+                    [value]="region.value"
+                  >
+                    {{ region.viewValue }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </form>
           </div>
         </div>
-        <mat-accordion >
-        <div class="row" >
-          <article class="champ" *ngFor="let singleGame of players; let i = index">
-            <mat-expansion-panel style="width: 100%;">
-              <mat-expansion-panel-header >
+        <mat-accordion>
+          <div class="row">
+            <article
+              class="champ"
+              *ngFor="let singleGame of players; let i = index"
+            >
+              <mat-expansion-panel style="width: 100%">
+                <mat-expansion-panel-header>
+                  <div class="row">
+                    <div *ngFor="let players of singleGame">
+                      <div
+                        class="row mobileRow"
+                        *ngIf="players.puuid === details.puuid"
+                      >
+                        <div class="col-md-1">
+                          <img
+                            *ngIf="players.championName === 'FiddleSticks'"
+                            class="championImage"
+                            [src]="
+                              'https://ddragon.leagueoflegends.com/cdn/' +
+                              dataDragonVersion +
+                              '/img/champion/Fiddlesticks.png'
+                            "
+                          />
+                          <img
+                            *ngIf="players.championName !== 'FiddleSticks'"
+                            class="championImage"
+                            [src]="
+                              'https://ddragon.leagueoflegends.com/cdn/' +
+                              dataDragonVersion +
+                              '/img/champion/' +
+                              players.championName +
+                              '.png'
+                            "
+                          />
+                        </div>
+                        <div class="col-md-2">
+                          <div
+                            *ngIf="players.win"
+                            style="color: rgb(90, 90, 247)"
+                          >
+                            Victory
+                          </div>
+                          <div
+                            *ngIf="!players.win"
+                            style="color: rgb(253, 91, 91)"
+                          >
+                            Defeat
+                          </div>
+                        </div>
+                        <div class="col-md-5" style="text-align: left">
+                          KDA: {{ players.kills }} / {{ players.deaths }} /
+                          {{ players.assists }}
+                        </div>
+                        <div
+                          class="col-md-4 teamPosition"
+                          style="text-align: center"
+                          *ngIf="players.teamPosition === 'UTILITY'"
+                        >
+                          SUPPORT
+                        </div>
+                        <div
+                          class="col-md-4 teamPosition"
+                          style="text-align: center"
+                          *ngIf="players.teamPosition === ''"
+                        >
+                          ARAM
+                        </div>
+                        <div
+                          class="col-md-4 teamPosition"
+                          style="text-align: center"
+                          *ngIf="players.teamPosition !== 'UTILITY'"
+                        >
+                          {{ players.teamPosition }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel-header>
                 <div class="row">
-                  <div *ngFor="let players of singleGame">
-                    <div class="row mobileRow" *ngIf="players.puuid === details.puuid">
-                      <div class="col-md-1">
-                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'">
-                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'">
-                      </div>
-                      <div class="col-md-2" >
-                        <div *ngIf="players.win" style="color: rgb(90, 90, 247);">
-                          Victory
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div *ngFor="let players of singleGame.slice(0, 5)">
+                        <div class="row">
+                          <div class="col-md-4" style="padding: 10px">
+                            <img
+                              *ngIf="players.championName === 'FiddleSticks'"
+                              class="championImage img-fluid"
+                              [src]="
+                                'https://ddragon.leagueoflegends.com/cdn/' +
+                                dataDragonVersion +
+                                '/img/champion/Fiddlesticks.png'
+                              "
+                              (click)="championClick(players.championName)"
+                            />
+                            <img
+                              *ngIf="players.championName !== 'FiddleSticks'"
+                              class="championImage img-fluid"
+                              [src]="
+                                'https://ddragon.leagueoflegends.com/cdn/' +
+                                dataDragonVersion +
+                                '/img/champion/' +
+                                players.championName +
+                                '.png'
+                              "
+                              (click)="championClick(players.championName)"
+                            />
+                          </div>
+                          <div class="col-md-6" style="padding: 10px">
+                            <a
+                              style="cursor: pointer"
+                              (click)="playerClick(players.summonerName)"
+                              >{{ players.summonerName }}</a
+                            >
+                            <hr
+                              size="10"
+                              *ngIf="players.win"
+                              style="color: rgb(0, 0, 255)"
+                            />
+                            <hr
+                              size="10"
+                              *ngIf="!players.win"
+                              style="color: rgb(255, 0, 0)"
+                            />
+                            <div>
+                              {{ players.kills }} / {{ players.deaths }} /
+                              {{ players.assists }}
+                            </div>
+                          </div>
+                          <div class="col-md-1" style="padding: 10px">
+                            <span
+                              class="material-icons"
+                              style="cursor: pointer"
+                              (click)="checkPlayerStatsInGame(players)"
+                              >info</span
+                            >
+                          </div>
                         </div>
-                        <div *ngIf="!players.win" style="color: rgb(253, 91, 91);">
-                          Defeat
-                        </div>
-                      </div>
-                      <div class="col-md-5" style="text-align: left;">
-                        KDA: {{players.kills}} / {{players.deaths}} / {{players.assists}}
-                      </div>
-                      <div class="col-md-4 teamPosition" style="text-align: center;" *ngIf="players.teamPosition === 'UTILITY'">
-                        SUPPORT
-                      </div>
-                      <div class="col-md-4 teamPosition" style="text-align: center;" *ngIf="players.teamPosition === ''">
-                        ARAM
-                      </div>
-                      <div class="col-md-4 teamPosition" style="text-align: center;" *ngIf="players.teamPosition !== 'UTILITY'">
-                        {{players.teamPosition}}
                       </div>
                     </div>
-                 </div>
-                </div>
-              </mat-expansion-panel-header>
-              <div class="row">
-                <div class="col-md-6" >
-                  <div class="row">
-                    <div *ngFor="let players of singleGame.slice(0,5)">
-                      <div class="row">
-                      <div class="col-md-4" style="padding: 10px;">
-                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage img-fluid" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'" (click)="championClick(players.championName)">
-                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage img-fluid" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'" (click)="championClick(players.championName)">
-                      </div>
-                      <div class="col-md-6" style="padding: 10px;">
-                        <a style="cursor: pointer;" (click)="playerClick(players.summonerName)">{{players.summonerName}}</a>
-                        <hr size="10" *ngIf="players.win" style="color: rgb(0, 0, 255);">
-                        <hr size="10" *ngIf="!players.win" style="color:rgb(255, 0, 0);">
-                        <div>{{players.kills}} / {{players.deaths}} / {{players.assists}}</div>
-                      </div>
-                      <div class="col-md-1" style="padding: 10px;">
-                        <span class="material-icons" style="cursor: pointer;" (click)="checkPlayerStatsInGame(players)" >info</span>
-                      </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div *ngFor="let players of singleGame.slice(5, 10)">
+                        <div class="row">
+                          <div class="col-md-4" style="padding: 10px">
+                            <img
+                              *ngIf="players.championName === 'FiddleSticks'"
+                              class="championImage img-fluid"
+                              [src]="
+                                'https://ddragon.leagueoflegends.com/cdn/' +
+                                dataDragonVersion +
+                                '/img/champion/Fiddlesticks.png'
+                              "
+                              (click)="championClick(players.championName)"
+                            />
+                            <img
+                              *ngIf="players.championName !== 'FiddleSticks'"
+                              class="championImage img-fluid"
+                              [src]="
+                                'https://ddragon.leagueoflegends.com/cdn/' +
+                                dataDragonVersion +
+                                '/img/champion/' +
+                                players.championName +
+                                '.png'
+                              "
+                              (click)="championClick(players.championName)"
+                            />
+                          </div>
+                          <div class="col-md-6" style="padding: 10px">
+                            <a
+                              style="cursor: pointer"
+                              (click)="playerClick(players.summonerName)"
+                              >{{ players.summonerName }}</a
+                            >
+                            <hr
+                              size="10"
+                              *ngIf="players.win"
+                              style="color: rgb(0, 0, 255)"
+                            />
+                            <hr
+                              size="10"
+                              *ngIf="!players.win"
+                              style="color: rgb(255, 0, 0)"
+                            />
+                            <div>
+                              {{ players.kills }} / {{ players.deaths }} /
+                              {{ players.assists }}
+                            </div>
+                          </div>
+                          <div class="col-md-1" style="padding: 10px">
+                            <span
+                              class="material-icons"
+                              style="cursor: pointer"
+                              (click)="checkPlayerStatsInGame(players)"
+                              >info</span
+                            >
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6" >
-                  <div class="row">
-                    <div *ngFor="let players of singleGame.slice(5,10)">
-                      <div class="row">
-                      <div class="col-md-4" style="padding: 10px;">
-                        <img *ngIf="players.championName === 'FiddleSticks'" class="championImage img-fluid" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/Fiddlesticks.png'" (click)="championClick(players.championName)">
-                        <img *ngIf="players.championName !== 'FiddleSticks'" class="championImage img-fluid" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/' + players.championName + '.png'" (click)="championClick(players.championName)">
-                      </div>
-                      <div class="col-md-6" style="padding: 10px;">
-                        <a style="cursor: pointer;" (click)="playerClick(players.summonerName)">{{players.summonerName}}</a>
-                        <hr size="10" *ngIf="players.win" style="color: rgb(0, 0, 255);">
-                        <hr size="10" *ngIf="!players.win" style="color:rgb(255, 0, 0);">
-                        <div>{{players.kills}} / {{players.deaths}} / {{players.assists}}</div>
-                      </div>
-                      <div class="col-md-1" style="padding: 10px;">
-                        <span class="material-icons" style="cursor: pointer;" (click)="checkPlayerStatsInGame(players)" >info</span>
-                      </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </mat-expansion-panel>
-          </article>
-        </div>
-      </mat-accordion>
+              </mat-expansion-panel>
+            </article>
+          </div>
+        </mat-accordion>
       </div>
     </div>
   </div>
 </section>
-<section *ngIf="(playerStats === undefined && showSpinner === false && errors === undefined)">
+<section
+  *ngIf="
+    playerStats === undefined && showSpinner === false && errors === undefined
+  "
+>
   <div class="champ-container">
-    <div class="row" >
+    <div class="row">
       <div class="col-lg-8">
         <div class="form-group">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for players!" [(ngModel)]="name" (keyup.enter)="submit()">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for players!"
+              [(ngModel)]="name"
+              (keyup.enter)="submit()"
+            />
             <div class="input-group-append">
-              <button class="material-icons btn btn-outline-secondary" type="button" (click)="submit()" >search</button>
+              <button
+                class="material-icons btn btn-outline-secondary"
+                type="button"
+                (click)="submit()"
+              >
+                search
+              </button>
             </div>
           </div>
         </div>
@@ -211,9 +443,13 @@
         <form>
           <mat-form-field appearance="fill">
             <mat-label>Region</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="changeRegion(selectedValue)" >
+            <mat-select
+              [(ngModel)]="selectedValue"
+              name="region"
+              (selectionChange)="changeRegion(selectedValue)"
+            >
               <mat-option *ngFor="let region of regions" [value]="region.value">
-                {{region.viewValue}}
+                {{ region.viewValue }}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -222,28 +458,39 @@
     </div>
     <div class="row">
       <div class="mat-display-3">
-        No name added <span class="material-icons frown">sentiment_dissatisfied</span>
+        No name added
+        <span class="material-icons frown">sentiment_dissatisfied</span>
       </div>
-      <div class="mat-display-3">
-        Go ahead and search for a player!
-      </div>
+      <div class="mat-display-3">Go ahead and search for a player!</div>
     </div>
   </div>
 </section>
-<section *ngIf="(showSpinner === true && errors === undefined)">
+<section *ngIf="showSpinner === true && errors === undefined">
   <div class="champ-container">
-    <mat-spinner color="warn" ></mat-spinner>
+    <mat-spinner color="warn"></mat-spinner>
   </div>
 </section>
 <section *ngIf="errors !== undefined">
   <div class="champ-container">
-    <div class="row" style="width: 100%;">
+    <div class="row" style="width: 100%">
       <div class="col-lg-8">
         <div class="form-group">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for players!" [(ngModel)]="name" (keyup.enter)="submit()">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for players!"
+              [(ngModel)]="name"
+              (keyup.enter)="submit()"
+            />
             <div class="input-group-append">
-              <button class="material-icons btn btn-outline-secondary" type="button" (click)="submit()" >search</button>
+              <button
+                class="material-icons btn btn-outline-secondary"
+                type="button"
+                (click)="submit()"
+              >
+                search
+              </button>
             </div>
           </div>
         </div>
@@ -252,17 +499,21 @@
         <form>
           <mat-form-field appearance="fill">
             <mat-label>Region</mat-label>
-            <mat-select [(ngModel)]="selectedValue" name="region" (selectionChange)="changeRegion(selectedValue)" >
+            <mat-select
+              [(ngModel)]="selectedValue"
+              name="region"
+              (selectionChange)="changeRegion(selectedValue)"
+            >
               <mat-option *ngFor="let region of regions" [value]="region.value">
-                {{region.viewValue}}
+                {{ region.viewValue }}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </form>
       </div>
     </div>
-    <div class="mat-display-3" style="color: crimson;">
-    An error has occurred! Please try again
+    <div class="mat-display-3" style="color: crimson">
+      An error has occurred! Please try again
     </div>
   </div>
 </section>

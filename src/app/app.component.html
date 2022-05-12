@@ -1,41 +1,75 @@
 <section>
   <mat-sidenav-container>
-    <mat-sidenav [(opened)] = "opened">
+    <mat-sidenav [(opened)]="opened">
       <div class="row">
-        <button (click)="opened = !opened" class="mat-display-1" ><span class="material-icons">menu</span></button>
+        <button (click)="opened = !opened" class="mat-display-1">
+          <span class="material-icons">menu</span>
+        </button>
       </div>
 
-      <button style="cursor: pointer;" routerLink="/home" class="mat-display-1" (click)="opened = !opened">Home</button>
-
-      <button *ngIf="loggedIn" style="cursor: pointer;" routerLink="/champions" class="mat-display-1" (click)="opened = !opened">Champions </button>
-
-      <button *ngIf="!loggedIn" routerLink="/champions" class="mat-display-1" [disabled]="!loggedIn">
-        Champions
-        <span class="material-icons">
-          lock
-        </span>
+      <button
+        style="cursor: pointer"
+        routerLink="/home"
+        class="mat-display-1"
+        (click)="opened = !opened"
+      >
+        Home
       </button>
 
-      <button *ngIf="loggedIn" style="cursor: pointer;" routerLink="/favorites" class="mat-display-1" (click)="opened = !opened">Favorites</button>
+      <button
+        *ngIf="loggedIn"
+        style="cursor: pointer"
+        routerLink="/champions"
+        class="mat-display-1"
+        (click)="opened = !opened"
+      >
+        Champions
+      </button>
+
+      <button
+        *ngIf="!loggedIn"
+        routerLink="/champions"
+        class="mat-display-1"
+        [disabled]="!loggedIn"
+      >
+        Champions
+        <span class="material-icons"> lock </span>
+      </button>
+
+      <button
+        *ngIf="loggedIn"
+        style="cursor: pointer"
+        routerLink="/favorites"
+        class="mat-display-1"
+        (click)="opened = !opened"
+      >
+        Favorites
+      </button>
 
       <button *ngIf="!loggedIn" class="mat-display-1" [disabled]="!loggedIn">
         Favorites
-        <span class="material-icons">
-          lock
-        </span>
+        <span class="material-icons"> lock </span>
       </button>
 
-      <button style="cursor: pointer;" routerLink="/stats" class="mat-display-1" (click)="opened = !opened">Stats</button>
+      <button
+        style="cursor: pointer"
+        routerLink="/stats"
+        class="mat-display-1"
+        (click)="opened = !opened"
+      >
+        Stats
+      </button>
 
-
-      <button class="mat-display-1"  *ngIf="loggedIn" >log out</button>
-
+      <button class="mat-display-1" *ngIf="loggedIn">log out</button>
     </mat-sidenav>
     <mat-sidenav-content>
-      <button class="navigationButton" mat-fab color="white" (click)="opened = !opened">
-        <span class="material-icons">
-          menu
-        </span>
+      <button
+        class="navigationButton"
+        mat-fab
+        color="white"
+        (click)="opened = !opened"
+      >
+        <span class="material-icons"> menu </span>
       </button>
       <router-outlet></router-outlet>
     </mat-sidenav-content>

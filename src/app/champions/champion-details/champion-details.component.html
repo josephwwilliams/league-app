@@ -1,23 +1,57 @@
 <section *ngIf="showSpinner === false">
-  <div *ngFor="let champion of champDetails" class="container-md" [ngStyle]="{'background-image':'url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' +  champion.id + '_' + champion.skins[dialSpecs.value].num + '.jpg)'}">
+  <div
+    *ngFor="let champion of champDetails"
+    class="container-md"
+    [ngStyle]="{
+      'background-image':
+        'url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/' +
+        champion.id +
+        '_' +
+        champion.skins[dialSpecs.value].num +
+        '.jpg)'
+    }"
+  >
     <div class="d-lg-flex justify-content-center">
       <div class="card">
-        <img class="img-fluid loadingArt" [src]="'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/' + champion.id + '_' + champion.skins[dialSpecs.value].num + '.jpg'" alt="..." (click)="spellClick(champion)">
+        <img
+          class="img-fluid loadingArt"
+          [src]="
+            'https://ddragon.leagueoflegends.com/cdn/img/champion/loading/' +
+            champion.id +
+            '_' +
+            champion.skins[dialSpecs.value].num +
+            '.jpg'
+          "
+          alt="..."
+          (click)="spellClick(champion)"
+        />
         <div class="card-body">
-          <h1 class="card-title">{{champion.name}} {{champion.title}}</h1>
-          <button color="white" mat-raised-button (click)="sendToFavorites()">Add to Favorites</button>
+          <h1 class="card-title">{{ champion.name }} {{ champion.title }}</h1>
+          <button color="white" mat-raised-button (click)="sendToFavorites()">
+            Add to Favorites
+          </button>
         </div>
       </div>
       <div class="card">
         <div class="mat-headline">Spells</div>
         <div class="row" *ngFor="let spell of champion.spells; let i = index">
           <div class="col-md-5">
-          <img class="img-fluid w-90 abilities" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/spell/' + champion.spells[i].image.full" alt="Spell1" (click)="spellClick(champion.spells[i])">
+            <img
+              class="img-fluid w-90 abilities"
+              [src]="
+                'https://ddragon.leagueoflegends.com/cdn/' +
+                dataDragonVersion +
+                '/img/spell/' +
+                champion.spells[i].image.full
+              "
+              alt="Spell1"
+              (click)="spellClick(champion.spells[i])"
+            />
           </div>
           <div class="col-md-7">
             <span>
               <div class="mat-subheading-2 subheadingName">
-                {{champion.spells[i].name}}
+                {{ champion.spells[i].name }}
               </div>
             </span>
           </div>
@@ -27,15 +61,62 @@
         <div class="mat-headline">Passive</div>
         <div class="row">
           <div class="col-md-5">
-            <img *ngIf="champion.passive.image.full === 'SamiraP.Samira.png'" class="img-fluid w-90 abilities" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/passive/SamiraP.png'" alt="Passive" (click)="spellClick(champion.passive)">
-            <img *ngIf="champion.passive.image.full === 'YonePassive.Yone.png'" class="img-fluid w-90 abilities" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/passive/YonePassive.png'" alt="Passive" (click)="spellClick(champion.passive)">
-            <img *ngIf="champion.passive.image.full === 'Lillia_Icon_Passive.Lillia.png'" class="img-fluid w-90 abilities" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/passive/Lillia_Icon_Passive.png'" alt="Passive" (click)="spellClick(champion.passive)">
-            <img *ngIf="(champion.passive.image.full !== 'SamiraP.Samira.png' && champion.passive.image.full !== 'YonePassive.Yone.png' && champion.passive.image.full !== 'Lillia_Icon_Passive.Lillia.png')" class="img-fluid w-90 abilities" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/passive/' + champion.passive.image.full" alt="Passive" (click)="spellClick(champion.passive)">
+            <img
+              *ngIf="champion.passive.image.full === 'SamiraP.Samira.png'"
+              class="img-fluid w-90 abilities"
+              [src]="
+                'https://ddragon.leagueoflegends.com/cdn/' +
+                dataDragonVersion +
+                '/img/passive/SamiraP.png'
+              "
+              alt="Passive"
+              (click)="spellClick(champion.passive)"
+            />
+            <img
+              *ngIf="champion.passive.image.full === 'YonePassive.Yone.png'"
+              class="img-fluid w-90 abilities"
+              [src]="
+                'https://ddragon.leagueoflegends.com/cdn/' +
+                dataDragonVersion +
+                '/img/passive/YonePassive.png'
+              "
+              alt="Passive"
+              (click)="spellClick(champion.passive)"
+            />
+            <img
+              *ngIf="
+                champion.passive.image.full === 'Lillia_Icon_Passive.Lillia.png'
+              "
+              class="img-fluid w-90 abilities"
+              [src]="
+                'https://ddragon.leagueoflegends.com/cdn/' +
+                dataDragonVersion +
+                '/img/passive/Lillia_Icon_Passive.png'
+              "
+              alt="Passive"
+              (click)="spellClick(champion.passive)"
+            />
+            <img
+              *ngIf="
+                champion.passive.image.full !== 'SamiraP.Samira.png' &&
+                champion.passive.image.full !== 'YonePassive.Yone.png' &&
+                champion.passive.image.full !== 'Lillia_Icon_Passive.Lillia.png'
+              "
+              class="img-fluid w-90 abilities"
+              [src]="
+                'https://ddragon.leagueoflegends.com/cdn/' +
+                dataDragonVersion +
+                '/img/passive/' +
+                champion.passive.image.full
+              "
+              alt="Passive"
+              (click)="spellClick(champion.passive)"
+            />
           </div>
           <div class="col-md-7">
             <span>
               <div class="mat-subheading-2 subheadingName">
-                {{champion.passive.name}}
+                {{ champion.passive.name }}
               </div>
             </span>
           </div>
@@ -56,24 +137,30 @@
         [thumbLabel]="dialSpecs.thumbLabel"
         [(ngModel)]="dialSpecs.value"
         [vertical]="dialSpecs.vertical"
-        aria-labelledby="example-name-label">
+        aria-labelledby="example-name-label"
+      >
       </mat-slider>
-      <button mat-mini-fab color="white" class="slideButton" (click)="goRight()">
+      <button
+        mat-mini-fab
+        color="white"
+        class="slideButton"
+        (click)="goRight()"
+      >
         <span class="material-icons">navigate_next</span>
       </button>
     </div>
     <div class="mat-subheading-2 skinName" *ngIf="dialSpecs.value === 0">
-      {{champion.name}}
+      {{ champion.name }}
     </div>
     <div class="mat-subheading-2 skinName" *ngIf="dialSpecs.value !== 0">
-      {{champion.skins[dialSpecs.value].name}}
+      {{ champion.skins[dialSpecs.value].name }}
     </div>
   </div>
 </section>
 <section>
-  <section *ngIf="(showSpinner === true)">
-    <div class="container" style="margin: 0  auto;background-color: white;">
-      <mat-spinner color="warn" ></mat-spinner>
+  <section *ngIf="showSpinner === true">
+    <div class="container" style="margin: 0 auto; background-color: white">
+      <mat-spinner color="warn"></mat-spinner>
     </div>
   </section>
 </section>

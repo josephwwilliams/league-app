@@ -8,13 +8,13 @@ import { ChampsService } from '../champs.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  private userSub: Subscription
+  private userSub: Subscription;
 
-  favoriteChampions = []
-  loggedIn = false
+  favoriteChampions = [];
+  loggedIn = false;
   value = 100;
   results = 10;
   newNames = [];
@@ -25,9 +25,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   data2;
 
   selectedValue: string;
-  regions: { value: string, viewValue: string}[] = [];
+  regions: { value: string; viewValue: string }[] = [];
 
-  constructor(private champService: ChampsService, private router: Router, private authService: AuthService) { }
+  constructor(
+    private champService: ChampsService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
   ngOnInit(): void {
     // this.champService.getDDVersion().subscribe(
     //   (res) => {
@@ -35,66 +39,68 @@ export class HomeComponent implements OnInit, OnDestroy {
     //     this.champService.dataDragonVersion = res[0];
     //   }
     // );
-    this.userSub = this.authService.user.subscribe(user => {
+    this.userSub = this.authService.user.subscribe((user) => {
       this.loggedIn = !!user;
-      if(this.loggedIn){
-        this.champService.fetchChampionsFromFireBase().subscribe(
-          (res:any) => {
-            this.champService.favoriteChampions = res;
-            this.favoriteChampions = res;
-          }
-        );
+      if (this.loggedIn) {
+        this.champService.fetchChampionsFromFireBase().subscribe((res: any) => {
+          this.champService.favoriteChampions = res;
+          this.favoriteChampions = res;
+        });
       }
-    })
+    });
     this.dataDragonVersion = this.champService.dataDragonVersion;
     this.regions = this.champService.regions;
     this.selectedValue = this.champService.region;
     this.printUsers(this.selectedValue);
   }
 
-  log(){
-    this.champService.returnItems().subscribe(
-      (res:any) => {
-        this.data = res.data;
-      }
-    )
-    this.champService.returnRunes().subscribe(
-      (res) => {
-        this.data2 = res;
-      }
-    );
-  };
+  log() {
+    this.champService.returnItems().subscribe((res: any) => {
+      this.data = res.data;
+    });
+    this.champService.returnRunes().subscribe((res) => {
+      this.data2 = res;
+    });
+  }
 
-
-  signingUp(form: NgForm){
+  signingUp(form: NgForm) {
     const value = form.value;
     this.champService.name = value.username;
-  };
+  }
 
-  printUsers(region: string){
+  printUsers(region: string) {
     this.champService.regionCheckAndChange(region);
-    this.champService.getTopTenPlayersInRegion(this.selectedValue).subscribe((data)=>{
-      this.names = (data.entries.sort((a, b) => (a.leaguePoints > b.leaguePoints) ? -1 : 1));
-      let newNames = [];
-      for(let i = 0; i < this.results; i++){
-        this.champService.getSummonerWithSummonerID(this.selectedValue, this.names[i].summonerId).subscribe((data)=>{
-          newNames.push(data);
-        })
-      };
-      this.newNames = newNames;
-    });
-  };
+    this.champService
+      .getTopTenPlayersInRegion(this.selectedValue)
+      .subscribe((data) => {
+        this.names = data.entries.sort((a, b) =>
+          a.leaguePoints > b.leaguePoints ? -1 : 1
+        );
+        let newNames = [];
+        for (let i = 0; i < this.results; i++) {
+          this.champService
+            .getSummonerWithSummonerID(
+              this.selectedValue,
+              this.names[i].summonerId
+            )
+            .subscribe((data) => {
+              newNames.push(data);
+            });
+        }
+        this.newNames = newNames;
+      });
+  }
 
-  playerClick(playerName){
+  playerClick(playerName) {
     this.champService.name = playerName;
     this.router.navigate([`stats`]);
-  };
+  }
 
-  clickedChampion(favoriteChampion){
+  clickedChampion(favoriteChampion) {
     this.champService.selectedChampion = favoriteChampion;
-  };
+  }
 
   ngOnDestroy(): void {
     // this.userSub.unsubscribe()
-  };
+  }
 }

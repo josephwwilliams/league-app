@@ -6,12 +6,12 @@ import { ChampionDialogComponent } from './champion-dialog/champion-dialog.compo
 @Component({
   selector: 'app-champion-details',
   templateUrl: './champion-details.component.html',
-  styleUrls: ['./champion-details.component.css']
+  styleUrls: ['./champion-details.component.css'],
 })
 export class ChampionDetailsComponent implements OnInit {
   selectedChampion;
-  champDetails:any = [];
-  dataDragonVersion:string;
+  champDetails: any = [];
+  dataDragonVersion: string;
   showSpinner = false;
   constructor(private champService: ChampsService, private dialog: MatDialog) {}
 
@@ -29,39 +29,38 @@ export class ChampionDetailsComponent implements OnInit {
     tickInterval: 1,
   };
 
-  sendToFavorites(){
+  sendToFavorites() {
     this.champService.favoriteClick(this.champDetails[0]);
     this.champService.addChampionsToFireBase().subscribe();
-  };
+  }
 
   ngOnInit(): void {
     this.showSpinner = true;
     this.dataDragonVersion = this.champService.dataDragonVersion;
     this.selectedChampion = this.champService.selectedChampion;
-    this.champService.getChampionData(this.selectedChampion.id, this.dataDragonVersion).subscribe(
-      res => {
+    this.champService
+      .getChampionData(this.selectedChampion.id, this.dataDragonVersion)
+      .subscribe((res) => {
         this.dialSpecs.value = 0;
         this.champDetails.push(res.data[this.selectedChampion.id]);
-        this.dialSpecs.max =  this.champDetails[0].skins.length - 1;
+        this.dialSpecs.max = this.champDetails[0].skins.length - 1;
         this.showSpinner = false;
-      }
-    );
-  };
+      });
+  }
 
-  goRight(){
-    if(this.dialSpecs.value !== this.champDetails[0].skins.length - 1) {
+  goRight() {
+    if (this.dialSpecs.value !== this.champDetails[0].skins.length - 1) {
       this.dialSpecs.value = this.dialSpecs.value + 1;
-    };
-  };
+    }
+  }
 
-  goLeft(){
-    if(this.dialSpecs.value !== 0) {
+  goLeft() {
+    if (this.dialSpecs.value !== 0) {
       this.dialSpecs.value = this.dialSpecs.value - 1;
-    };
-  };
+    }
+  }
 
-  spellClick(info){
-    this.dialog.open(ChampionDialogComponent, {data: {info}});
-  };
-
+  spellClick(info) {
+    this.dialog.open(ChampionDialogComponent, { data: { info } });
+  }
 }

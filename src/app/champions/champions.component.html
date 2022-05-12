@@ -1,11 +1,21 @@
 <section>
-  <div class="row input" >
+  <div class="row input">
     <div class="col-12">
       <div class="form-group">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for champions!" [(ngModel)]="championSearch">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search for champions!"
+            [(ngModel)]="championSearch"
+          />
           <div class="input-group-append">
-            <button class="material-icons btn btn-outline-secondary" type="button">search</button>
+            <button
+              class="material-icons btn btn-outline-secondary"
+              type="button"
+            >
+              search
+            </button>
           </div>
         </div>
       </div>
@@ -14,10 +24,22 @@
 </section>
 <section>
   <div class="champ-container">
-    <article class="champ" *ngFor="let champion of champions | keyvalue | filter:championSearch" >
-      <img class="championImage" [src]="'https://ddragon.leagueoflegends.com/cdn/' + dataDragonVersion + '/img/champion/'+champion.value.image.full" (click)="clickedChampion(champion)" >
-      <div class="mat-title" >
-        {{champion.value.name}}
+    <article
+      class="champ"
+      *ngFor="let champion of champions | keyvalue | filter: championSearch"
+    >
+      <img
+        class="championImage"
+        [src]="
+          'https://ddragon.leagueoflegends.com/cdn/' +
+          dataDragonVersion +
+          '/img/champion/' +
+          champion.value.image.full
+        "
+        (click)="clickedChampion(champion)"
+      />
+      <div class="mat-title">
+        {{ champion.value.name }}
       </div>
     </article>
   </div>

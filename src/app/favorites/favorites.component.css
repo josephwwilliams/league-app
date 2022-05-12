@@ -5,16 +5,16 @@
   width: 90vw;
   max-width: 1080px;
   margin: 0 auto;
-  box-shadow: -6px 23px 44px 0px rgba(0,0,0,0.1);
+  box-shadow: -6px 23px 44px 0px rgba(0, 0, 0, 0.1);
   padding: 1.5em 2.5em;
   border-radius: 30px;
   background-color: white;
 }
-.championImage{
+.championImage {
   width: 100%;
   border-radius: 100px;
   /* border: 1px solid black; */
-  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 .championImage:hover {
   opacity: 0.9;
@@ -26,30 +26,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: .5em .25em;
+  padding: 0.5em 0.25em;
 }
 .img-wrp {
   display: inline-block;
   position: relative;
 }
-.remove{
+.remove {
   position: absolute;
   top: 0;
   right: 0;
   z-index: 1000;
 }
-.remove:hover{
-  opacity: .9;
+.remove:hover {
+  opacity: 0.9;
   transform: scale(1.1);
   transition: all 300ms ease;
 }
-.row{
-  text-align:center;
-  margin:0 auto;
+.row {
+  text-align: center;
+  margin: 0 auto;
   max-width: fit-content;
   padding-bottom: 5px;
 }
-.frown{
+.frown {
   font-size: larger;
 }
 
@@ -57,13 +57,13 @@
   .champ {
     width: 75px;
   }
-  .mat-title{
+  .mat-title {
     display: none;
   }
-  .input{
+  .input {
     padding-top: 60px;
   }
 }
-.btn{
+.btn {
   background-color: white !important;
 }
