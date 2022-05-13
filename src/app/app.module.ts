@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ChampionsComponent } from './champions/champions.component';
@@ -17,6 +17,7 @@ import { ChampionDialogComponent } from './champions/champion-details/champion-d
 import { CooldownPipe } from './pipes/cooldown.pipe';
 import { PlayerStatsComponent } from './user-stats/player-stats/player-stats.component';
 import { AuthComponent } from './auth/auth.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,13 @@ import { AuthComponent } from './auth/auth.component';
     BrowserAnimationsModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

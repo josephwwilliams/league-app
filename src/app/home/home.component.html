@@ -1,6 +1,6 @@
 <div class="container">
   <mat-tab-group color="warn">
-    <mat-tab label="Welcome!">
+    <mat-tab label="Login / Sign Up">
       <app-auth></app-auth>
     </mat-tab>
     <mat-tab
@@ -172,7 +172,7 @@
 
     <!-- ====================================================================================================================================================== -->
 
-    <mat-tab label="Favorties" *ngIf="loggedIn">
+    <mat-tab label="Favorites" *ngIf="loggedIn">
       <div class="container" style="width: fit-content; box-shadow: none">
         <div class="row" *ngFor="let champion of favoriteChampions">
           <div class="col-md-4" style="margin: 10px">

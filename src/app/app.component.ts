@@ -13,15 +13,16 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'league-app';
   loggedIn = false;
   opened = false;
-  constructor(
-    private champService: ChampsService,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
   ngOnInit(): void {
+    this.authService.autoLogin();
     this.userSub = this.authService.user.subscribe((user) => {
       this.loggedIn = !!user;
     });
-    this.loggedIn = this.champService.loggedIn;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   ngOnDestroy(): void {

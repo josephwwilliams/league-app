@@ -8,8 +8,8 @@
   <div *ngIf="!oldUser" class="mat-title">Welcome to League Stat Checker!</div>
 </section>
 <section *ngIf="!loggedIn" style="margin-top: 60px">
-  <div class="spinner-container">
-    <mat-spinner color="warn" *ngIf="isLoading"></mat-spinner>
+  <div class="spinner-container" *ngIf="isLoading">
+    <mat-spinner color="warn"></mat-spinner>
   </div>
   <div class="spinner-container" *ngIf="error">
     <div class="alert alert-danger">
@@ -22,20 +22,29 @@
     (ngSubmit)="onSubmit(authForm)"
     *ngIf="!isLoading"
   >
-    <!-- <p *ngIf="!isLoginMode">
-      <mat-form-field appearance="standard" style="width: 175px;">
+    <p *ngIf="!isLoginMode">
+      <mat-form-field appearance="standard" style="width: 175px">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Billy Bob123" type="username" id="username" ngModel name="username" required>
+        <input
+          matInput
+          placeholder="Billy Bob123"
+          type="username"
+          id="username"
+          ngModel
+          name="username"
+        />
         <mat-icon matSuffix>person</mat-icon>
         <mat-hint>Summoner Name</mat-hint>
       </mat-form-field>
-    </p> -->
-    <div class="mat-title">Welcome!</div>
-    <div class="row">
-      <i>Already a user? Login!</i>
-    </div>
-    <div class="row">
-      <i>If not click Sign Up</i>
+    </p>
+    <div *ngIf="isLoginMode">
+      <div class="mat-title">Welcome!</div>
+      <div class="row">
+        <i>Already a user? Login!</i>
+      </div>
+      <div class="row">
+        <i>If not click Sign Up</i>
+      </div>
     </div>
     <p>
       <mat-form-field appearance="standard">
@@ -71,16 +80,23 @@
         <mat-hint *ngIf="!isLoginMode">Must be at least 6 characters</mat-hint>
       </mat-form-field>
     </p>
-    <!-- <p *ngIf="!isLoginMode">
+    <p *ngIf="!isLoginMode">
       <mat-form-field appearance="fill">
-        <mat-label>Region</mat-label >
-        <mat-select [(ngModel)]="selectedValue" name="region" type="region" id="region" ngModel name="region" required>
+        <mat-label>Region</mat-label>
+        <mat-select
+          [(ngModel)]="selectedValue"
+          name="region"
+          type="region"
+          id="region"
+          ngModel
+          name="region"
+        >
           <mat-option *ngFor="let region of regions" [value]="region.value">
-            {{region.viewValue}}
+            {{ region.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </p> -->
+    </p>
     <div class="row" style="align-items: center">
       <div class="col-md-12">
         <button

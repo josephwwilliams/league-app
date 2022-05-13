@@ -225,7 +225,7 @@
                           />
                           <img
                             *ngIf="players.championName !== 'FiddleSticks'"
-                            class="championImage"
+                            class="championImageSmall"
                             [src]="
                               'https://ddragon.leagueoflegends.com/cdn/' +
                               dataDragonVersion +
@@ -249,27 +249,27 @@
                             Defeat
                           </div>
                         </div>
-                        <div class="col-md-5" style="text-align: left">
+                        <div
+                          class="col-md-5"
+                          style="text-align: left; width: 160px"
+                        >
                           KDA: {{ players.kills }} / {{ players.deaths }} /
                           {{ players.assists }}
                         </div>
                         <div
                           class="col-md-4 teamPosition"
-                          style="text-align: center"
                           *ngIf="players.teamPosition === 'UTILITY'"
                         >
                           SUPPORT
                         </div>
                         <div
                           class="col-md-4 teamPosition"
-                          style="text-align: center"
                           *ngIf="players.teamPosition === ''"
                         >
                           ARAM
                         </div>
                         <div
                           class="col-md-4 teamPosition"
-                          style="text-align: center"
                           *ngIf="players.teamPosition !== 'UTILITY'"
                         >
                           {{ players.teamPosition }}

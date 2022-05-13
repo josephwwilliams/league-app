@@ -22,3 +22,8 @@ button {
   border: none;
   background-color: #ffffff;
 }
+.navButtons {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}

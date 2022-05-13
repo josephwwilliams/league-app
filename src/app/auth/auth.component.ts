@@ -10,6 +10,8 @@ import { AuthResponseData, AuthService } from './auth.service';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit, OnDestroy {
+  user;
+
   private userSub: Subscription;
   oldUser = false;
 
@@ -26,6 +28,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.oldUser = this.authService.oldUser;
     this.selectedValue = this.champService.region;
     this.regions = this.champService.regions;
 
@@ -66,8 +69,12 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   newOrOld() {
     if (this.isLoginMode) {
+      this.authService.oldUser = true;
       this.oldUser = true;
-    } else this.oldUser = false;
+    } else {
+      this.authService.oldUser = false;
+      this.oldUser = false;
+    }
   }
 
   ngOnDestroy(): void {

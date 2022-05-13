@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { ChampionDetailsComponent } from './champions/champion-details/champion-details.component';
 import { ChampionsComponent } from './champions/champions.component';
 import { FavoritesComponent } from './favorites/favorites.component';
@@ -10,10 +11,26 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'stats', component: UserStatsComponent },
-  { path: 'stats', component: UserStatsComponent },
-  { path: 'champions', component: ChampionsComponent },
-  { path: 'favorites', component: FavoritesComponent },
-  { path: 'champions/details/:id', component: ChampionDetailsComponent },
+  {
+    path: 'champions',
+    component: ChampionsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'favorites',
+    component: FavoritesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'champions/details',
+    component: ChampionDetailsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'champions/details/:id',
+    component: ChampionDetailsComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgb(102, 102, 102);
+  box-shadow: -6px 23px 44px 0px rgba(0, 0, 0, 0.9);
 }
 .card {
   margin-bottom: auto;
@@ -19,6 +20,8 @@
   max-width: 20rem;
   background-color: #faaca8;
   background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+  box-shadow: -6px 23px 44px 0px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgb(77, 77, 77);
 }
 .row {
   padding: 20px;
@@ -29,6 +32,7 @@
 }
 .subheadingName {
   width: fit-content;
+  margin: auto;
 }
 .loadingArt {
   width: 20rem;
@@ -45,6 +49,7 @@
   display: block;
   margin: 0 auto;
   border-radius: 15px;
+  box-shadow: -6px 23px 44px 0px rgba(0, 0, 0, 0.6);
 }
 .abilities:hover {
   opacity: 0.9;

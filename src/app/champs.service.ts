@@ -8,8 +8,6 @@ import { exhaustMap, take } from 'rxjs/operators/';
   providedIn: 'root',
 })
 export class ChampsService implements OnInit {
-  loggedIn = false;
-
   name = '';
   champions = [];
   selectedChampion = {};
@@ -192,8 +190,7 @@ export class ChampsService implements OnInit {
         return this.http.put(
           'https://league-stat-checker-default-rtdb.firebaseio.com/' +
             userEmail +
-            'favorites.json?auth=' +
-            user.token,
+            'favorites.json',
           this.favoriteChampions
         );
       })
@@ -208,8 +205,7 @@ export class ChampsService implements OnInit {
         return this.http.get(
           'https://league-stat-checker-default-rtdb.firebaseio.com/' +
             userEmail +
-            'favorites.json?auth=' +
-            user.token
+            'favorites.json'
         );
       })
     );
