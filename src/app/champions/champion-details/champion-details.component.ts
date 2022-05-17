@@ -9,6 +9,8 @@ import { ChampionDialogComponent } from './champion-dialog/champion-dialog.compo
   styleUrls: ['./champion-details.component.css'],
 })
 export class ChampionDetailsComponent implements OnInit {
+  seeSplash = false;
+  added = false;
   selectedChampion;
   champDetails: any = [];
   dataDragonVersion: string;
@@ -32,6 +34,7 @@ export class ChampionDetailsComponent implements OnInit {
   sendToFavorites() {
     this.champService.favoriteClick(this.champDetails[0]);
     this.champService.addChampionsToFireBase().subscribe();
+    this.added = true;
   }
 
   ngOnInit(): void {

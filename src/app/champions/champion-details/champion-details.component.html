@@ -11,7 +11,26 @@
         '.jpg)'
     }"
   >
-    <div class="d-lg-flex justify-content-center">
+    <div class="img-wrp" *ngIf="!seeSplash">
+      <button
+        mat-mini-fab
+        color="white"
+        class="goBack"
+        routerLink="/champions"
+        matTooltip="Go Back"
+      >
+        <span class="material-icons"> first_page </span>
+      </button>
+      <!-- <button
+        mat-mini-fab
+        color="white"
+        class="viewSplash"
+        matTooltip="View Splash"
+      >
+        <span class="material-icons"> visibility </span>
+      </button> -->
+    </div>
+    <div class="d-lg-flex justify-content-center" *ngIf="!seeSplash">
       <div class="card">
         <img
           class="img-fluid loadingArt"
@@ -28,7 +47,8 @@
         <div class="card-body">
           <h1 class="card-title">{{ champion.name }} {{ champion.title }}</h1>
           <button color="white" mat-raised-button (click)="sendToFavorites()">
-            Add to Favorites
+            {{ added ? "Added to Favorites!" : "Add to Favorites" }}
+            <span *ngIf="added" class="material-icons"> done </span>
           </button>
         </div>
       </div>
@@ -125,7 +145,22 @@
       </div>
     </div>
     <div class="sliderContainer">
-      <button mat-mini-fab color="white" class="slideButton" (click)="goLeft()">
+      <button
+        *ngIf="dialSpecs.value !== dialSpecs.min"
+        mat-mini-fab
+        color="white"
+        class="slideButton"
+        (click)="goLeft()"
+      >
+        <span class="material-icons">chevron_left</span>
+      </button>
+      <button
+        *ngIf="dialSpecs.value === dialSpecs.min"
+        mat-mini-fab
+        color="warn"
+        class="slideButton"
+        (click)="goLeft()"
+      >
         <span class="material-icons">chevron_left</span>
       </button>
       <mat-slider
@@ -142,8 +177,18 @@
       >
       </mat-slider>
       <button
+        *ngIf="dialSpecs.value !== dialSpecs.max"
         mat-mini-fab
         color="white"
+        class="slideButton"
+        (click)="goRight()"
+      >
+        <span class="material-icons">navigate_next</span>
+      </button>
+      <button
+        *ngIf="dialSpecs.value === dialSpecs.max"
+        mat-mini-fab
+        color="warn"
         class="slideButton"
         (click)="goRight()"
       >
@@ -152,9 +197,26 @@
     </div>
     <div class="mat-subheading-2 skinName" *ngIf="dialSpecs.value === 0">
       {{ champion.name }}
+      <button
+        matTooltip="See Splash"
+        mat-mini-fab
+        color="white"
+        [ngStyle]="{ transform: 'scale(0.6)' }"
+        (click)="seeSplash = !seeSplash"
+      >
+        <span class="material-icons"> visibility </span>
+      </button>
     </div>
     <div class="mat-subheading-2 skinName" *ngIf="dialSpecs.value !== 0">
       {{ champion.skins[dialSpecs.value].name }}
+      <button
+        mat-mini-fab
+        color="white"
+        [ngStyle]="{ transform: 'scale(0.6)' }"
+        (click)="seeSplash = !seeSplash"
+      >
+        <span class="material-icons"> visibility </span>
+      </button>
     </div>
   </div>
 </section>

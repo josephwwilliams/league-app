@@ -4,6 +4,7 @@
   width: 90vw;
   border-radius: 30px;
   padding: 25px;
+  min-height: 850px;
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgb(102, 102, 102);
@@ -89,4 +90,21 @@
 :host ::ng-deep .example-margin .mat-slider-track-fill {
   background-color: #faaca8;
   background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+}
+
+.goBack {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  z-index: 1000;
+}
+.viewSplash {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1000;
+}
+.img-wrp {
+  display: inline-block;
+  position: relative;
 }

@@ -1,19 +1,21 @@
 .abilities {
   display: block;
   margin: 0 auto;
-  border: 1px solid rgb(255, 255, 255);
-  border-radius: 5px;
   margin-bottom: 10px;
+  border-radius: 15px;
+  box-shadow: -6px 23px 44px 0px rgba(0, 0, 0, 0.6);
 }
 .mat-dialog-title {
   text-align: center;
 }
 .championName {
-  color: rgb(241, 218, 82);
+  color: rgb(255, 217, 0);
+  text-shadow: -1px -1px 0 rgb(158, 158, 158), 1px -1px 0 rgb(158, 158, 158),
+    -1px 1px 0 rgb(158, 158, 158), 1px 1px 0 rgb(158, 158, 158);
 }
 .passiveName,
 .spellName {
-  color: white;
+  color: rgb(0, 0, 0);
 }
 section {
   width: fit-content;

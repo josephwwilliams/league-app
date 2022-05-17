@@ -1,1 +1,33 @@
-<p style="color: white">player-stats works</p>
+<ng-container [ngSwitch]="true">
+  <div *ngSwitchCase="data.player.individualPosition === null">Unranked</div>
+  <div *ngSwitchCase="data.player.individualPosition === 'TOP'">
+    <img class="" src="/assets/images/roles/TOP.png" alt="" />
+  </div>
+  <div *ngSwitchCase="data.player.individualPosition === 'JUNGLE'">
+    <img class="" src="/assets/images/roles/JUNGLE.png" alt="" />
+  </div>
+  <div *ngSwitchCase="data.player.individualPosition === 'MIDDLE'">
+    <img class="" src="/assets/images/roles/MIDDLE.png" alt="" />
+  </div>
+  <div *ngSwitchCase="data.player.individualPosition === 'BOTTOM'">
+    <img class="" src="/assets/images/roles/ADC.png" alt="" />
+  </div>
+  <div *ngSwitchCase="data.player.individualPosition === 'UTILITY'">
+    <img class="" src="/assets/images/roles/SUPPORT.png" alt="" />
+  </div>
+  <div *ngSwitchDefault>Unranked</div>
+  <div class="row">
+    <mat-card-title>{{ data.player.individualPosition }}</mat-card-title>
+  </div>
+</ng-container>
+<img
+  *ngIf="data.player.championName !== 'FiddleSticks'"
+  class="championImage img-fluid"
+  [src]="
+    'https://ddragon.leagueoflegends.com/cdn/' +
+    dataDragonVersion +
+    '/img/champion/' +
+    data.player.championName +
+    '.png'
+  "
+/>

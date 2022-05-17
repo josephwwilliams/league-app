@@ -1,0 +1,110 @@
+<div class="container">
+  <!-- <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Update Summoner Name</mat-label>
+      <input
+        [disabled]="!editMode"
+        matInput
+        #message
+        maxlength="16"
+        minlength="3"
+        placeholder="Summoner Name"
+        [value]="username.username"
+      />
+      <mat-hint align="start"
+        ><strong>Must be at least 3 characters</strong>
+      </mat-hint>
+      <mat-hint align="end">{{ message.value.length }} / 16</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input [disabled]="true" matInput [value]="email" />
+    </mat-form-field>
+    <button
+      (click)="editMode = !editMode"
+      mat-mini-fab
+      color="warn"
+      style="margin: 10px"
+      matTooltip="Edit"
+    >
+      <span class="material-icons"> edit </span>
+    </button>
+  </form> -->
+  <form
+    style="text-align: center; overflow: hidden"
+    #authForm="ngForm"
+    (ngSubmit)="onSubmit(authForm)"
+  >
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Summoner Name</mat-label>
+        <input
+          matInput
+          placeholder="Billy Bob123"
+          #summonerName
+          type="username"
+          id="username"
+          ngModel
+          name="username"
+          minlength="3"
+          [value]="username.username"
+          required
+        />
+        <mat-hint align="start"
+          ><strong>Must be at least 3 characters</strong>
+        </mat-hint>
+        <mat-hint align="end">{{ summonerName.value.length }} / 16</mat-hint>
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>{{ email }}</mat-label>
+        <input
+          disabled="true"
+          matInput
+          [placeholder]="email"
+          type="email"
+          id="email"
+          ngModel
+          name="email"
+          email
+        />
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint align="start">Email</mat-hint>
+      </mat-form-field>
+    </p>
+    <div class="row">
+      <div class="col-mid-12">
+        <mat-slide-toggle ngModel name="enableAS"
+          >Enable auto-search</mat-slide-toggle
+        >
+      </div>
+    </div>
+    <div class="row" style="align-items: center">
+      <div class="col-md-12">
+        <button
+          style="margin: 10px"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!authForm.dirty"
+        >
+          Save Changes
+        </button>
+        <button
+          style="margin: 10px"
+          mat-raised-button
+          color="warn"
+          type="button"
+          (click)="summonerName.value = username.username"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  </form>
+  <!-- <button (click)="changeUsername()">changeUsername</button>
+  <button (click)="getUsername()">get username</button>
+  <input type="text" [(ngModel)]="username.username" /> -->
+</div>

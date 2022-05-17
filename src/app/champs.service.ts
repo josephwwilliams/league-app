@@ -17,7 +17,7 @@ export class ChampsService implements OnInit {
   region = 'NA1';
   massRegion = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = 'api_key=RGAPI-09ba9c1e-ea96-411f-b17e-1c78d2a0d14a';
+  apiKeyRoot = 'api_key=RGAPI-a13be7a7-3119-41de-b796-addb636f1ddc';
 
   regions = [
     { value: 'NA1', viewValue: 'NA' },
@@ -192,6 +192,35 @@ export class ChampsService implements OnInit {
             userEmail +
             'favorites.json',
           this.favoriteChampions
+        );
+      })
+    );
+  }
+
+  addUsernameToFireBase(username: object) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          'https://league-stat-checker-default-rtdb.firebaseio.com/' +
+            userEmail +
+            'username.json',
+          username
+        );
+      })
+    );
+  }
+
+  fetchUsernameFromFireBase() {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.get(
+          'https://league-stat-checker-default-rtdb.firebaseio.com/' +
+            userEmail +
+            'username.json'
         );
       })
     );

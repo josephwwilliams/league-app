@@ -5,6 +5,7 @@ import { ChampionDetailsComponent } from './champions/champion-details/champion-
 import { ChampionsComponent } from './champions/champions.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { HomeComponent } from './home/home.component';
+import { UserSettingsComponent } from './user-stats/user-settings/user-settings.component';
 import { UserStatsComponent } from './user-stats/user-stats.component';
 
 const appRoutes: Routes = [
@@ -19,6 +20,11 @@ const appRoutes: Routes = [
   {
     path: 'favorites',
     component: FavoritesComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'settings',
+    component: UserSettingsComponent,
     canActivate: [AuthGuard],
   },
   {

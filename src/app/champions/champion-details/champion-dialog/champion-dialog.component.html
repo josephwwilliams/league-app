@@ -27,14 +27,14 @@
       </div>
     </div>
     <div class="div col-md-7" *ngIf="data.info.cooldown !== undefined">
-      <h1 class="mat-subheading-1" style="color: white">
+      <h1 class="mat-subheading-1" style="color: rgb(0, 0, 0)">
         Cooldown: {{ data.info.cooldown | cooldown }} seconds
       </h1>
-      <h1 class="mat-subheading-1" style="color: white">
+      <h1 class="mat-subheading-1" style="color: rgb(0, 0, 0)">
         Cost: {{ data.info.cost | cooldown }} per level
       </h1>
     </div>
-    <hr style="color: white" />
+    <hr style="color: rgb(0, 0, 0)" />
   </div>
   <div
     class="row"
@@ -111,19 +111,19 @@
         </h1>
       </div>
     </div>
-    <hr style="color: white" />
+    <hr style="color: rgb(0, 0, 0)" />
   </div>
   <div
     mat-dialog-content
     [innerHTML]="data.info.description"
     *ngIf="data.info.description !== undefined"
-    style="color: white"
+    style="color: rgb(0, 0, 0)"
   ></div>
   <div
     mat-dialog-content
     [innerHTML]="data.info.lore"
     *ngIf="data.info.description === undefined"
-    style="color: white"
+    style="color: rgb(0, 0, 0)"
   ></div>
   <div mat-dialog-actions>
     <button color="white" mat-mini-fab mat-dialog-close>

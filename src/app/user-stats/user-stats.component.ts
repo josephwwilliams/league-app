@@ -110,9 +110,10 @@ export class UserStatsComponent implements OnInit {
     } else alert('Please Wait');
   }
 
-  checkPlayerStatsInGame(player: { totalDamageDealtToChampions: any }) {
+  checkPlayerStatsInGame(player) {
     // console.log(player.totalDamageDealtToChampions);
-    this.dialog.open(PlayerStatsComponent);
+    console.log(player);
+    this.dialog.open(PlayerStatsComponent, { data: { player } });
   }
 
   playerClick(playerName: string) {

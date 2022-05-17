@@ -18,6 +18,7 @@ import { CooldownPipe } from './pipes/cooldown.pipe';
 import { PlayerStatsComponent } from './user-stats/player-stats/player-stats.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { UserSettingsComponent } from './user-stats/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     CooldownPipe,
     PlayerStatsComponent,
     AuthComponent,
+    UserSettingsComponent,
   ],
   entryComponents: [ChampionDialogComponent, PlayerStatsComponent],
   imports: [
