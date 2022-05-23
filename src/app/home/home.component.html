@@ -3,6 +3,7 @@
     <mat-tab label="Login / Sign Up">
       <app-auth></app-auth>
     </mat-tab>
+
     <mat-tab
       label="{{ selectedValue }} Leaderboards"
       *ngIf="newNames.length === 10 && loggedIn === true"
@@ -115,7 +116,7 @@
 
     <!-- ====================================================================================================================================================== -->
 
-    <mat-tab label="Runes" *ngIf="loggedIn">
+    <!-- <mat-tab label="Runes" *ngIf="loggedIn">
       <h1>Coming Soon!</h1>
       <div *ngFor="let rune of data2; let i = index">
         <div>{{ rune.key }}</div>
@@ -124,7 +125,7 @@
           alt=""
         />
       </div>
-    </mat-tab>
+    </mat-tab> -->
 
     <!-- =============================================================If user doesn't have an account============================================================= -->
 
@@ -136,9 +137,11 @@
     </mat-tab>
 
     <!-- ====================================================================================================================================================== -->
-    <mat-tab label="Items" *ngIf="loggedIn">
+    <!-- <mat-tab label="Items" *ngIf="loggedIn">
       <h1>Coming Soon!</h1>
-      <button mat-raised-button (click)="log()">Click for sneak peak</button>
+      <button mat-raised-button (click)="log()" (click)="log2()">
+        Click for sneak peak
+      </button>
       <div *ngFor="let item of data | keyvalue">
         <div
           *ngIf="item.value.inStore !== false"
@@ -159,7 +162,7 @@
           {{ item.value.gold.total }}
         </div>
       </div>
-    </mat-tab>
+    </mat-tab> -->
 
     <!-- =============================================================If user doesn't have an account============================================================= -->
 

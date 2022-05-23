@@ -13,8 +13,11 @@ export class UserSettingsComponent implements OnInit {
     private champService: ChampsService,
     private authService: AuthService
   ) {}
-
-  isChecked = true;
+  version: string;
+  dataDragonVersions = [];
+  changed: boolean = false;
+  autoSearch: boolean = true;
+  haveAnimations = true;
   editMode = false;
   email: string;
   username = {
@@ -22,36 +25,57 @@ export class UserSettingsComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.getUsername();
+    this.version = this.champService.dataDragonVersion;
+    this.getUserData();
+    this.champService.getDDVersion().subscribe((res) => {
+      this.dataDragonVersions = res;
+    });
+    // this.haveAnimations = this.champService.animations;
   }
   changeUsername() {
-    console.log(this.username);
-    this.champService.addUsernameToFireBase(this.username).subscribe();
+    this.champService.editUserDataOnFireBase(this.username).subscribe();
   }
-  getUsername() {
-    this.champService.fetchUsernameFromFireBase().subscribe((res: any) => {
-      if (res !== null) {
-        this.username = res;
-        console.log(res);
-        console.log(this.username);
-      } else {
-        this.username = {
-          username: '',
-        };
-      }
+  // getUsername() {
+  //   this.champService.fetchUsernameDataFromFireBase().subscribe((res: any) => {
+  //     console.log(res);
+  //     if (res !== null) {
+  //       this.username = res;
+  //     } else {
+  //       this.username = {
+  //         username: '',
+  //       };
+  //     }
+  //   });
+  // }
+
+  getUserData() {
+    this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
+      console.log(res);
+      this.username = res.username[0];
+      this.email = res.email;
+      this.champService.animations = res.animations;
+      console.log(res.animations);
+      // this.champService.animations =
     });
-    this.authService.user.subscribe((res) => (this.email = res.email));
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
-    this.username.username = form.value.username;
-    this.changeUsername();
-    if (form.value.enableAS !== true) {
-      this.champService.name = '';
+    this.changed = true;
+    setTimeout(() => {
+      this.changed = false;
+    }, 2000);
+    console.log(form.value.username);
+    this.champService.dataDragonVersion = form.value.version;
+    this.username = form.value.username;
+    console.log(form.value.username);
+    if (form.value.enableAnimations !== true) {
+      this.haveAnimations = false;
+      this.champService.animations = false;
       return;
     } else {
-      this.champService.name = form.value.username;
+      this.haveAnimations = true;
+      this.champService.animations = true;
     }
+    this.changeUsername();
   }
 }

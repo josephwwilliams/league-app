@@ -106,7 +106,7 @@ export class UserStatsComponent implements OnInit {
             this.showSpinner = false;
           }
         );
-      this.champService.name = this.name;
+      // this.champService.name = this.name;
     } else alert('Please Wait');
   }
 

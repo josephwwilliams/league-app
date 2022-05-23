@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { ChampsService } from 'src/app/champs.service';
 import { ChampionDialogComponent } from './champion-dialog/champion-dialog.component';
 
@@ -15,7 +16,11 @@ export class ChampionDetailsComponent implements OnInit {
   champDetails: any = [];
   dataDragonVersion: string;
   showSpinner = false;
-  constructor(private champService: ChampsService, private dialog: MatDialog) {}
+  constructor(
+    private champService: ChampsService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute
+  ) {}
 
   dialSpecs = {
     autoTicks: false,
@@ -40,12 +45,15 @@ export class ChampionDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.showSpinner = true;
     this.dataDragonVersion = this.champService.dataDragonVersion;
-    this.selectedChampion = this.champService.selectedChampion;
+    // this.selectedChampion = this.champService.selectedChampion;
+    this.selectedChampion = this.route.snapshot.params['id'];
+
     this.champService
-      .getChampionData(this.selectedChampion.id, this.dataDragonVersion)
+      .getChampionData(this.selectedChampion, this.dataDragonVersion)
       .subscribe((res) => {
+        console.log(res);
         this.dialSpecs.value = 0;
-        this.champDetails.push(res.data[this.selectedChampion.id]);
+        this.champDetails.push(res.data[this.selectedChampion]);
         this.dialSpecs.max = this.champDetails[0].skins.length - 1;
         this.showSpinner = false;
       });

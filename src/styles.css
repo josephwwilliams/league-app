@@ -33,3 +33,7 @@ mat-sidenav-content {
     background-position: top left;
   }
 }
+main {
+  /* text-align: center; */
+  position: relative;
+}

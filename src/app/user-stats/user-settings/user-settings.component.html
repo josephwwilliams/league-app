@@ -35,8 +35,8 @@
     #authForm="ngForm"
     (ngSubmit)="onSubmit(authForm)"
   >
-    <p>
-      <mat-form-field appearance="standard">
+    <p style="margin: 20px">
+      <mat-form-field appearance="outline">
         <mat-label>Summoner Name</mat-label>
         <input
           matInput
@@ -47,7 +47,7 @@
           ngModel
           name="username"
           minlength="3"
-          [value]="username.username"
+          [(ngModel)]="username"
           required
         />
         <mat-hint align="start"
@@ -57,8 +57,8 @@
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
     </p>
-    <p>
-      <mat-form-field appearance="standard">
+    <p style="margin: 20px">
+      <mat-form-field appearance="outline">
         <mat-label>{{ email }}</mat-label>
         <input
           disabled="true"
@@ -74,30 +74,58 @@
         <mat-hint align="start">Email</mat-hint>
       </mat-form-field>
     </p>
-    <div class="row">
+    <div class="row" style="margin: 20px">
       <div class="col-mid-12">
-        <mat-slide-toggle ngModel name="enableAS"
-          >Enable auto-search</mat-slide-toggle
+        <mat-slide-toggle
+          color="warn"
+          [(ngModel)]="haveAnimations"
+          name="enableAnimations"
+          >{{
+            haveAnimations ? "Animations Enabled" : "Animations Disabled"
+          }}</mat-slide-toggle
         >
       </div>
     </div>
-    <div class="row" style="align-items: center">
+    <div class="row" style="margin: 20px">
+      <div class="col-mid-12">
+        <mat-slide-toggle
+          color="warn"
+          [(ngModel)]="autoSearch"
+          name="enableAutoSearch"
+          >{{
+            autoSearch ? "Auto Search Enabled" : "Auto Search Disabled"
+          }}</mat-slide-toggle
+        >
+      </div>
+    </div>
+    <mat-form-field appearance="fill" style="margin: 20px">
+      <mat-label>League Version</mat-label>
+      <mat-select [(ngModel)]="version" name="version">
+        <mat-option
+          *ngFor="let version of dataDragonVersions"
+          [value]="version"
+        >
+          {{ version }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="row" style="align-items: center; margin: 20px">
       <div class="col-md-12">
         <button
           style="margin: 10px"
           mat-raised-button
           color="primary"
           type="submit"
-          [disabled]="!authForm.dirty"
+          [disabled]="!authForm.dirty || !authForm.valid"
         >
-          Save Changes
+          {{ changed ? "Changes Saved" : "Save Changes" }}
         </button>
         <button
           style="margin: 10px"
           mat-raised-button
           color="warn"
           type="button"
-          (click)="summonerName.value = username.username"
+          (click)="summonerName.value = username"
         >
           Reset
         </button>

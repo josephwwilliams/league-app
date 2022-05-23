@@ -112,7 +112,9 @@
       >
         <span class="material-icons"> menu </span>
       </button>
-      <router-outlet></router-outlet>
+      <main [@routeAnimations]="prepareRoute(outlet)">
+        <router-outlet #outlet="outlet"></router-outlet>
+      </main>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </section>

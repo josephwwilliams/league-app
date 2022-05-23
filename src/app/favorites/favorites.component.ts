@@ -17,19 +17,19 @@ export class FavoritesComponent implements OnInit {
   ngOnInit(): void {
     this.showSpinner = true;
     this.champService.fetchChampionsFromFireBase().subscribe((res: any) => {
+      console.log(res);
       this.showSpinner = true;
-      if (res === null) {
+      if (res === null || res[0] === 0) {
         this.champions = [];
         this.showSpinner = false;
         return;
       }
+      console.log(res);
       this.champService.favoriteChampions = res;
       this.dataDragonVersion = this.champService.dataDragonVersion;
       this.champions = this.champService.favoriteChampions;
       this.showSpinner = false;
     });
-    // this.dataDragonVersion = this.champService.dataDragonVersion;
-    // this.champions = this.champService.favoriteChampions;
   }
 
   clickedChampion(favoriteChampion) {

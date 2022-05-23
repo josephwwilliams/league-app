@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -30,7 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private champService: ChampsService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
   ) {}
   ngOnInit(): void {
     // this.champService.getDDVersion().subscribe(
@@ -42,9 +44,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe((user) => {
       this.loggedIn = !!user;
       if (this.loggedIn) {
+        // this.champService
+        //   .fetchUserDataFromFireBase()
+        //   .subscribe((res: any) => console.log(res.region));
         this.champService.fetchChampionsFromFireBase().subscribe((res: any) => {
-          this.champService.favoriteChampions = res;
-          this.favoriteChampions = res;
+          if (res === null || res[0] === 0) {
+            this.champService.favoriteChampions = [];
+            this.favoriteChampions = [];
+          } else {
+            this.champService.favoriteChampions = res;
+            this.favoriteChampions = res;
+          }
         });
       }
     });
@@ -102,5 +112,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSub.unsubscribe();
+  }
+
+  getData() {
+    return this.http.get<any>(
+      'https://na1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/ivpVjtN7hydy1MScdnNpme0ECM-vfpIdTB_jMJf0BpO9AZRy?api_key=RGAPI-c87cccca-e7c4-41f7-98d8-9f98cb91ea8d'
+    );
+  }
+
+  log2() {
+    this.getData().subscribe((res) => {
+      console.log('hi');
+      console.log(res);
+    });
   }
 }

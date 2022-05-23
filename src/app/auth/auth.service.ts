@@ -4,6 +4,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { User } from './user.model';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 export interface AuthResponseData {
   kind: string;
@@ -19,6 +20,7 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
+  form: NgForm;
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 

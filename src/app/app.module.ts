@@ -19,6 +19,7 @@ import { PlayerStatsComponent } from './user-stats/player-stats/player-stats.com
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { UserSettingsComponent } from './user-stats/user-settings/user-settings.component';
+import { FavoritesFilterPipe } from './pipes/favorites-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UserSettingsComponent } from './user-stats/user-settings/user-settings.
     PlayerStatsComponent,
     AuthComponent,
     UserSettingsComponent,
+    FavoritesFilterPipe,
   ],
   entryComponents: [ChampionDialogComponent, PlayerStatsComponent],
   imports: [

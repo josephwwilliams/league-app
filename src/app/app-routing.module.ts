@@ -9,33 +9,46 @@ import { UserSettingsComponent } from './user-stats/user-settings/user-settings.
 import { UserStatsComponent } from './user-stats/user-stats.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'stats', component: UserStatsComponent },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+  },
+  { path: 'home', component: HomeComponent, data: { animation: 'home' } },
+  {
+    path: 'stats',
+    component: UserStatsComponent,
+    data: { animation: 'stats' },
+  },
   {
     path: 'champions',
     component: ChampionsComponent,
     canActivate: [AuthGuard],
+    data: { animation: 'champions' },
   },
   {
     path: 'favorites',
     component: FavoritesComponent,
     canActivate: [AuthGuard],
+    data: { animation: 'favorites' },
   },
   {
     path: 'settings',
     component: UserSettingsComponent,
     canActivate: [AuthGuard],
+    data: { animation: 'settings' },
   },
   {
     path: 'champions/details',
     component: ChampionDetailsComponent,
     canActivate: [AuthGuard],
+    data: { animation: 'champions/details' },
   },
   {
     path: 'champions/details/:id',
     component: ChampionDetailsComponent,
     canActivate: [AuthGuard],
+    data: { animation: 'champions/details/:id' },
   },
 ];
 

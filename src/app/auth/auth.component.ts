@@ -28,6 +28,11 @@ export class AuthComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    let userData = JSON.parse(localStorage.getItem('userData'));
+    if (userData) {
+      this.authService.oldUser = true;
+    } else this.authService.oldUser = false;
+    console.log(userData);
     this.oldUser = this.authService.oldUser;
     this.selectedValue = this.champService.region;
     this.regions = this.champService.regions;
@@ -38,12 +43,13 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
+    this.authService.form = form.value;
+    console.log(form);
     if (!form.valid) {
       return;
     }
     const email = form.value.email;
     const password = form.value.password;
-
     let authObs: Observable<AuthResponseData>;
 
     this.isLoading = true;
@@ -53,10 +59,16 @@ export class AuthComponent implements OnInit, OnDestroy {
     } else {
       authObs = this.authService.signUp(email, password);
     }
-
     authObs.subscribe(
       (res) => {
         this.isLoading = false;
+        if (!this.isLoginMode) {
+          this.champService
+            .addUserToFireBase(this.authService.form)
+            .subscribe((res) => {
+              console.log(res);
+            });
+        }
       },
       (errorMessage) => {
         this.error = errorMessage;
@@ -64,7 +76,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       }
     );
 
-    form.reset();
+    // form.reset();
   }
 
   newOrOld() {

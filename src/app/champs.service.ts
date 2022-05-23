@@ -2,22 +2,24 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { exhaustMap, take } from 'rxjs/operators/';
+import { NgForm } from '@angular/forms';
 // import { keys } from '../environments/keys'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChampsService implements OnInit {
+  animations: boolean = true;
   name = '';
   champions = [];
   selectedChampion = {};
   favoriteChampions = [];
   championDetails;
   dataDragonVersion: string = '12.9.1';
-  region = 'NA1';
-  massRegion = 'AMERICAS';
+  region: string = 'NA1';
+  massRegion: string = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = 'api_key=RGAPI-a34c364a-c677-41fc-83e4-006e7bc009dd';
+  apiKeyRoot = 'api_key=RGAPI-4486e552-19df-48e3-9825-aee5a2cd9bc0';
 
   regions = [
     { value: 'NA1', viewValue: 'NA' },
@@ -181,46 +183,49 @@ export class ChampsService implements OnInit {
       this.massRegion = 'EUROPE';
     }
   }
+  addUserToFireBase(form: any) {
+    // this.name = form.
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userData = {
+          favoriteChampions: [0],
+          email: form.email,
+          region: form.region,
+          username: [form.username],
+          animations: true,
+        };
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://league-stat-checker-default-rtdb.firebaseio.com/users/${userEmail}.json`,
+          userData
+        );
+      })
+    );
+  }
 
+  // addChampionsToFireBase() {
+  //   return this.authService.user.pipe(
+  //     take(1),
+  //     exhaustMap((user) => {
+  //       let userEmail = user.email.replace('@', '').replace('.', '');
+  //       return this.http.put(
+  //         'https://league-stat-checker-default-rtdb.firebaseio.com/' +
+  //           userEmail +
+  //           'favorites.json',
+  //         this.favoriteChampions
+  //       );
+  //     })
+  //   );
+  // }
   addChampionsToFireBase() {
     return this.authService.user.pipe(
       take(1),
       exhaustMap((user) => {
         let userEmail = user.email.replace('@', '').replace('.', '');
         return this.http.put(
-          'https://league-stat-checker-default-rtdb.firebaseio.com/' +
-            userEmail +
-            'favorites.json',
+          `https://league-stat-checker-default-rtdb.firebaseio.com/users/${userEmail}/favoriteChampions.json`,
           this.favoriteChampions
-        );
-      })
-    );
-  }
-
-  addUsernameToFireBase(username: object) {
-    return this.authService.user.pipe(
-      take(1),
-      exhaustMap((user) => {
-        let userEmail = user.email.replace('@', '').replace('.', '');
-        return this.http.put(
-          'https://league-stat-checker-default-rtdb.firebaseio.com/' +
-            userEmail +
-            'username.json',
-          username
-        );
-      })
-    );
-  }
-
-  fetchUsernameFromFireBase() {
-    return this.authService.user.pipe(
-      take(1),
-      exhaustMap((user) => {
-        let userEmail = user.email.replace('@', '').replace('.', '');
-        return this.http.get(
-          'https://league-stat-checker-default-rtdb.firebaseio.com/' +
-            userEmail +
-            'username.json'
         );
       })
     );
@@ -232,9 +237,32 @@ export class ChampsService implements OnInit {
       exhaustMap((user) => {
         let userEmail = user.email.replace('@', '').replace('.', '');
         return this.http.get(
-          'https://league-stat-checker-default-rtdb.firebaseio.com/' +
-            userEmail +
-            'favorites.json'
+          `https://league-stat-checker-default-rtdb.firebaseio.com/users/${userEmail}/favoriteChampions.json`
+        );
+      })
+    );
+  }
+
+  editUserDataOnFireBase(username) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://league-stat-checker-default-rtdb.firebaseio.com/users/${userEmail}/username.json`,
+          [username]
+        );
+      })
+    );
+  }
+
+  fetchUserDataFromFireBase() {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.get(
+          `https://league-stat-checker-default-rtdb.firebaseio.com/users/${userEmail}.json`
         );
       })
     );
