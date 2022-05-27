@@ -97,9 +97,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "league-app"
+  "defaultProject": "league-app",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

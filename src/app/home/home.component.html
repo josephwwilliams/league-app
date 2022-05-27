@@ -137,7 +137,7 @@
     </mat-tab>
 
     <!-- ====================================================================================================================================================== -->
-    <!-- <mat-tab label="Items" *ngIf="loggedIn">
+    <mat-tab label="Items" *ngIf="loggedIn">
       <h1>Coming Soon!</h1>
       <button mat-raised-button (click)="log()" (click)="log2()">
         Click for sneak peak
@@ -145,14 +145,16 @@
       <div *ngFor="let item of data | keyvalue">
         <div
           *ngIf="item.value.inStore !== false"
-          [innerHTML]="item.value.name"
+          [innerHTML]="item.value.description"
         ></div>
         <img
           *ngIf="item.value.inStore !== false"
           class="img-fluid w-90"
           style="max-height: 50px"
           [src]="
-            'https://ddragon.leagueoflegends.com/cdn/12.8.1/img/item/' +
+            'https://ddragon.leagueoflegends.com/cdn/' +
+            dataDragonVersion +
+            '/img/item/' +
             item.key +
             '.png'
           "
@@ -162,7 +164,7 @@
           {{ item.value.gold.total }}
         </div>
       </div>
-    </mat-tab> -->
+    </mat-tab>
 
     <!-- =============================================================If user doesn't have an account============================================================= -->
 

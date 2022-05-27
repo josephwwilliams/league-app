@@ -8,18 +8,18 @@ import { NgForm } from '@angular/forms';
 @Injectable({
   providedIn: 'root',
 })
-export class ChampsService implements OnInit {
+export class ChampsService {
   animations: boolean = true;
   name = '';
   champions = [];
   selectedChampion = {};
   favoriteChampions = [];
   championDetails;
-  dataDragonVersion: string = '12.9.1';
+  dataDragonVersion: string = '12.10.1';
   region: string = 'NA1';
   massRegion: string = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = 'api_key=RGAPI-4486e552-19df-48e3-9825-aee5a2cd9bc0';
+  apiKeyRoot = 'api_key=RGAPI-eb5bfabe-1dc2-48ab-9a1e-53e51a53bac1';
 
   regions = [
     { value: 'NA1', viewValue: 'NA' },
@@ -36,11 +36,6 @@ export class ChampsService implements OnInit {
   ];
 
   constructor(private http: HttpClient, private authService: AuthService) {}
-
-  ngOnInit(): void {
-    // this.getDDVersion()
-    // console.log(this.dataDragonVersion)
-  }
 
   favoriteClick(favChampion) {
     if (
@@ -118,7 +113,7 @@ export class ChampsService implements OnInit {
     let apiRoot =
       'https://' + region + '.api.riotgames.com/lol/match/v5/matches/by-puuid/';
     let apiKey = `${this.apiKeyRoot}`;
-    let apiEnd = '/ids?start=0&count=10';
+    let apiEnd = '/ids?start=0&count=16';
     let apiUrl = `${apiRoot}${input}${apiEnd}&${apiKey}`;
     return this.http.get<any>(apiUrl);
   }
@@ -183,6 +178,7 @@ export class ChampsService implements OnInit {
       this.massRegion = 'EUROPE';
     }
   }
+
   addUserToFireBase(form: any) {
     // this.name = form.
     return this.authService.user.pipe(
@@ -191,9 +187,10 @@ export class ChampsService implements OnInit {
         let userData = {
           favoriteChampions: [0],
           email: form.email,
-          region: form.region,
+          region: [form.region],
           username: [form.username],
-          animations: true,
+          animations: [true],
+          autoSearch: [false],
         };
         let userEmail = user.email.replace('@', '').replace('.', '');
         return this.http.put(
@@ -218,6 +215,7 @@ export class ChampsService implements OnInit {
   //     })
   //   );
   // }
+
   addChampionsToFireBase() {
     return this.authService.user.pipe(
       take(1),
@@ -256,6 +254,45 @@ export class ChampsService implements OnInit {
     );
   }
 
+  editAnimationsDataOnFireBase(animations: boolean) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://league-stat-checker-default-rtdb.firebaseio.com/users/${userEmail}/animations.json`,
+          [animations]
+        );
+      })
+    );
+  }
+
+  editAutoSearchDataOnFireBase(autoSearch: boolean) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://league-stat-checker-default-rtdb.firebaseio.com/users/${userEmail}/autoSearch.json`,
+          [autoSearch]
+        );
+      })
+    );
+  }
+
+  editRegionDataOnFireBase(region: string) {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        let userEmail = user.email.replace('@', '').replace('.', '');
+        return this.http.put(
+          `https://league-stat-checker-default-rtdb.firebaseio.com/users/${userEmail}/region.json`,
+          [region]
+        );
+      })
+    );
+  }
+
   fetchUserDataFromFireBase() {
     return this.authService.user.pipe(
       take(1),
@@ -268,9 +305,39 @@ export class ChampsService implements OnInit {
     );
   }
 
+  getMostPlayedChampions(region, summonerId) {
+    let apiRoot =
+      'https://' +
+      region +
+      '.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/';
+    let apiKey = `?${this.apiKeyRoot}`;
+    let apiUrl = `${apiRoot}${summonerId}${apiKey}`;
+    return this.http.get<any>(apiUrl);
+  }
+
+  getChampionNameWithID(id: number) {
+    return this.http.get<any>(
+      'https://ddragon.leagueoflegends.com/cdn/' +
+        this.dataDragonVersion +
+        '/data/en_US/champion.json'
+    );
+  }
+
+  checkIfPlayerIsInGame(region, summonerId) {
+    let apiRoot =
+      'https://' +
+      region +
+      '.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/';
+    let apiKey = `?${this.apiKeyRoot}`;
+    let apiUrl = `${apiRoot}${summonerId}${apiKey}`;
+    return this.http.get<any>(apiUrl);
+  }
+
   returnItems() {
     return this.http.get<any>(
-      'https://ddragon.leagueoflegends.com/cdn/12.8.1/data/en_US/item.json'
+      'https://ddragon.leagueoflegends.com/cdn/' +
+        this.dataDragonVersion +
+        '/data/en_US/item.json'
     );
   }
 

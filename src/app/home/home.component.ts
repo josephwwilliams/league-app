@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { ChampsService } from '../champs.service';
+import { ChampionService } from '../shared/champion.service';
 
 @Component({
   selector: 'app-home',
@@ -32,7 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private champService: ChampsService,
     private router: Router,
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private championService: ChampionService
   ) {}
   ngOnInit(): void {
     // this.champService.getDDVersion().subscribe(
@@ -47,6 +49,13 @@ export class HomeComponent implements OnInit, OnDestroy {
         // this.champService
         //   .fetchUserDataFromFireBase()
         //   .subscribe((res: any) => console.log(res.region));
+        this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
+          if (res !== null) {
+            this.regions = this.champService.regions;
+            this.selectedValue = res.region[0];
+            this.printUsers(res.region[0]);
+          }
+        });
         this.champService.fetchChampionsFromFireBase().subscribe((res: any) => {
           if (res === null || res[0] === 0) {
             this.champService.favoriteChampions = [];
@@ -59,14 +68,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
     });
     this.dataDragonVersion = this.champService.dataDragonVersion;
-    this.regions = this.champService.regions;
-    this.selectedValue = this.champService.region;
-    this.printUsers(this.selectedValue);
   }
 
   log() {
     this.champService.returnItems().subscribe((res: any) => {
       this.data = res.data;
+      console.log(this.data);
     });
     this.champService.returnRunes().subscribe((res) => {
       this.data2 = res;
@@ -114,16 +121,17 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.userSub.unsubscribe();
   }
 
-  getData() {
-    return this.http.get<any>(
-      'https://na1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/ivpVjtN7hydy1MScdnNpme0ECM-vfpIdTB_jMJf0BpO9AZRy?api_key=RGAPI-c87cccca-e7c4-41f7-98d8-9f98cb91ea8d'
-    );
-  }
+  // getData() {
+  //   return this.http.get<any>(
+  //     'https://na1.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/ivpVjtN7hydy1MScdnNpme0ECM-vfpIdTB_jMJf0BpO9AZRy?api_key=RGAPI-c87cccca-e7c4-41f7-98d8-9f98cb91ea8d'
+  //   );
+  // }
 
   log2() {
-    this.getData().subscribe((res) => {
-      console.log('hi');
-      console.log(res);
-    });
+    // this.getData().subscribe((res) => {
+    //   console.log('hi');
+    //   console.log(res);
+    // });
+    // console.log(this.championService.getChampionNameWithID(19));
   }
 }

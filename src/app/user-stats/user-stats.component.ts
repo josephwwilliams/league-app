@@ -16,6 +16,8 @@ export class UserStatsComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog
   ) {}
+  inGame: boolean = false;
+  autoSearch = false;
   dataDragonVersion: string;
   showSpinner = false;
   details;
@@ -23,18 +25,37 @@ export class UserStatsComponent implements OnInit {
   players = [];
   playerStats: any;
   errors: any;
+  mostPlayedChampions = [];
+  currentGame;
 
   selectedValue: string;
   regions: { value: string; viewValue: string }[] = [];
 
   ngOnInit(): void {
-    this.dataDragonVersion = this.champService.dataDragonVersion;
-    this.regions = this.champService.regions;
-    this.selectedValue = this.champService.region;
+    this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
+      this.champService.animations = res.animations[0];
+      this.autoSearch = res.autoSearch[0];
+    });
     this.name = this.champService.name;
     if (this.name !== '') {
       this.submit();
     }
+
+    if (this.name === '') {
+      this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
+        this.autoSearch = res.autoSearch[0];
+        this.name = res.username[0];
+        this.champService.regionCheckAndChange(res.region[0]);
+        this.selectedValue = this.champService.region;
+        if (this.name === res.username[0] && this.autoSearch) {
+          this.submit();
+        }
+      });
+    }
+    this.dataDragonVersion = this.champService.dataDragonVersion;
+    this.regions = this.champService.regions;
+    this.selectedValue = this.champService.region;
+    // this.name = this.champService.name;
   }
 
   submit() {
@@ -81,7 +102,54 @@ export class UserStatsComponent implements OnInit {
                                 this.playerStats = res[i];
                               }
                             }
-                            this.showSpinner = false;
+                            this.champService
+                              .getMostPlayedChampions(
+                                this.champService.region,
+                                this.details.id
+                              )
+                              .subscribe(
+                                (res: any) => {
+                                  this.mostPlayedChampions = res;
+                                  this.mostPlayedChampions
+                                    .slice(0, 10)
+                                    .forEach((a, index) => {
+                                      this.champService
+                                        .getChampionNameWithID(a.championId)
+                                        .subscribe((res) => {
+                                          Object.values(res.data).forEach(
+                                            (i: any) => {
+                                              if (+i.key === a.championId) {
+                                                this.mostPlayedChampions[index][
+                                                  'championName'
+                                                ] = i.id;
+                                              }
+                                            }
+                                          );
+                                        });
+                                    });
+                                  this.champService
+                                    .checkIfPlayerIsInGame(
+                                      this.champService.region,
+                                      this.details.id
+                                    )
+                                    .subscribe(
+                                      (res: any) => {
+                                        this.inGame = true;
+                                        console.log(res);
+                                        this.currentGame = res;
+                                        this.showSpinner = false;
+                                      },
+                                      (err) => {
+                                        this.inGame = false;
+                                        this.showSpinner = false;
+                                      }
+                                    );
+                                },
+                                (err) => {
+                                  this.errors = err;
+                                  this.showSpinner = false;
+                                }
+                              );
                           },
                           (err) => {
                             this.errors = err;
@@ -111,7 +179,6 @@ export class UserStatsComponent implements OnInit {
   }
 
   checkPlayerStatsInGame(player) {
-    // console.log(player.totalDamageDealtToChampions);
     console.log(player);
     this.dialog.open(PlayerStatsComponent, { data: { player } });
   }
@@ -135,9 +202,18 @@ export class UserStatsComponent implements OnInit {
     this.details = undefined;
     this.playerStats = undefined;
     this.players = [];
+    this.currentGame = [];
   }
 
   changeRegion(region: string) {
     this.champService.regionCheckAndChange(region);
+  }
+
+  reloadCurrentPage() {
+    window.location.reload();
+  }
+
+  openLiveGame() {
+    console.log(this.inGame);
   }
 }

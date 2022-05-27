@@ -13,11 +13,13 @@ export class UserSettingsComponent implements OnInit {
     private champService: ChampsService,
     private authService: AuthService
   ) {}
+  selectedValue: string;
+  regions: { value: string; viewValue: string }[] = [];
   version: string;
   dataDragonVersions = [];
   changed: boolean = false;
-  autoSearch: boolean = true;
-  haveAnimations = true;
+  autoSearch: boolean = false;
+  haveAnimations = false;
   editMode = false;
   email: string;
   username = {
@@ -25,37 +27,30 @@ export class UserSettingsComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
+      this.regions = this.champService.regions;
+      this.selectedValue = res.region[0];
+    });
     this.version = this.champService.dataDragonVersion;
     this.getUserData();
     this.champService.getDDVersion().subscribe((res) => {
       this.dataDragonVersions = res;
+      this.dataDragonVersions = this.dataDragonVersions.filter(
+        (e, i) => i < this.dataDragonVersions.length - 98
+      );
     });
-    // this.haveAnimations = this.champService.animations;
   }
   changeUsername() {
     this.champService.editUserDataOnFireBase(this.username).subscribe();
   }
-  // getUsername() {
-  //   this.champService.fetchUsernameDataFromFireBase().subscribe((res: any) => {
-  //     console.log(res);
-  //     if (res !== null) {
-  //       this.username = res;
-  //     } else {
-  //       this.username = {
-  //         username: '',
-  //       };
-  //     }
-  //   });
-  // }
 
   getUserData() {
     this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
-      console.log(res);
       this.username = res.username[0];
       this.email = res.email;
-      this.champService.animations = res.animations;
-      console.log(res.animations);
-      // this.champService.animations =
+      this.haveAnimations = res.animations[0];
+      this.champService.animations = res.animations[0];
+      this.autoSearch = res.autoSearch[0];
     });
   }
 
@@ -64,18 +59,26 @@ export class UserSettingsComponent implements OnInit {
     setTimeout(() => {
       this.changed = false;
     }, 2000);
-    console.log(form.value.username);
     this.champService.dataDragonVersion = form.value.version;
     this.username = form.value.username;
-    console.log(form.value.username);
+    if (form.value.enableAutoSearch !== true) {
+      this.autoSearch = false;
+      this.champService.editAutoSearchDataOnFireBase(false).subscribe();
+    } else {
+      this.autoSearch = true;
+      this.champService.editAutoSearchDataOnFireBase(true).subscribe();
+    }
+
     if (form.value.enableAnimations !== true) {
       this.haveAnimations = false;
       this.champService.animations = false;
-      return;
+      this.champService.editAnimationsDataOnFireBase(false).subscribe();
     } else {
       this.haveAnimations = true;
       this.champService.animations = true;
+      this.champService.editAnimationsDataOnFireBase(true).subscribe();
     }
+    this.champService.editRegionDataOnFireBase(form.value.region).subscribe();
     this.changeUsername();
   }
 }

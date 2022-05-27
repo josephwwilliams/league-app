@@ -1,35 +1,4 @@
 <div class="container">
-  <!-- <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Update Summoner Name</mat-label>
-      <input
-        [disabled]="!editMode"
-        matInput
-        #message
-        maxlength="16"
-        minlength="3"
-        placeholder="Summoner Name"
-        [value]="username.username"
-      />
-      <mat-hint align="start"
-        ><strong>Must be at least 3 characters</strong>
-      </mat-hint>
-      <mat-hint align="end">{{ message.value.length }} / 16</mat-hint>
-    </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Email</mat-label>
-      <input [disabled]="true" matInput [value]="email" />
-    </mat-form-field>
-    <button
-      (click)="editMode = !editMode"
-      mat-mini-fab
-      color="warn"
-      style="margin: 10px"
-      matTooltip="Edit"
-    >
-      <span class="material-icons"> edit </span>
-    </button>
-  </form> -->
   <form
     style="text-align: center; overflow: hidden"
     #authForm="ngForm"
@@ -98,7 +67,20 @@
         >
       </div>
     </div>
-    <mat-form-field appearance="fill" style="margin: 20px">
+    <mat-form-field appearance="fill">
+      <mat-label>Region</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="region">
+        <mat-option *ngFor="let region of regions" [value]="region.value">
+          {{ region.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      appearance="fill"
+      style="margin: 20px"
+      matTooltip="Later than Version 3.13.24 bugs may arise"
+      matTooltipPosition="above"
+    >
       <mat-label>League Version</mat-label>
       <mat-select [(ngModel)]="version" name="version">
         <mat-option

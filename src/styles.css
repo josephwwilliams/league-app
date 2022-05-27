@@ -33,6 +33,14 @@ mat-sidenav-content {
     background-position: top left;
   }
 }
+@media (max-width: 750px) {
+  mat-sidenav-content {
+    background-color: #faaca8;
+    background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+    background-repeat: no-repeat;
+    background-position: top left;
+  }
+}
 main {
   /* text-align: center; */
   position: relative;

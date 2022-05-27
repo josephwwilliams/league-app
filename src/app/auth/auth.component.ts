@@ -32,7 +32,6 @@ export class AuthComponent implements OnInit, OnDestroy {
     if (userData) {
       this.authService.oldUser = true;
     } else this.authService.oldUser = false;
-    console.log(userData);
     this.oldUser = this.authService.oldUser;
     this.selectedValue = this.champService.region;
     this.regions = this.champService.regions;
@@ -44,7 +43,7 @@ export class AuthComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     this.authService.form = form.value;
-    console.log(form);
+    this.champService.regionCheckAndChange(form.value.region);
     if (!form.valid) {
       return;
     }
@@ -65,9 +64,7 @@ export class AuthComponent implements OnInit, OnDestroy {
         if (!this.isLoginMode) {
           this.champService
             .addUserToFireBase(this.authService.form)
-            .subscribe((res) => {
-              console.log(res);
-            });
+            .subscribe();
         }
       },
       (errorMessage) => {
