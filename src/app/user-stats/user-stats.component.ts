@@ -35,12 +35,11 @@ export class UserStatsComponent implements OnInit {
     this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
       this.champService.animations = res.animations[0];
       this.autoSearch = res.autoSearch[0];
+      if (this.name !== '' && this.autoSearch) {
+        this.submit();
+      }
     });
     this.name = this.champService.name;
-    if (this.name !== '') {
-      this.submit();
-    }
-
     if (this.name === '') {
       this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
         this.autoSearch = res.autoSearch[0];

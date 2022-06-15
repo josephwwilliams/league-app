@@ -43,6 +43,7 @@ export class ChampionDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkChampionInFavorties();
     this.showSpinner = true;
     this.dataDragonVersion = this.champService.dataDragonVersion;
     // this.selectedChampion = this.champService.selectedChampion;
@@ -51,6 +52,7 @@ export class ChampionDetailsComponent implements OnInit {
     this.champService
       .getChampionData(this.selectedChampion, this.dataDragonVersion)
       .subscribe((res) => {
+        console.log(this.champDetails);
         this.dialSpecs.value = 0;
         this.champDetails.push(res.data[this.selectedChampion]);
         this.dialSpecs.max = this.champDetails[0].skins.length - 1;
@@ -72,5 +74,16 @@ export class ChampionDetailsComponent implements OnInit {
 
   spellClick(info) {
     this.dialog.open(ChampionDialogComponent, { data: { info } });
+  }
+
+  checkChampionInFavorties() {
+    this.champService.fetchChampionsFromFireBase().subscribe((res: any) => {
+      this.champService.favoriteChampions = res;
+      this.champService.favoriteChampions.forEach((champion) => {
+        if (this.route.snapshot.params['id'] === champion.id) {
+          this.added = true;
+        }
+      });
+    });
   }
 }

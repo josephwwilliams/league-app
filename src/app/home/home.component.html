@@ -129,15 +129,16 @@
 
     <!-- =============================================================If user doesn't have an account============================================================= -->
 
-    <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
+    <!-- <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
       <ng-template mat-tab-label>
         <i matTooltip="Login to see!"> Runes </i>
         <span class="material-icons"> lock </span>
       </ng-template>
-    </mat-tab>
+    </mat-tab> -->
 
     <!-- ====================================================================================================================================================== -->
-    <mat-tab label="Items" *ngIf="loggedIn">
+
+    <!-- <mat-tab label="Items" *ngIf="loggedIn">
       <h1>Coming Soon!</h1>
       <button mat-raised-button (click)="log()" (click)="log2()">
         Click for sneak peak
@@ -164,16 +165,16 @@
           {{ item.value.gold.total }}
         </div>
       </div>
-    </mat-tab>
+    </mat-tab> -->
 
     <!-- =============================================================If user doesn't have an account============================================================= -->
 
-    <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
+    <!-- <mat-tab *ngIf="!loggedIn" [disabled]="!hasAccount">
       <ng-template mat-tab-label>
         <i matTooltip="Login to see!"> Items</i>
         <span class="material-icons"> lock </span>
       </ng-template>
-    </mat-tab>
+    </mat-tab> -->
 
     <!-- ====================================================================================================================================================== -->
 

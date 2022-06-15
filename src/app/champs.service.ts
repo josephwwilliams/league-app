@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { exhaustMap, take } from 'rxjs/operators/';
-import { NgForm } from '@angular/forms';
+
 // import { keys } from '../environments/keys'
 
 @Injectable({
@@ -19,7 +19,7 @@ export class ChampsService {
   region: string = 'NA1';
   massRegion: string = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = 'api_key=RGAPI-eb5bfabe-1dc2-48ab-9a1e-53e51a53bac1';
+  apiKeyRoot = 'api_key=RGAPI-b2950e30-07be-41e4-8774-f9056b7f4903';
 
   regions = [
     { value: 'NA1', viewValue: 'NA' },
