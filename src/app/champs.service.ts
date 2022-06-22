@@ -19,7 +19,7 @@ export class ChampsService {
   region: string = 'NA1';
   massRegion: string = 'AMERICAS';
   // apiKeyRoot = process.env.NODE_ENV === "development" ? keys.apiKeyRoot : process.env.API_KEY
-  apiKeyRoot = 'api_key=RGAPI-b2950e30-07be-41e4-8774-f9056b7f4903';
+  apiKeyRoot = 'api_key=RGAPI-58310384-10f9-4432-b485-7fa9c80e99f3';
 
   regions = [
     { value: 'NA1', viewValue: 'NA' },
