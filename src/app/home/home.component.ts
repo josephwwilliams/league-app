@@ -46,9 +46,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe((user) => {
       this.loggedIn = !!user;
       if (this.loggedIn) {
-        // this.champService
-        //   .fetchUserDataFromFireBase()
-        //   .subscribe((res: any) => console.log(res.region));
         this.champService.fetchUserDataFromFireBase().subscribe((res: any) => {
           if (res !== null) {
             this.regions = this.champService.regions;
@@ -73,7 +70,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   log() {
     this.champService.returnItems().subscribe((res: any) => {
       this.data = res.data;
-      console.log(this.data);
     });
     this.champService.returnRunes().subscribe((res) => {
       this.data2 = res;

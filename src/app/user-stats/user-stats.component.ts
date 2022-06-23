@@ -134,12 +134,12 @@ export class UserStatsComponent implements OnInit {
                                     .subscribe(
                                       (res: any) => {
                                         this.inGame = true;
-                                        console.log(res);
+
                                         this.currentGame = res;
                                         this.showSpinner = false;
                                       },
                                       (err) => {
-                                        this.inGame = true;
+                                        this.inGame = false;
                                         this.showSpinner = false;
                                       }
                                     );
@@ -178,7 +178,6 @@ export class UserStatsComponent implements OnInit {
   }
 
   checkPlayerStatsInGame(player) {
-    console.log(player);
     this.dialog.open(PlayerStatsComponent, { data: { player } });
   }
 
@@ -212,7 +211,5 @@ export class UserStatsComponent implements OnInit {
     window.location.reload();
   }
 
-  openLiveGame() {
-    console.log(this.inGame);
-  }
+  openLiveGame() {}
 }

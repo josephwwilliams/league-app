@@ -52,7 +52,6 @@ export class ChampionDetailsComponent implements OnInit {
     this.champService
       .getChampionData(this.selectedChampion, this.dataDragonVersion)
       .subscribe((res) => {
-        console.log(this.champDetails);
         this.dialSpecs.value = 0;
         this.champDetails.push(res.data[this.selectedChampion]);
         this.dialSpecs.max = this.champDetails[0].skins.length - 1;

@@ -200,21 +200,6 @@ export class ChampsService {
     );
   }
 
-  // addChampionsToFireBase() {
-  //   return this.authService.user.pipe(
-  //     take(1),
-  //     exhaustMap((user) => {
-  //       let userEmail = user.email.replace('@', '').replace('.', '');
-  //       return this.http.put(
-  //         'https://league-stat-checker-default-rtdb.firebaseio.com/' +
-  //           userEmail +
-  //           'favorites.json',
-  //         this.favoriteChampions
-  //       );
-  //     })
-  //   );
-  // }
-
   addChampionsToFireBase() {
     return this.authService.user.pipe(
       take(1),
