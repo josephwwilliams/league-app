@@ -139,7 +139,7 @@ export class UserStatsComponent implements OnInit {
                                         this.showSpinner = false;
                                       },
                                       (err) => {
-                                        this.inGame = false;
+                                        this.inGame = true;
                                         this.showSpinner = false;
                                       }
                                     );
